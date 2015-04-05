@@ -1,40 +1,5 @@
 # Schema Information
 
-## blogs
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
-title       | string    | not null
-
-## followings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
-
-## posts
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
-title       | string    | not null
-body        | string    |
-
-## tags
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-label       | string    | not null, unique
-
-## taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
-tag_id      | integer   | not null, foreign key (references tags)
-
 ## users
 column name     | data type | details
 ----------------|-----------|-----------------------
@@ -43,3 +8,32 @@ email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
 
+## posts
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+author_id   | integer   | not null, foreign key (references users)
+content     | text      | not null
+
+## comments
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+author_id   | integer   | not null, foreign key (references users)
+post_id     | integer   | not null, foreign key (references posts)
+content     | string    | not null
+
+## friendships
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+friend1_id  | integer   | not null, foreign key (references users)
+friend2_id  | integer   | not null, foreign key (references users)
+
+## likes
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+user_id     | integer   | not null, foreign key (references users)
+likable_type| string    | not null, declares polymorphic interface (post or comment)
+likable_id  | integer   | not null, foreign key (references posts or comments)
