@@ -7,6 +7,9 @@ id              | integer   | not null, primary key
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
+fname           | string    | not null
+lname           | string    | not null
+dance_style     | string    | not null
 
 ## posts
 column name | data type | details
