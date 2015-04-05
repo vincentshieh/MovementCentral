@@ -1,8 +1,8 @@
 # Movement Central
 
-[Heroku link][heroku]
+<!-- [Heroku link][heroku]
 
-[heroku]:
+[heroku]: -->
 
 ## Minimum Viable Product
 Movement Central is a clone of Facebook built on Rails and Backbone. Users can:
