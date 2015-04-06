@@ -6,21 +6,21 @@
 ## Feed Show (landing page)
 ![feed-show]
 
-## Blog Show
-![blog-show]
+## Profile Show
+![profile-show]
 
-## Post Show
-![post-show]
+## About Show
+![about-show]
 
-## Post Form
-![post-form]
+## Friends Show
+![friends-show]
 
-## Search Results
-![search-results]
+## Photos Show
+![photos-show]
 
 [new-session]: ./wireframes/new_session.png
 [feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
-[search-results]: ./wireframes/search_results.png
+[profile-show]: ./wireframes/profile_show.png
+[about-show]: ./wireframes/about_show.png
+[friends-show]: ./wireframes/friends_show.png
+[photos-show]: ./wireframes/photos_show.png

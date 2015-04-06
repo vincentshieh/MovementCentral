@@ -10,6 +10,8 @@ session_token   | string    | not null, unique
 fname           | string    | not null
 lname           | string    | not null
 dance_style     | string    | not null
+profile_picture | string    |
+cover_photo     | string    |
 
 ## posts
 column name | data type | details
@@ -17,6 +19,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 content     | text      | not null
+picture     | string    |
 
 ## comments
 column name | data type | details
