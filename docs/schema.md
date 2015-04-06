@@ -18,6 +18,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
+recipient_id| integer   | not null, foreign key (references users)
 content     | text      | not null
 picture     | string    |
 

@@ -1,29 +1,22 @@
-# Phase 2: Viewing Blogs and Posts
+# Phase 2: Uploading Photos and Adding Friends
 
 ## Rails
 ### Models
+* Friendship
 
 ### Controllers
-Api::BlogsController (create, destroy, index, show)
-Api::PostsController (create, destroy, show, update)
+* Api::FriendshipsController (create, destroy)
 
 ### Views
-* blogs/show.json.jbuilder
 
 ## Backbone
 ### Models
-* Blog (parses nested `posts` association)
-* Post
+* Friendship
 
 ### Collections
-* Blogs
-* Posts
+* Friendships
 
 ### Views
-* BlogForm
-* BlogShow (composite view, contains PostsIndex subview)
-* PostsIndex (composite view, contains PostsIndexItem subviews)
-* PostsIndexItem
-* PostShow
 
 ## Gems/Libraries
+Filepicker

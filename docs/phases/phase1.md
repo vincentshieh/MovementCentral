@@ -1,28 +1,41 @@
-# Phase 1: User Authentication, Basic Blogs and Posts
+# Phase 1: User Authentication, Creating and Viewing Posts and Comments
 
 ## Rails
 ### Models
 * User
-* Blog
 * Post
+* Comment
 
 ### Controllers
 * UsersController (create, new)
 * SessionsController (create, new, destroy)
-* BlogsController (create, new, show)
-* PostsController (create, new, show)
+* Api::PostsController (create, new, index, show)
+* Api::CommentsController (create, new, show)
 
 ### Views
 * users/new.html.erb
 * session/new.html.erb
-* blogs/new.html.erb
-* blogs/show.html.erb
+* api/posts/show.json.jbuilder
 
 ## Backbone
 ### Models
+* User
+* Post (parses nested `comments` association)
+* Comment
 
 ### Collections
+* Users
+* Posts
+* Comments
 
 ### Views
+* ProfileShow (composite view, contains PostForm subview and PostsIndex subview)
+* PostForm
+* PostsIndex (composite view, contains PostsIndexItem subviews)
+* PostsIndexItem (composite view, contains PostShow subview, CommentsIndex subview, and CommentForm subview)
+* PostShow
+* CommentsIndex (composite view, contains CommentsIndexItem subviews)
+* CommentsIndexItem
+* CommentForm
 
 ## Gems/Libraries

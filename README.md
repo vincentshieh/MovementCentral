@@ -14,10 +14,11 @@ Movement Central is a clone of Facebook built on Rails and Backbone. Users can:
 - [ ] Create posts
 - [ ] Create post comments
 - [ ] View posts and comments
+- [ ] Upload photos in posts
 - [ ] Add friends
 - [ ] View a feed of friends' posts
 - [ ] Like posts and comments
-- [ ] Search for dancers by name and dance style
+- [ ] Search for users by name and dance style
 
 ## Design Docs
 * [View Wireframes][views]
@@ -28,59 +29,53 @@ Movement Central is a clone of Facebook built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
+### Phase 1: User Authentication, Post and Comment Creation and Views (~2 days)
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs using
-a simple text form in a Rails view. The most important part of this phase will
-be pushing the app to Heroku and ensuring that everything works before moving on
-to phase 2.
+App Academy. I will add API routes to render post and comment data as JSON, and
+then add Backbone models and collections that fetch data from those routes. By
+the end of this phase, users will be able to create posts and post comments,
+as well as view them in the profile show page. The app will be pushed to Heroku
+by the end of the first day.
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
-I will add API routes to serve blog and post data as JSON, then add Backbone
-models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create blogs and view both blogs and posts, all
-inside a single Backbone app.
+### Phase 2: Uploading Photos and Adding Friends (~1 day)
+I will integrate Filepicker for file upload so users can add photos to posts
+using the `PostForm`. By the end of this phase, a user will be able to Friend
+or Unfriend another user by clicking a button in the other user's profile show
+page.
 
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 3: News Feed (~1 day)
+I will add a `feed` route that uses the `current_user`'s `friends`
+association to render a list of posts ordered chronologically. On the Backbone
+side, I will make a `FeedShow` view whose `posts` collection fetches from the
+new route. Ultimately, this will be the page users see after logging in.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
-collection fetches from the new route.  Ultimately, this will be the page users
-see after logging in.
+### Phase 4: Likes (~0.5 days)
+I will use a polymorphic association to allow users to Like and Unlike both
+posts and comments.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
-I'll need to add `search` routes to both the Blogs and Posts controllers. On the
-Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
-and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
-collections, but they will fetch from the new `search` routes.
+### Phase 5: Searching for Users (~1 day)
+I will add a `search` route to the Users controller. On the
+Backbone side, there will be a `SearchResults` composite view that has
+`SearchItem` subviews. This view will use a `users` collection, but it will
+fetch from the new `search` route.
 
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
-- [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
-- [ ] Multiple sessions/session management
-- [ ] User avatars
-- [ ] Typeahead search bar
+- [ ] Navbar (has log in form when logged out and user options when logged in)
+- [ ] `ProfileNav` view (includes cover photo, profile picture, and links)
+- [ ] `AboutShow` view (displays detailed user information)
+- [ ] `FriendsShow` view (displays user's friends)
+- [ ] `PhotosShow` view (displays user's photos)
+- [ ] Previews for About, Friends, and Photos pages in `ProfileShow` view
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

@@ -2,19 +2,20 @@
 
 ## Rails
 ### Models
+* Like
 
 ### Controllers
-Api::PostsController (feed)
+* LikesController (create, destroy)
 
 ### Views
-posts/feed.json.jbuilder
 
 ## Backbone
 ### Models
+* Like
 
 ### Collections
+* Likes
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
 
 ## Gems/Libraries

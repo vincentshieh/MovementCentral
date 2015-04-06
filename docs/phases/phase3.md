@@ -1,11 +1,13 @@
-# Phase 3: Editing and Displaying Posts
+# Phase 3: News Feed
 
 ## Rails
 ### Models
 
 ### Controllers
+* Api::PostsController (feed)
 
 ### Views
+* posts/feed.json.jbuilder
 
 ## Backbone
 ### Models
@@ -13,9 +15,6 @@
 ### Collections
 
 ### Views
-* PostForm
+* FeedShow (composite view, contains PostsIndex subview)
 
 ## Gems/Libraries
-* Filepicker
-* Markdown-js
-* Bootstrap Markdown
