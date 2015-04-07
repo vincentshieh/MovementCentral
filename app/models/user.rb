@@ -6,6 +6,17 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many(
+    :authored_posts,
+    foreign_key: :author_id,
+    class_name: "Post"
+  )
+  has_many(
+    :received_posts,
+    foreign_key: :recipient_id,
+    class_name: "Post"
+  )
+
   after_initialize :ensure_session_token
 
   def self.find_by_credentials(email, password)

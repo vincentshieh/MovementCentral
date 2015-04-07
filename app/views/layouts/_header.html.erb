@@ -1,0 +1,10 @@
+<% if logged_in? %>
+  Logged in as: <%= current_user.email %>
+  <%= button_to "Log Out", session_url, method: :delete %>
+<% end %>
+
+<ul>
+  <% flash[:errors] && flash[:errors].each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
