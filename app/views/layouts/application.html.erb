@@ -11,8 +11,6 @@
 <% if logged_in? %>
   Logged in as: <%= current_user.email %>
   <%= button_to "Log Out", session_url, method: :delete %>
-<% else %>
-  <%= link_to "Log In", new_session_url %>
 <% end %>
 
 <ul>
