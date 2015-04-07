@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'newrelic_rpm'
 gem 'bcrypt', '~> 3.1.7'
+gem 'backbone-on-rails'
 
 group :development, :test do
   gem 'byebug'
@@ -19,6 +20,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'

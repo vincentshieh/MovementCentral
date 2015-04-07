@@ -1,0 +1,9 @@
+<h3>Received Posts</h3>
+
+<ul class='received-posts'>
+  <% posts.each(function (post) { %>
+    <li>
+      <%= post.escape("content") %>
+    </li>
+  <% }); %>
+</ul>
