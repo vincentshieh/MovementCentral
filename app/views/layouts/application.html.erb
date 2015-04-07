@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SampleProjectProposalMaster</title>
+  <title>Movement Central</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if logged_in? %>
+  Logged in as: <%= current_user.email %>
+  <%= button_to "Log Out", session_url, method: :delete %>
+<% else %>
+  <%= link_to "Log In", new_session_url %>
+<% end %>
+
+<ul>
+  <% flash[:errors] && flash[:errors].each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
 
 <%= yield %>
 
