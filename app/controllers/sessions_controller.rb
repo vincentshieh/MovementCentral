@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       render :new
     else
       login_user!(user)
-      redirection_to users_url
+      redirect_to users_url
     end
   end
 
@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def new
+    @user = User.new
     render :new
   end
 end
