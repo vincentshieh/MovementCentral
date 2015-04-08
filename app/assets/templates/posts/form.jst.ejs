@@ -1,6 +1,10 @@
 <h3>New Post</h3>
 
 <form>
+  <input type="hidden"
+         name="post[recipient_id]"
+         value="<%= post.recipient_id %>">
+
   <textarea name="post[content]"></textarea>
 
   <input type="submit" value="Post">

@@ -6,7 +6,9 @@ MovementCentral.Views.Profile = Backbone.CompositeView.extend({
 
     var formView = new MovementCentral.Views.PostForm({
       collection: this.collection,
-      model: new MovementCentral.Models.Post()
+      model: new MovementCentral.Models.Post({
+        recipient_id: this.user_id
+      })
     });
     var indexView = new MovementCentral.Views.PostsIndex({
       collection: this.collection

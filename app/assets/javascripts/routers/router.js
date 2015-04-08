@@ -13,7 +13,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
 
     var profile = new MovementCentral.Views.Profile({
       collection: posts,
-      id: id
+      user_id: id
     });
 
     this._swapView(profile);
@@ -22,6 +22,6 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   _swapView: function (newView) {
     this._currentView && this._currentView.remove();
     this._currentView = newView;
-    $rootEl.html(newView.render().$el);
+    this.$rootEl.html(newView.render().$el);
   }
 });

@@ -2456,3 +2456,143 @@ Processing by SessionsController#new as HTML
   Rendered sessions/new.html.erb within layouts/application (4.9ms)
   Rendered layouts/_header.html.erb (0.7ms)
 Completed 200 OK in 199ms (Views: 180.2ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-07 17:26:46 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-07 17:26:46 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.0ms)
+  Rendered sessions/new.html.erb within layouts/application (9.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 557ms (Views: 539.5ms | ActiveRecord: 4.3ms)
+
+
+Started POST "/session" for ::1 at 2015-04-07 17:26:54 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"E36mRhbh2DF7UQZlaGJiHMaYlL0rj2x4ItYitb7G++Rup4gH5/+/rNTdWqg5Bb0jesHrPIY8CCU0fJAfsryWiw==", "user"=>{"email"=>"user1@dance.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "user1@dance.com"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'user1@dance.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'QanFnicgIu5J4Jjv6gGEug' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "QanFnicgIu5J4Jjv6gGEug"], ["updated_at", "2015-04-08 00:26:55.101259"], ["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/users
+Completed 302 Found in 130ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/users" for ::1 at 2015-04-07 17:26:55 -0700
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (2.1ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered layouts/_header.html.erb (4.2ms)
+Completed 200 OK in 121ms (Views: 118.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2015-04-07 17:27:45 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 139ms (Views: 136.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts" for ::1 at 2015-04-07 17:27:45 -0700
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  [1m[35mPost Load (2.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+Completed 200 OK in 35ms (Views: 2.9ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/" for ::1 at 2015-04-07 17:32:43 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+Completed 200 OK in 294ms (Views: 257.5ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/api/posts" for ::1 at 2015-04-07 17:32:43 -0700
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+Completed 200 OK in 27ms (Views: 1.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-07 17:33:09 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 252ms (Views: 248.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts" for ::1 at 2015-04-07 17:33:09 -0700
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/?post%5Brecipient_id%5D=&post%5Bcontent%5D=hello+world" for ::1 at 2015-04-07 17:34:42 -0700
+Processing by StaticPagesController#root as HTML
+  Parameters: {"post"=>{"recipient_id"=>"", "content"=>"hello world"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 157ms (Views: 154.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts" for ::1 at 2015-04-07 17:34:42 -0700
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (6.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+Completed 200 OK in 12ms (Views: 1.6ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/?post%5Brecipient_id%5D=&post%5Bcontent%5D=hello+world" for ::1 at 2015-04-07 17:35:26 -0700
+Processing by StaticPagesController#root as HTML
+  Parameters: {"post"=>{"recipient_id"=>"", "content"=>"hello world"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 128ms (Views: 126.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts" for ::1 at 2015-04-07 17:35:26 -0700
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  [1m[36mPost Load (1.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+Completed 200 OK in 7ms (Views: 1.3ms | ActiveRecord: 2.6ms)
+  [1m[36mPost Load (1.2ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+
+
+Started GET "/" for ::1 at 2015-04-07 17:39:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 222ms (Views: 220.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-07 17:39:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 114ms (Views: 112.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts" for ::1 at 2015-04-07 17:39:53 -0700
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "QanFnicgIu5J4Jjv6gGEug"]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.8ms)
