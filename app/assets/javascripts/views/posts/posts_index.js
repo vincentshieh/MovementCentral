@@ -3,15 +3,14 @@ MovementCentral.Views.PostsIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.user_id = options.user_id;
-
     this.listenTo(this.collection, 'sync', this.render);
   },
 
-  addPost: function (post) {
-    var showView = new MovementCentral.Views.PostShow({
+  addPostItem: function (post) {
+    var itemView = new MovementCentral.Views.PostsIndexItem({
       model: post
     });
-    this.addSubview('.posts', showView);
+    this.addSubview('.posts', itemView);
   },
 
   render: function () {
@@ -20,11 +19,11 @@ MovementCentral.Views.PostsIndex = Backbone.CompositeView.extend({
       user_id: this.user_id
     });
     this.$el.html(renderedContent);
-    this.renderPosts();
+    this.renderPostItems();
     return this;
   },
 
-  renderPosts: function () {
-    this.collection.each(this.addPost.bind(this));
+  renderPostItems: function () {
+    this.collection.each(this.addPostItem.bind(this));
   }
 });
