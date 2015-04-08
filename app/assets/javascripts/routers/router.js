@@ -4,11 +4,14 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
+    '': 'profileShow',
     'users/:id': 'profileShow'
   },
 
   profileShow: function (id) {
     var posts = MovementCentral.Collections.posts;
+    id = id || MovementCentral.current_user_id;
+
     posts.fetch({
       data: {
         user_id: id
