@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :new, :destroy]
 
   namespace :api, defaults: { format: :json } do
-    resources :posts, only: [:create, :index, :show]
+    resources :posts, only: [:create, :index]
   end
 end

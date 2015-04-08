@@ -1,5 +1,5 @@
-MovementCentral.Views.Profile = Backbone.CompositeView.extend({
-  template: JST['profile/profile'],
+MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
+  template: JST['profile/show'],
 
   initialize: function (options) {
     this.listenTo(this.collection, 'sync', this.render);
@@ -20,7 +20,9 @@ MovementCentral.Views.Profile = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var renderedContent = this.template();
+    var renderedContent = this.template({
+      user_id: this.user_id
+    });
     this.$el.html(renderedContent);
     this.attachSubviews();
     return this;

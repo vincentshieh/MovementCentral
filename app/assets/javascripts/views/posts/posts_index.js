@@ -9,7 +9,7 @@ MovementCentral.Views.PostsIndex = Backbone.View.extend({
     var renderedContent = this.template({
       posts: this.collection
     });
-    debugger
+
     this.$el.html(renderedContent);
     return this;
   }

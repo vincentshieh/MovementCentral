@@ -4,19 +4,23 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    'users/:id': 'profile'
+    'users/:id': 'profileShow'
   },
 
-  profile: function (id) {
+  profileShow: function (id) {
     var posts = MovementCentral.Collections.posts;
-    posts.fetch();
+    posts.fetch({
+      data: {
+        user_id: id
+      }
+    });
 
-    var profile = new MovementCentral.Views.Profile({
+    var profileView = new MovementCentral.Views.ProfileShow({
       collection: posts,
       user_id: parseInt(id)
     });
 
-    this._swapView(profile);
+    this._swapView(profileView);
   },
 
   _swapView: function (newView) {

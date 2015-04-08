@@ -11,13 +11,9 @@ module Api
     end
 
     def index
-      @posts = current_user.received_posts
+      user = User.find(params[:user_id])
+      @posts = user.received_posts
       render json: @posts
-    end
-
-    def show
-      @post = Post.includes(:author, :recipient).find(params[:id])
-      render json: @post
     end
 
     private
