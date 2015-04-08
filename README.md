@@ -12,8 +12,8 @@ Movement Central is a clone of Facebook built on Rails and Backbone. Users can:
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Create posts
-- [ ] Create post comments
-- [ ] View posts and comments
+- [x] Create post comments
+- [x] View posts and comments
 - [ ] Upload photos in posts
 - [ ] Add friends
 - [ ] View a feed of friends' posts

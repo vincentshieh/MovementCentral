@@ -16269,3 +16269,495 @@ Processing by Api::PostsController#index as JSON
   Rendered api/posts/index.json.jbuilder (11.4ms)
 Completed 200 OK in 22ms (Views: 13.3ms | ActiveRecord: 2.4ms)
   [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments"[0m
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:16:57 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>1, "content"=>"disappear", "comment"=>{"post_id"=>1, "content"=>"disappear"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "disappear"], ["post_id", 1], ["author_id", 2], ["created_at", "2015-04-08 23:16:57.699549"], ["updated_at", "2015-04-08 23:16:57.699549"]]
+  [1m[36m (8.5ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-08 16:18:18 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 217ms (Views: 215.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-08 16:18:18 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 8)
+  Rendered api/posts/index.json.jbuilder (5.8ms)
+Completed 200 OK in 11ms (Views: 7.1ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-08 16:20:43 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"new post", "post"=>{"recipient_id"=>1, "content"=>"new post"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "new post"], ["recipient_id", 1], ["author_id", 2], ["created_at", "2015-04-08 23:20:43.116556"], ["updated_at", "2015-04-08 23:20:43.116556"]]
+  [1m[35m (7.5ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 8.7ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:30:41 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>1, "content"=>"work", "comment"=>{"post_id"=>1, "content"=>"work"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "work"], ["post_id", 1], ["author_id", 2], ["created_at", "2015-04-08 23:30:41.902588"], ["updated_at", "2015-04-08 23:30:41.902588"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-08 16:30:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 252ms (Views: 249.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-08 16:30:45 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 8, 10)[0m
+  Rendered api/posts/index.json.jbuilder (6.3ms)
+Completed 200 OK in 12ms (Views: 7.7ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:30:50 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>1, "content"=>"work2", "comment"=>{"post_id"=>1, "content"=>"work2"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "work2"], ["post_id", 1], ["author_id", 2], ["created_at", "2015-04-08 23:30:50.250740"], ["updated_at", "2015-04-08 23:30:50.250740"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-08 16:31:18 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"new new post", "post"=>{"recipient_id"=>1, "content"=>"new new post"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "new new post"], ["recipient_id", 1], ["author_id", 2], ["created_at", "2015-04-08 23:31:19.003010"], ["updated_at", "2015-04-08 23:31:19.003010"]]
+  [1m[36m (8.8ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 18ms (Views: 0.7ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-08 16:31:22 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 300ms (Views: 298.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-08 16:31:23 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 8, 10, 11)
+  Rendered api/posts/index.json.jbuilder (8.9ms)
+Completed 200 OK in 15ms (Views: 10.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-08 16:31:27 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  Rendered api/posts/index.json.jbuilder (1.5ms)
+Completed 200 OK in 8ms (Views: 3.5ms | ActiveRecord: 1.0ms)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+
+
+Started POST "/api/posts" for ::1 at 2015-04-08 16:32:06 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>3, "content"=>"first post!", "post"=>{"recipient_id"=>3, "content"=>"first post!"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "first post!"], ["recipient_id", 3], ["author_id", 2], ["created_at", "2015-04-08 23:32:06.654378"], ["updated_at", "2015-04-08 23:32:06.654378"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.7ms)
+
+
+Started PUT "/api/posts/12" for ::1 at 2015-04-08 16:32:13 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/posts/12"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.8ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (7.6ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fae048336f0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fae04833330 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fae04820988 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started PUT "/api/posts/12" for ::1 at 2015-04-08 16:32:16 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/posts/12"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (6.1ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fae048336f0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fae04833330 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fae04820988 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started GET "/" for ::1 at 2015-04-08 16:32:18 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 172ms (Views: 170.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-08 16:32:18 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (12)
+  Rendered api/posts/index.json.jbuilder (4.2ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:33:51 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>12, "content"=>"comment1", "comment"=>{"post_id"=>12, "content"=>"comment1"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "comment1"], ["post_id", 12], ["author_id", 2], ["created_at", "2015-04-08 23:33:51.980745"], ["updated_at", "2015-04-08 23:33:51.980745"]]
+  [1m[35m (8.1ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.1ms)
+
+
+Started PUT "/api/comments/15" for ::1 at 2015-04-08 16:33:56 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/comments/15"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (5.1ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fae048336f0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fae04833330 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fae04820988 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started GET "/" for ::1 at 2015-04-08 16:34:05 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 196ms (Views: 194.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-08 16:34:05 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (12)[0m
+  Rendered api/posts/index.json.jbuilder (4.9ms)
+Completed 200 OK in 11ms (Views: 6.5ms | ActiveRecord: 1.5ms)
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments"
+
+
+Started GET "/" for ::1 at 2015-04-08 16:37:00 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 270ms (Views: 267.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-08 16:37:01 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (12)
+  Rendered api/posts/index.json.jbuilder (5.0ms)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:37:04 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>12, "content"=>"comment2", "comment"=>{"post_id"=>12, "content"=>"comment2"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "comment2"], ["post_id", 12], ["author_id", 2], ["created_at", "2015-04-08 23:37:04.762413"], ["updated_at", "2015-04-08 23:37:04.762413"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.9ms | ActiveRecord: 9.7ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:37:07 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>12, "content"=>"c3", "comment"=>{"post_id"=>12, "content"=>"c3"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c3"], ["post_id", 12], ["author_id", 2], ["created_at", "2015-04-08 23:37:07.707010"], ["updated_at", "2015-04-08 23:37:07.707010"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Completed 200 OK in 17ms (Views: 0.5ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-08 16:38:35 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 298ms (Views: 296.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-08 16:38:35 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (12)[0m
+  Rendered api/posts/index.json.jbuilder (5.8ms)
+Completed 200 OK in 12ms (Views: 7.4ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-08 16:38:38 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>3, "content"=>"p2", "post"=>{"recipient_id"=>3, "content"=>"p2"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "p2"], ["recipient_id", 3], ["author_id", 2], ["created_at", "2015-04-08 23:38:38.260393"], ["updated_at", "2015-04-08 23:38:38.260393"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.8ms)
+
+
+Started PUT "/api/posts/13" for ::1 at 2015-04-08 16:38:41 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/posts/13"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (7.1ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fae048336f0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fae04833330 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fae04820988 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started GET "/" for ::1 at 2015-04-08 16:44:40 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 265ms (Views: 263.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-08 16:44:41 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (12, 13)
+  Rendered api/posts/index.json.jbuilder (6.1ms)
+Completed 200 OK in 12ms (Views: 7.7ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-08 16:44:46 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>3, "content"=>"p3", "post"=>{"recipient_id"=>3, "content"=>"p3"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "p3"], ["recipient_id", 3], ["author_id", 2], ["created_at", "2015-04-08 23:44:46.716436"], ["updated_at", "2015-04-08 23:44:46.716436"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.8ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-08 16:44:49 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>3, "content"=>"p4", "post"=>{"recipient_id"=>3, "content"=>"p4"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "p4"], ["recipient_id", 3], ["author_id", 2], ["created_at", "2015-04-08 23:44:49.771141"], ["updated_at", "2015-04-08 23:44:49.771141"]]
+  [1m[35m (7.9ms)[0m  COMMIT
+Completed 200 OK in 15ms (Views: 0.5ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:44:55 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>13, "content"=>"c4", "comment"=>{"post_id"=>13, "content"=>"c4"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c4"], ["post_id", 13], ["author_id", 2], ["created_at", "2015-04-08 23:44:55.200061"], ["updated_at", "2015-04-08 23:44:55.200061"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 17ms (Views: 0.7ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-08 16:45:00 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>13, "content"=>"c5", "comment"=>{"post_id"=>13, "content"=>"c5"}}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "v3o1jyGeyogVfdNEIB-VfA"]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c5"], ["post_id", 13], ["author_id", 2], ["created_at", "2015-04-08 23:45:00.758584"], ["updated_at", "2015-04-08 23:45:00.758584"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 10.0ms)

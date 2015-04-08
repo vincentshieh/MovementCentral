@@ -6,6 +6,7 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
     this.user_id = options.user_id;
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addComment);
+    this.listenTo(this.collection, 'add', this.render);
   },
 
   addComment: function (comment) {

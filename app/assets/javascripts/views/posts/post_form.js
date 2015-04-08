@@ -7,6 +7,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
 
   initialize: function (options) {
     this.user_id = options.user_id;
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   render: function () {
