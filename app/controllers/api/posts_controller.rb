@@ -12,8 +12,8 @@ module Api
 
     def index
       user = User.find(params[:user_id])
-      @posts = user.received_posts
-      render json: @posts
+      @posts = user.received_posts.includes(:comments)
+      render :index
     end
 
     private

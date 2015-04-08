@@ -2,8 +2,10 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
   template: JST['posts/index_item'],
 
   initialize: function (options) {
+    this.collection = this.model.comments();
     this.user_id = options.user_id;
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.collection, 'add', this.addComment);
   },
 
   addComment: function (comment) {
@@ -30,14 +32,16 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
   },
 
   renderComments: function () {
-    this.model.comments().each(this.addComment.bind(this));
+    this.collection.each(this.addComment.bind(this));
   },
 
   renderCommentForm: function () {
     var formView = new MovementCentral.Views.CommentForm({
-      model: new MovementCentral.Models.Comments({
+      collection: this.model.comments(),
+      model: new MovementCentral.Models.Comment({
         post_id: this.model.id
-      })
+      }),
+      user_id: this.user_id
     });
     this.addSubview('.new-comment', formView);
   }

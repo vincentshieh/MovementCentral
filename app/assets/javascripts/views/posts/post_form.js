@@ -10,18 +10,15 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   },
 
   render: function () {
-    var renderedContent = this.template({
-      post: this.model
-    });
-
+    var renderedContent = this.template();
     this.$el.html(renderedContent);
     return this;
   },
 
   submit: function (event) {
     event.preventDefault();
-    var attrs = this.$('form').serializeJSON(),
-      view = this;
+    var attrs = this.$('form').serializeJSON();
+    var view = this;
 
     this.model.set(attrs);
     this.model.save({}, {

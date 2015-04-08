@@ -8,7 +8,8 @@ MovementCentral.Views.PostsIndex = Backbone.CompositeView.extend({
 
   addPostItem: function (post) {
     var itemView = new MovementCentral.Views.PostsIndexItem({
-      model: post
+      model: post,
+      user_id: this.user_id
     });
     this.addSubview('.posts', itemView);
   },
