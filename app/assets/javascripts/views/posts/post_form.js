@@ -1,6 +1,10 @@
 MovementCentral.Views.PostForm = Backbone.View.extend({
   template: JST['posts/form'],
 
+  events: {
+    'click button': 'submit'
+  },
+
   render: function () {
     var renderedContent = this.template({
       post: this.model
@@ -12,7 +16,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
 
   submit: function (event) {
     event.preventDefault();
-    var attrs = $(event.currentTarget).serializeJSON(),
+    var attrs = this.$('form').serializeJSON(),
       view = this;
 
     this.model.set(attrs);

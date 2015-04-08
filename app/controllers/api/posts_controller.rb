@@ -6,7 +6,7 @@ module Api
       if @post.save
         render json: @post
       else
-        render json: @post.errors.full_messages, status: unprocessable_entity
+        render json: @post.errors.full_messages, status: :unprocessable_entity
       end
     end
 
@@ -17,13 +17,13 @@ module Api
 
     def show
       @post = Post.includes(:author, :recipient).find(params[:id])
-      render :show
+      render json: @post
     end
 
     private
 
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :recipient_id)
     end
   end
 end

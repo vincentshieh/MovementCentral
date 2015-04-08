@@ -13,7 +13,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
 
     var profile = new MovementCentral.Views.Profile({
       collection: posts,
-      user_id: id
+      user_id: parseInt(id)
     });
 
     this._swapView(profile);
