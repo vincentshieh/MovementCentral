@@ -1,8 +1,7 @@
 MovementCentral.Collections.Posts = Backbone.Collection.extend({
+  comparator: 'created_at',
   model: MovementCentral.Models.Post,
   url: 'api/posts',
-
-  comparator: 'created_at',
 
   getOrFetch: function (id) {
     var post = this.get(id),

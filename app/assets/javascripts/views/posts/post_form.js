@@ -5,6 +5,10 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
     'click button': 'submit'
   },
 
+  initialize: function (options) {
+    this.user_id = options.user_id;
+  },
+
   render: function () {
     var renderedContent = this.template({
       post: this.model
@@ -23,7 +27,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
     this.model.save({}, {
       success: function () {
         view.collection.add(view.model, { merge: true });
-        Backbone.history.navigate("", { trigger: true });
+        Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
       }
     });
   }

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ActiveRecord::Base
   attr_reader :password
 
@@ -15,6 +27,11 @@ class User < ActiveRecord::Base
     :received_posts,
     foreign_key: :recipient_id,
     class_name: "Post"
+  )
+  has_many(
+    :authored_comments,
+    foreign_key: :author_id,
+    class_name: "Comment"
   )
 
   after_initialize :ensure_session_token

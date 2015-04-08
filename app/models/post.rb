@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :integer          not null, primary key
+#  author_id    :integer          not null
+#  recipient_id :integer          not null
+#  content      :text             not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Post < ActiveRecord::Base
   validates :author_id, :recipient_id, :content, presence: true
 
@@ -10,5 +22,10 @@ class Post < ActiveRecord::Base
     :recipient,
     foreign_key: :recipient_id,
     class_name: "User"
+  )
+  has_many(
+    :comments,
+    foreign_key: :post_id,
+    class_name: "Comment"
   )
 end
