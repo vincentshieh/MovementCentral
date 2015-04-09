@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408165755) do
+ActiveRecord::Schema.define(version: 20150409000352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,15 @@ ActiveRecord::Schema.define(version: 20150408165755) do
     t.string   "session_token",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "fname",           null: false
+    t.string   "lname",           null: false
+    t.string   "dance_style",     null: false
   end
 
+  add_index "users", ["dance_style"], name: "index_users_on_dance_style", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["fname"], name: "index_users_on_fname", using: :btree
+  add_index "users", ["lname"], name: "index_users_on_lname", using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
 
 end

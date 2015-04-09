@@ -19,12 +19,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @dance_styles = DANCE_STYLES
     render :new
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :fname, :lname, :dance_style)
   end
 end

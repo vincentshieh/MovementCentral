@@ -1,6 +1,18 @@
 <form action="<%= url %>" method="post">
   <%= auth_input %>
 
+  <% if button_value == 'Sign Up' %>
+    <label>
+      First name
+      <input type="text" name="user[fname]">
+    </label><br>
+
+    <label>
+      Last name
+      <input type="text" name="user[lname]">
+    </label><br>
+  <% end %>
+
   <label>
     Email
     <input type="text" name="user[email]">
@@ -10,6 +22,17 @@
     Password
     <input type="password" name="user[password]">
   </label><br>
+
+  <% if button_value == 'Sign Up' %>
+    <label>
+      Dance Style
+      <select name="user[dance_style]">
+        <% @dance_styles.each do |ds| %>
+          <option value="<%= ds %>"><%= ds %></option>
+        <% end %>
+      </select>
+    </label><br>
+  <% end %>
 
   <input type="submit" value="<%= button_value %>">
 </form>
