@@ -2,19 +2,32 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   template: JST['posts/form'],
 
   events: {
-    'click .create-post': 'submit'
+    'click .create-post': 'submit',
+    'click .add-photo': 'addPhoto'
   },
 
   initialize: function (options) {
     this.user_id = options.user_id;
-    this.listenTo(this.model, 'sync', this.render);
+  },
+
+  addPhoto: function (event) {
+    event.preventDefault();
+    var view = this;
+
+    filepicker.pick(
+      {
+        mimetypes: ['image/*'],
+        services: ['COMPUTER']
+      },
+      function (Blob) {
+        view.model.set({ picture: Blob.url });
+      }
+    );
   },
 
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
-    var $filePickerInput = this.$("input[type=filepicker]");
-    filepicker.constructWidget($filePickerInput[0]);
     return this;
   },
 
@@ -27,6 +40,9 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
     this.model.save({}, {
       success: function () {
         view.collection.add(view.model, { merge: true });
+        view.model = new MovementCentral.Models.Post({
+          recipient_id: view.user_id
+        });
         Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
       }
     });

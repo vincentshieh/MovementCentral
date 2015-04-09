@@ -3,7 +3,6 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenTo(this.collection, 'sync', this.render);
-    this.listenTo(this.collection, 'add', this.renderPostForm);
     this.user_id = options.user_id;
   },
 
