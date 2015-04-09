@@ -1,1 +1,4 @@
 <%= post.escape('content') %>
+<% if (post.escape("picture")) { %>
+  <img src="<%= post.escape("picture") %>">
+<% } %>
