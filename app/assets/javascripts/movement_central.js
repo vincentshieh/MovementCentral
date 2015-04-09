@@ -10,7 +10,3 @@ window.MovementCentral = {
     Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  MovementCentral.initialize();
-});
