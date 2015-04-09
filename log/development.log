@@ -19030,3 +19030,33 @@ Processing by Api::PostsController#index as JSON
   [1m[35mComment Load (1.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
   Rendered api/posts/index.json.jbuilder (33.6ms)
 Completed 200 OK in 76ms (Views: 33.7ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 10:15:54 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+Completed 200 OK in 346ms (Views: 304.8ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 10:15:55 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (1.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (1.8ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (37.1ms)
+Completed 200 OK in 76ms (Views: 39.9ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 10:16:10 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"r and y", "picture"=>"https://www.filepicker.io/api/file/BOQiDBFDRT2fFBpDYH4j", "post"=>{"recipient_id"=>1, "content"=>"r and y", "picture"=>"https://www.filepicker.io/api/file/BOQiDBFDRT2fFBpDYH4j"}}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "posts" ("content", "picture", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["content", "r and y"], ["picture", "https://www.filepicker.io/api/file/BOQiDBFDRT2fFBpDYH4j"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 17:16:10.480580"], ["updated_at", "2015-04-09 17:16:10.480580"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+Completed 200 OK in 23ms (Views: 0.4ms | ActiveRecord: 2.5ms)
