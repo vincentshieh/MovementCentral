@@ -18558,3 +18558,475 @@ Processing by Api::PostsController#create as JSON
   [1m[36mSQL (4.2ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "hi"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 07:54:33.833720"], ["updated_at", "2015-04-09 07:54:33.833720"]]
   [1m[35m (1.1ms)[0m  COMMIT
 Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 00:59:37 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (3.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Y8GdK-h4M1OFJZ9yrlywyg"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 497ms (Views: 433.5ms | ActiveRecord: 13.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 00:59:38 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Y8GdK-h4M1OFJZ9yrlywyg"]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.8ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (2.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1)
+  Rendered api/posts/index.json.jbuilder (30.1ms)
+Completed 200 OK in 74ms (Views: 33.9ms | ActiveRecord: 8.0ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 00:59:46 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"tO100JRAaOjW1sPi3cgqVYLnEk+slpvVs9XO+rNOJFpnvrstBE+l8Lp1OQlYAA2xRQx287rO6cWVNJmY9jl8Tg=="}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Y8GdK-h4M1OFJZ9yrlywyg"]]
+  [1m[35m (1.8ms)[0m  BEGIN
+  [1m[36mUser Exists (2.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'm6dk10NjxZcJIvdQ3sSb4Q' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (6.0ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "m6dk10NjxZcJIvdQ3sSb4Q"], ["updated_at", "2015-04-09 07:59:46.125597"], ["id", 1]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 42ms (ActiveRecord: 12.2ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 00:59:46 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.2ms)
+  Rendered sessions/new.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 212ms (Views: 211.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-09 00:59:53 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"hTkzPXNf/kIIY3QRMkp8O1y9/JF86I1wfi7nTOPttqFWavzA41AzWmTAjvq3glvfm1aYLWqw/2BYz7AupprutQ==", "user"=>{"email"=>"mc@dance.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "mc@dance.com"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'sQctNgfF9oVZiwsPQJcw4A' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "sQctNgfF9oVZiwsPQJcw4A"], ["updated_at", "2015-04-09 07:59:53.260561"], ["id", 1]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "sQctNgfF9oVZiwsPQJcw4A"]]
+Redirected to http://localhost:3000/#users/1
+Completed 302 Found in 116ms (ActiveRecord: 4.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 00:59:53 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "sQctNgfF9oVZiwsPQJcw4A"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 203ms (Views: 201.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 00:59:53 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "sQctNgfF9oVZiwsPQJcw4A"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1)
+  Rendered api/posts/index.json.jbuilder (6.5ms)
+Completed 200 OK in 20ms (Views: 15.3ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 00:59:58 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"kQEVP1lFhbU4E3gaUI/MXj3BbKEOo9vyMLCuzSGEgSpCUtrCyUpIrVSwgvHVR+u6+ioIHRj7qeIWUfmvZPPZPg=="}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "sQctNgfF9oVZiwsPQJcw4A"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'yAbp0vB-aZcB93-CxGNcLQ' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "yAbp0vB-aZcB93-CxGNcLQ"], ["updated_at", "2015-04-09 07:59:58.433947"], ["id", 1]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 11ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 00:59:58 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.4ms)
+  Rendered sessions/new.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 215ms (Views: 213.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 01:15:47 -0700
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 01:15:47 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 218ms (Views: 216.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-09 01:15:53 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"3rmMYspBgrYsmYQZxk3DOdP+Dm9Nf8pBxTI4TepBSiAN6kOfWk5PrkA6fvJDheTdFBVq01snuFHj028vrzYSNA==", "user"=>{"email"=>"mc@dance.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "mc@dance.com"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'c_Kwx2Bp3VKCFAGp3ELRLw' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"], ["updated_at", "2015-04-09 08:15:53.651673"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+Redirected to http://localhost:3000/#users/1
+Completed 302 Found in 99ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 01:15:53 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 185ms (Views: 183.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 01:15:54 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1)
+  Rendered api/posts/index.json.jbuilder (5.3ms)
+Completed 200 OK in 21ms (Views: 16.0ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 01:16:01 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>1, "content"=>"c1", "comment"=>{"post_id"=>1, "content"=>"c1"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (4.3ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c1"], ["post_id", 1], ["author_id", 1], ["created_at", "2015-04-09 08:16:01.551162"], ["updated_at", "2015-04-09 08:16:01.551162"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Completed 200 OK in 19ms (Views: 0.6ms | ActiveRecord: 6.6ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 01:16:03 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>1, "content"=>"c2", "comment"=>{"post_id"=>1, "content"=>"c2"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c2"], ["post_id", 1], ["author_id", 1], ["created_at", "2015-04-09 08:16:03.357665"], ["updated_at", "2015-04-09 08:16:03.357665"]]
+  [1m[35m (8.5ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.3ms | ActiveRecord: 9.7ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 01:16:06 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"p2", "picture"=>"", "post"=>{"recipient_id"=>1, "content"=>"p2", "picture"=>""}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (18.8ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "p2"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 08:16:06.658673"], ["updated_at", "2015-04-09 08:16:06.658673"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+Completed 200 OK in 29ms (Views: 0.5ms | ActiveRecord: 20.3ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 01:16:14 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Ev8VmGHBIky1vGiw+hKpZl2oxhuAoyDrHm5cqKastxTBrNpl8c7vVNkfklt/2o6CmkOip5b7Uvs4jwvK49vvAA=="}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "c_Kwx2Bp3VKCFAGp3ELRLw"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'jhPcaxjqdzmXNeoMcqIwTA' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "jhPcaxjqdzmXNeoMcqIwTA"], ["updated_at", "2015-04-09 08:16:14.247797"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 11ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 01:16:14 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.4ms)
+  Rendered sessions/new.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 206ms (Views: 205.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 08:48:38 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (6.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 08:48:38 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.5ms)
+  Rendered sessions/new.html.erb within layouts/application (9.3ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 459ms (Views: 423.8ms | ActiveRecord: 16.4ms)
+
+
+Started POST "/session" for ::1 at 2015-04-09 08:48:55 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"Ks91cUDvUrWisu0l7F7uQoARjcu+KQsNoOEz1N0H6+n1zxSI5VwUndIwSPS4+XpTccOCVZNOH3WZkd8BbeCHtw==", "user"=>{"email"=>"mc@dance.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (8.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mc@dance.com"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (1.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'vhqaeuOfysQclyg-bydU6Q' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (3.9ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "vhqaeuOfysQclyg-bydU6Q"], ["updated_at", "2015-04-09 15:48:55.277017"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+Redirected to http://localhost:3000/#users/1
+Completed 302 Found in 146ms (ActiveRecord: 15.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 08:48:55 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 198ms (Views: 196.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 08:48:55 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (3.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (3.9ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  Rendered api/posts/index.json.jbuilder (48.1ms)
+Completed 200 OK in 89ms (Views: 44.5ms | ActiveRecord: 13.9ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 08:48:58 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"", "picture"=>"", "post"=>{"recipient_id"=>1, "content"=>"", "picture"=>""}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+Completed 422 Unprocessable Entity in 20ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 08:49:16 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"heyhey", "picture"=>"https://www.filepicker.io/api/file/QIeRZr0sTaa1Hlz3ToFg", "post"=>{"recipient_id"=>1, "content"=>"heyhey", "picture"=>"https://www.filepicker.io/api/file/QIeRZr0sTaa1Hlz3ToFg"}}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (10.2ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "heyhey"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 15:49:16.304786"], ["updated_at", "2015-04-09 15:49:16.304786"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Completed 200 OK in 19ms (Views: 0.6ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 08:49:23 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 182ms (Views: 179.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 08:49:23 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3)[0m
+  Rendered api/posts/index.json.jbuilder (7.4ms)
+Completed 200 OK in 16ms (Views: 9.8ms | ActiveRecord: 2.6ms)
+  [1m[36mPost Load (1.0ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+
+
+Started GET "/" for ::1 at 2015-04-09 09:51:42 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 212ms (Views: 196.7ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 09:51:43 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3)
+  Rendered api/posts/index.json.jbuilder (22.8ms)
+Completed 200 OK in 44ms (Views: 24.8ms | ActiveRecord: 7.5ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 09:51:45 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"", "picture"=>"", "post"=>{"recipient_id"=>1, "content"=>"", "picture"=>""}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+Completed 422 Unprocessable Entity in 13ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 09:51:59 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"sergei", "picture"=>"https://www.filepicker.io/api/file/bBAF03IZQ4JHGbLH375E", "post"=>{"recipient_id"=>1, "content"=>"sergei", "picture"=>"https://www.filepicker.io/api/file/bBAF03IZQ4JHGbLH375E"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("content", "picture", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["content", "sergei"], ["picture", "https://www.filepicker.io/api/file/bBAF03IZQ4JHGbLH375E"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 16:51:59.594218"], ["updated_at", "2015-04-09 16:51:59.594218"]]
+  [1m[36m (8.5ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 17ms (Views: 0.8ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 09:52:06 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 181ms (Views: 178.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 09:52:06 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (6.4ms)
+Completed 200 OK in 12ms (Views: 7.6ms | ActiveRecord: 1.9ms)
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts"
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 09:53:01 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"HdbJZgh7Ifde8aM3FjMCXOHX3mNbmZAQp5EK81Ipx/LC1qifrchn3y5zBuZClJZNEAXR/Xb+hGie4eYm4s6rrA=="}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "vhqaeuOfysQclyg-bydU6Q"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'rhO4QogLjapbfWoKZk7OPg' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "rhO4QogLjapbfWoKZk7OPg"], ["updated_at", "2015-04-09 16:53:01.767503"], ["id", 1]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 21ms (ActiveRecord: 11.5ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 09:53:01 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 177ms (Views: 175.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-09 09:53:18 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"UgMfDo6mF0auuehjOqSn6UR29VyncpLtrCkuBwslFZCNA373KxVRbt47TbJuAzP4taT6wooVhpWVWcLSu8J5zg==", "user"=>{"email"=>"mc@dance.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "mc@dance.com"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'h2aFsWsw8gYssT12Vqj2Kg' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"], ["updated_at", "2015-04-09 16:53:18.713518"], ["id", 1]]
+  [1m[35m (8.7ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+Redirected to http://localhost:3000/#users/1
+Completed 302 Found in 121ms (ActiveRecord: 12.2ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 09:53:18 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 175ms (Views: 173.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 09:53:19 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (7.6ms)
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 09:54:07 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 283ms (Views: 281.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 09:54:07 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (7.2ms)
+Completed 200 OK in 13ms (Views: 8.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 09:55:45 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 284ms (Views: 282.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 09:55:45 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (7.8ms)
+Completed 200 OK in 13ms (Views: 8.9ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 09:56:39 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"", "picture"=>"", "post"=>{"recipient_id"=>1, "content"=>"", "picture"=>""}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+Completed 422 Unprocessable Entity in 10ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 10:00:54 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"", "picture"=>"", "post"=>{"recipient_id"=>1, "content"=>"", "picture"=>""}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.3ms)[0m  ROLLBACK
+Completed 422 Unprocessable Entity in 14ms (Views: 0.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 10:01:18 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 414ms (Views: 371.6ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 10:01:19 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "h2aFsWsw8gYssT12Vqj2Kg"]]
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (1.0ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (1.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (33.6ms)
+Completed 200 OK in 76ms (Views: 33.7ms | ActiveRecord: 9.8ms)

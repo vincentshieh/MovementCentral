@@ -2,7 +2,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   template: JST['posts/form'],
 
   events: {
-    'click button': 'submit'
+    'click .create-post': 'submit'
   },
 
   initialize: function (options) {

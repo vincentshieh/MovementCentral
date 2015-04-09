@@ -12,8 +12,6 @@
 #
 
 class Post < ActiveRecord::Base
-  attr_accessor :picture
-
   validates :author_id, :recipient_id, :content, presence: true
 
   belongs_to(
