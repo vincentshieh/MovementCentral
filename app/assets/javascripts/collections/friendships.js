@@ -3,3 +3,5 @@ MovementCentral.Collections.Friendships = Backbone.Collection.extend({
   model: MovementCentral.Models.Friendship,
   url: 'api/friendships'
 });
+
+MovementCentral.Collections.friendships = new MovementCentral.Collections.Friendships();

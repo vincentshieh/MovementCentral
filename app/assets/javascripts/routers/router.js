@@ -10,6 +10,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
 
   profileShow: function (id) {
     var posts = MovementCentral.Collections.posts;
+    var friendships = MovementCentral.Collections.friendships;
     id = id || MovementCentral.current_user_id;
 
     posts.fetch({
@@ -17,10 +18,12 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
         user_id: id
       }
     });
+    friendships.fetch();
 
     var profileView = new MovementCentral.Views.ProfileShow({
       collection: posts,
-      user_id: parseInt(id)
+      user_id: parseInt(id),
+      friendships: friendships
     });
 
     this._swapView(profileView);

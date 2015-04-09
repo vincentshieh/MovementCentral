@@ -19,6 +19,10 @@ module Api
       render json: {}
     end
 
+    def index
+      render json: friends_of_current_user
+    end
+
     private
 
     def friendship_params

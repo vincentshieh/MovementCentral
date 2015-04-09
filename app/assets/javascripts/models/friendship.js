@@ -1,3 +1,3 @@
-MovementCentral.Models.Post = Backbone.Model.extend({
+MovementCentral.Models.Friendship = Backbone.Model.extend({
   urlRoot: 'api/friendships'
 });

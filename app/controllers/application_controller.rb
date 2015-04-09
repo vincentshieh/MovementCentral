@@ -12,6 +12,20 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
+  def friends_of_current_user
+    friends = []
+
+    current_user.friends_as_requester.each do |friendship|
+      friends << { user_id: friendship.requestee_id, accepted: friendship.accepted }
+    end
+
+    current_user.friends_as_requestee.each do |friendship|
+      friends << { user_id: friendship.requester_id, accepted: friendship.accepted }
+    end
+
+    friends
+  end
+
   def logged_in?
     !current_user.nil?
   end
