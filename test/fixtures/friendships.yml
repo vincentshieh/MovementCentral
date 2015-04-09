@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: friendships
+#
+#  id           :integer          not null, primary key
+#  requester_id :integer          not null
+#  requestee_id :integer          not null
+#  accepted     :boolean          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requester_id: 1
+  requestee_id: 1
+  accepted: false
+
+two:
+  requester_id: 1
+  requestee_id: 1
+  accepted: false

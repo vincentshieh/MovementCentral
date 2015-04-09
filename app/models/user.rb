@@ -36,6 +36,16 @@ class User < ActiveRecord::Base
     foreign_key: :author_id,
     class_name: "Comment"
   )
+  has_many(
+    :friends_as_requester,
+    foreign_key: :requester_id,
+    class_name: "Friendship"
+  )
+  has_many(
+    :friends_as_requestee,
+    foreign_key: :requestee_id,
+    class_name: "Friendship"
+  )
 
   after_initialize :ensure_session_token
 

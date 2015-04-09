@@ -6,7 +6,7 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.post_id = this.model.post_id;
+    this.post_id = this.model.get('post_id');
     this.user_id = options.user_id;
     this.listenTo(this.model, 'sync', this.render);
   },
@@ -26,6 +26,10 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
     this.model.save({}, {
       success: function () {
         view.collection.add(view.model, { merge: true });
+        view.model = new MovementCentral.Models.Comment({
+          post_id: view.post_id
+        });
+        view.$('.comment-content').val("");
         Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
       }
     });

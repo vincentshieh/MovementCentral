@@ -24,7 +24,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       }),
       user_id: this.user_id
     });
-    this.addSubview('.new-post', formView);
+    this.unshiftSubview('.new-post', formView);
   },
 
   renderPostsIndex: function () {
@@ -32,6 +32,6 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       collection: this.collection,
       user_id: this.user_id
     });
-    this.addSubview('.received-posts', indexView);
+    this.unshiftSubview('.received-posts', indexView);
   }
 });

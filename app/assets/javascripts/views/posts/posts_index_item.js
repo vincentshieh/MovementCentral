@@ -6,14 +6,13 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
     this.user_id = options.user_id;
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addComment);
-    this.listenTo(this.collection, 'add', this.render);
   },
 
   addComment: function (comment) {
     var showView = new MovementCentral.Views.CommentShow({
       model: comment
     });
-    this.addSubview('.comments', showView);
+    this.pushSubview('.comments', showView);
   },
 
   render: function () {
@@ -29,7 +28,7 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
     var showView = new MovementCentral.Views.PostShow({
       model: this.model
     });
-    this.addSubview('.post', showView);
+    this.unshiftSubview('.post', showView);
   },
 
   renderComments: function () {
@@ -44,6 +43,6 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
       }),
       user_id: this.user_id
     });
-    this.addSubview('.new-comment', formView);
+    this.unshiftSubview('.new-comment', formView);
   }
 });

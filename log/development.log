@@ -20100,3 +20100,1102 @@ Processing by Api::PostsController#index as JSON
   [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (10, 11, 12)[0m
   Rendered api/posts/index.json.jbuilder (5.1ms)
 Completed 200 OK in 14ms (Views: 6.7ms | ActiveRecord: 2.2ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 11:17:08 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"2iPUUNRfvlaUTle6c/qHoGk0UhSGL1DpxIO0hpvf8UAFI7Wpcez4fuTM8msnXROxmOZdiqtIRJH981hTKzidHg=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "BiK_WoHpIL0pHg5aj9gA7Q"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'ru@dance.com' AND "users"."id" != 2) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'aYRls4rGCs37wUc6jxJxIg' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mSQL (1.1ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "aYRls4rGCs37wUc6jxJxIg"], ["updated_at", "2015-04-09 18:17:08.283944"], ["id", 2]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 20ms (ActiveRecord: 11.6ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 11:17:08 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 175ms (Views: 174.3ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFriendships (20150409182307)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (51.9ms)[0m  [1mCREATE TABLE "friendships" ("id" serial primary key, "friend1_id" integer NOT NULL, "friend2_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE  INDEX  "index_friendships_on_friend1_id" ON "friendships"  ("friend1_id")
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX  "index_friendships_on_friend2_id" ON "friendships"  ("friend2_id")[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150409182307"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'friendships'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'posts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to FixColumnNames (20150409183419)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (9.8ms)[0m  [1mALTER TABLE "friendships" RENAME COLUMN "friend1_id" TO "requester_id"[0m
+  [1m[35m (1.2ms)[0m  ALTER INDEX "index_friendships_on_friend1_id" RENAME TO "index_friendships_on_requester_id"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "friendships" RENAME COLUMN "friend2_id" TO "requestee_id"[0m
+  [1m[35m (0.4ms)[0m  ALTER INDEX "index_friendships_on_friend2_id" RENAME TO "index_friendships_on_requestee_id"
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "friendships" ADD "accepted" boolean[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150409183419"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'friendships'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'posts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[36m (5.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20150407175032)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (17.3ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150407175032"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePosts (20150407211819)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (4.9ms)[0m  [1mCREATE TABLE "posts" ("id" serial primary key, "author_id" integer NOT NULL, "recipient_id" integer NOT NULL, "content" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE  INDEX  "index_posts_on_author_id" ON "posts"  ("author_id")
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX  "index_posts_on_recipient_id" ON "posts"  ("recipient_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150407211819"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateComments (20150408165755)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (6.2ms)[0m  [1mCREATE TABLE "comments" ("id" serial primary key, "author_id" integer NOT NULL, "post_id" integer NOT NULL, "content" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE  INDEX  "index_comments_on_post_id" ON "comments"  ("post_id")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150408165755"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Migrating to AddNameAndDanceStyleToUsers (20150409000352)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "users" ADD "fname" character varying NOT NULL
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX  "index_users_on_fname" ON "users"  ("fname")[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "lname" character varying NOT NULL
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX  "index_users_on_lname" ON "users"  ("lname")[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "users" ADD "dance_style" character varying NOT NULL
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX  "index_users_on_dance_style" ON "users"  ("dance_style")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150409000352"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddPictureToPosts (20150409070643)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "posts" ADD "picture" character varying[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150409070643"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFriendships (20150409184229)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.2ms)[0m  [1mCREATE TABLE "friendships" ("id" serial primary key, "requester_id" integer NOT NULL, "requestee_id" integer NOT NULL, "accepted" boolean NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE  INDEX  "index_friendships_on_requester_id" ON "friendships"  ("requester_id")
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX  "index_friendships_on_requestee_id" ON "friendships"  ("requestee_id")[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150409184229"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'friendships'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'posts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[36mPost Load (1.1ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+
+
+Started GET "/" for ::1 at 2015-04-09 13:47:54 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 13:47:54 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.5ms)
+  Rendered sessions/new.html.erb within layouts/application (10.9ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 565ms (Views: 543.6ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/users/new" for ::1 at 2015-04-09 13:48:00 -0700
+Processing by UsersController#new as HTML
+  Rendered shared/_login.html.erb (0.3ms)
+  Rendered users/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 190ms (Views: 189.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-04-09 13:48:12 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"aFgYW8VXbjYVxSj6wwXOOV/IVE3obqXXm0jRzkjs2RC3WHmiYOQoHmVHjSuXoloorhpb08UJsa+iOD0b+Au1Tg==", "user"=>{"fname"=>"Ricky", "lname"=>"Ubeda", "email"=>"ru@dance.com", "password"=>"[FILTERED]", "dance_style"=>"Ballet"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (2.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ru@dance.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = '9cRUS_jumjLs9mv56PXSeA' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "fname", "lname", "dance_style", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "ru@dance.com"], ["password_digest", "$2a$10$I/w7DKPMo/aYfRxp6daJrOgho.0qvsMs92U1KGZ8qKqPgC17m1gaq"], ["fname", "Ricky"], ["lname", "Ubeda"], ["dance_style", "Ballet"], ["session_token", "9cRUS_jumjLs9mv56PXSeA"], ["created_at", "2015-04-09 20:48:13.079539"], ["updated_at", "2015-04-09 20:48:13.079539"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'ru@dance.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'AUnjsBnwXBZ8A0gNy9cifQ' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"], ["updated_at", "2015-04-09 20:48:13.089346"], ["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+Redirected to http://localhost:3000/#users/1
+Completed 302 Found in 154ms (ActiveRecord: 8.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 13:48:13 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 209ms (Views: 206.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:48:13 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (1.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  Rendered api/posts/index.json.jbuilder (8.8ms)
+Completed 200 OK in 58ms (Views: 16.0ms | ActiveRecord: 4.3ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 13:48:25 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"post1", "post"=>{"recipient_id"=>1, "content"=>"post1"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "post1"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 20:48:25.586355"], ["updated_at", "2015-04-09 20:48:25.586355"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 25ms (Views: 0.6ms | ActiveRecord: 11.2ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 13:48:29 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"post2", "post"=>{"recipient_id"=>1, "content"=>"post2"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "post2"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 20:48:29.459980"], ["updated_at", "2015-04-09 20:48:29.459980"]]
+  [1m[35m (8.5ms)[0m  COMMIT
+Completed 200 OK in 17ms (Views: 0.5ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 13:49:20 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 277ms (Views: 275.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:49:21 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (1.9ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  Rendered api/posts/index.json.jbuilder (24.0ms)
+Completed 200 OK in 29ms (Views: 22.1ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 13:49:56 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 274ms (Views: 272.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:49:57 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (4.9ms)
+Completed 200 OK in 12ms (Views: 6.5ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 13:50:06 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"post3", "post"=>{"recipient_id"=>1, "content"=>"post3"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "post3"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 20:50:06.206416"], ["updated_at", "2015-04-09 20:50:06.206416"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Completed 200 OK in 15ms (Views: 0.6ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 13:51:19 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 269ms (Views: 266.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:51:19 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3)[0m
+  Rendered api/posts/index.json.jbuilder (6.9ms)
+Completed 200 OK in 13ms (Views: 8.0ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 13:51:24 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"post4", "post"=>{"recipient_id"=>1, "content"=>"post4"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "post4"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 20:51:24.254660"], ["updated_at", "2015-04-09 20:51:24.254660"]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 18ms (Views: 0.5ms | ActiveRecord: 11.2ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 13:51:39 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"O7vtIIC2Ht2aoFgevMgmYKUxsP+ahCv5vWObhOFfns3ku4zZJQVY9eoi/c/ob7JxVOO/YbfjP4GEE3dRUbjykw=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AUnjsBnwXBZ8A0gNy9cifQ"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'ru@dance.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'K5GzzK5q_MVBnO-HsP1K5w' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "K5GzzK5q_MVBnO-HsP1K5w"], ["updated_at", "2015-04-09 20:51:39.087736"], ["id", 1]]
+  [1m[36m (8.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 19ms (ActiveRecord: 10.5ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 13:51:39 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 201ms (Views: 199.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-09 13:51:44 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"fyqpYIorL+72b0hn291qn4tAlXiePySC+t2f/GgCaJugKsiZL5hpxobt7baPev6OepKa5rNYMPrDrXMp2OUExQ==", "user"=>{"email"=>"ru@dance.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (1.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "ru@dance.com"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'ru@dance.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'Byl7s8NjQjBn8Gd5UGEcSQ' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"], ["updated_at", "2015-04-09 20:51:44.214867"], ["id", 1]]
+  [1m[36m (7.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+Redirected to http://localhost:3000/#users/1
+Completed 302 Found in 111ms (ActiveRecord: 11.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 13:51:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 191ms (Views: 189.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:51:44 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (7.3ms)
+Completed 200 OK in 13ms (Views: 8.3ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:52:01 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>4, "content"=>"c1", "comment"=>{"post_id"=>4, "content"=>"c1"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c1"], ["post_id", 4], ["author_id", 1], ["created_at", "2015-04-09 20:52:01.804766"], ["updated_at", "2015-04-09 20:52:01.804766"]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 25ms (Views: 0.6ms | ActiveRecord: 11.5ms)
+
+
+Started PUT "/api/comments/1" for ::1 at 2015-04-09 13:52:17 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/comments/1"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.2ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (11.2ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fc454e7cfa0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fc454e7ca50 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fc454e66160 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started PUT "/api/comments/1" for ::1 at 2015-04-09 13:52:19 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/comments/1"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.1ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (7.4ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fc454e7cfa0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fc454e7ca50 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fc454e66160 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started GET "/" for ::1 at 2015-04-09 13:53:30 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 274ms (Views: 271.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:53:31 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (6.4ms)
+Completed 200 OK in 12ms (Views: 7.5ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:53:37 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>4, "content"=>"c2", "comment"=>{"post_id"=>4, "content"=>"c2"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c2"], ["post_id", 4], ["author_id", 1], ["created_at", "2015-04-09 20:53:37.925702"], ["updated_at", "2015-04-09 20:53:37.925702"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.7ms)
+
+
+Started PUT "/api/comments/2" for ::1 at 2015-04-09 13:53:42 -0700
+
+ActionController::RoutingError (No route matches [PUT] "/api/comments/2"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.9ms)
+  Rendered /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (5.7ms)
+Cannot render console with content type application/jsonAllowed content types: [#<Mime::Type:0x007fc454e7cfa0 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html">, #<Mime::Type:0x007fc454e7ca50 @synonyms=[], @symbol=:text, @string="text/plain">, #<Mime::Type:0x007fc454e66160 @synonyms=[], @symbol=:url_encoded_form, @string="application/x-www-form-urlencoded">]
+
+
+Started GET "/" for ::1 at 2015-04-09 13:56:47 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 253ms (Views: 251.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:56:47 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (10.2ms)
+Completed 200 OK in 16ms (Views: 11.1ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:56:56 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>3, "content"=>"c3", "comment"=>{"post_id"=>3, "content"=>"c3"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c3"], ["post_id", 3], ["author_id", 1], ["created_at", "2015-04-09 20:56:56.341602"], ["updated_at", "2015-04-09 20:56:56.341602"]]
+  [1m[36m (8.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 9.4ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:56:59 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"content"=>"c4", "comment"=>{"content"=>"c4"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+Completed 422 Unprocessable Entity in 24ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/comments" for ::1 at 2015-04-09 13:57:18 -0700
+Processing by Api::CommentsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35mPost Load (1.0ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 7ms
+
+ActiveRecord::RecordNotFound - Couldn't find Post with 'id'=:
+  activerecord (4.2.0) lib/active_record/core.rb:154:in `find'
+  app/controllers/api/comments_controller.rb:14:in `index'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.0) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal.rb:236:in `block in action'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/rack/browser_monitoring.rb:23:in `traced_call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/dc5a59b068ee57f7/variables" for ::1 at 2015-04-09 13:57:18 -0700
+
+
+Started GET "/" for ::1 at 2015-04-09 13:58:33 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 283ms (Views: 279.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:58:34 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (19.1ms)
+Completed 200 OK in 27ms (Views: 21.2ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:58:42 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>3, "content"=>"c4", "comment"=>{"post_id"=>3, "content"=>"c4"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c4"], ["post_id", 3], ["author_id", 1], ["created_at", "2015-04-09 20:58:42.886228"], ["updated_at", "2015-04-09 20:58:42.886228"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:58:45 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"content"=>"c5", "comment"=>{"content"=>"c5"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Completed 422 Unprocessable Entity in 6ms (Views: 0.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 13:59:45 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 295ms (Views: 292.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 13:59:46 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.9ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (7.6ms)
+Completed 200 OK in 15ms (Views: 9.0ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:59:49 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>3, "content"=>"c5", "comment"=>{"post_id"=>3, "content"=>"c5"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c5"], ["post_id", 3], ["author_id", 1], ["created_at", "2015-04-09 20:59:49.408822"], ["updated_at", "2015-04-09 20:59:49.408822"]]
+  [1m[36m (9.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.5ms | ActiveRecord: 10.0ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 13:59:52 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"content"=>"c6", "comment"=>{"content"=>"c6"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+Completed 422 Unprocessable Entity in 6ms (Views: 0.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 14:01:19 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 270ms (Views: 268.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 14:01:19 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (7.3ms)
+Completed 200 OK in 13ms (Views: 8.6ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:01:29 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>3, "content"=>"c6", "comment"=>{"post_id"=>3, "content"=>"c6"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c6"], ["post_id", 3], ["author_id", 1], ["created_at", "2015-04-09 21:01:29.739534"], ["updated_at", "2015-04-09 21:01:29.739534"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 14:02:45 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 259ms (Views: 256.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 14:02:46 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (7.7ms)
+Completed 200 OK in 21ms (Views: 13.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:02:52 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>3, "content"=>"c7", "comment"=>{"post_id"=>3, "content"=>"c7"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c7"], ["post_id", 3], ["author_id", 1], ["created_at", "2015-04-09 21:02:52.753890"], ["updated_at", "2015-04-09 21:02:52.753890"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 17ms (Views: 0.8ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 14:05:07 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 283ms (Views: 280.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 14:05:08 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (1.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)[0m
+  Rendered api/posts/index.json.jbuilder (8.5ms)
+Completed 200 OK in 15ms (Views: 9.4ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 14:06:41 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 273ms (Views: 270.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 14:06:42 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4)
+  Rendered api/posts/index.json.jbuilder (7.8ms)
+Completed 200 OK in 13ms (Views: 9.2ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:06:49 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>4, "content"=>"c8", "comment"=>{"post_id"=>4, "content"=>"c8"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c8"], ["post_id", 4], ["author_id", 1], ["created_at", "2015-04-09 21:06:49.609465"], ["updated_at", "2015-04-09 21:06:49.609465"]]
+  [1m[35m (7.9ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.0ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:06:51 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>4, "content"=>"c9", "comment"=>{"post_id"=>4, "content"=>"c9"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c9"], ["post_id", 4], ["author_id", 1], ["created_at", "2015-04-09 21:06:51.879015"], ["updated_at", "2015-04-09 21:06:51.879015"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:07:05 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>4, "content"=>"c10", "comment"=>{"post_id"=>4, "content"=>"c10"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c10"], ["post_id", 4], ["author_id", 1], ["created_at", "2015-04-09 21:07:05.807468"], ["updated_at", "2015-04-09 21:07:05.807468"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 9.5ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-09 14:07:19 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>1, "content"=>"p5", "post"=>{"recipient_id"=>1, "content"=>"p5"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "p5"], ["recipient_id", 1], ["author_id", 1], ["created_at", "2015-04-09 21:07:19.526478"], ["updated_at", "2015-04-09 21:07:19.526478"]]
+  [1m[35m (9.2ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 10.3ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:09:08 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>5, "content"=>"c11", "comment"=>{"post_id"=>5, "content"=>"c11"}}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c11"], ["post_id", 5], ["author_id", 1], ["created_at", "2015-04-09 21:09:08.325689"], ["updated_at", "2015-04-09 21:09:08.325689"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 14:09:27 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 263ms (Views: 261.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 14:09:27 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  Rendered api/posts/index.json.jbuilder (10.5ms)
+Completed 200 OK in 16ms (Views: 11.9ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:09:36 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>5, "content"=>"c12", "comment"=>{"post_id"=>5, "content"=>"c12"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c12"], ["post_id", 5], ["author_id", 1], ["created_at", "2015-04-09 21:09:36.167386"], ["updated_at", "2015-04-09 21:09:36.167386"]]
+  [1m[36m (7.9ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 8.9ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:11:03 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>5, "content"=>"c13", "comment"=>{"post_id"=>5, "content"=>"c13"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c13"], ["post_id", 5], ["author_id", 1], ["created_at", "2015-04-09 21:11:03.609128"], ["updated_at", "2015-04-09 21:11:03.609128"]]
+  [1m[36m (7.8ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 8.8ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:11:52 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>5, "content"=>"c13", "comment"=>{"post_id"=>5, "content"=>"c13"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "c13"], ["post_id", 5], ["author_id", 1], ["created_at", "2015-04-09 21:11:52.153582"], ["updated_at", "2015-04-09 21:11:52.153582"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 14:14:39 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 415ms (Views: 410.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 14:14:40 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (1.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)
+  Rendered api/posts/index.json.jbuilder (13.4ms)
+Completed 200 OK in 21ms (Views: 15.1ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:14:47 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>5, "content"=>"c15", "comment"=>{"post_id"=>5, "content"=>"c15"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c15"], ["post_id", 5], ["author_id", 1], ["created_at", "2015-04-09 21:14:47.531472"], ["updated_at", "2015-04-09 21:14:47.531472"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-09 14:14:50 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>5, "content"=>"c16", "comment"=>{"post_id"=>5, "content"=>"c16"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "Byl7s8NjQjBn8Gd5UGEcSQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "c16"], ["post_id", 5], ["author_id", 1], ["created_at", "2015-04-09 21:14:50.109523"], ["updated_at", "2015-04-09 21:14:50.109523"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 1.5ms)
+  [1m[35mComment Load (1.1ms)[0m  SELECT "comments".* FROM "comments"
