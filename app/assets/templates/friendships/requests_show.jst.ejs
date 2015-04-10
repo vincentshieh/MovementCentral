@@ -1,0 +1,10 @@
+<h3>Friend Requests</h3>
+
+<ul>
+  <% for(var i = 0; i < friend_requests.length; i++) { %>
+    <li>
+      <%= friend_requests.models[i].escape('fname') %> <%= friend_requests.models[i].escape('lname') %>
+      <button class="accept-friend-request" data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">Confirm</button>
+    </li>
+  <% } %>
+</ul>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
-  DANCE_STYLES = %w(Ballet Ballroom Hip-hop)
+  DANCE_STYLES = %w(Ballet Ballroom Contemporary Hip-hop)
 
   private
 
@@ -16,11 +16,21 @@ class ApplicationController < ActionController::Base
     friends = []
 
     current_user.friends_as_requester.each do |friendship|
-      friends << { user_id: friendship.requestee_id, accepted: friendship.accepted }
+      friend = User.find(friendship.requestee_id)
+      friends << { user_id: friend.id,
+                   accepted: friendship.accepted,
+                   requester: true,
+                   fname: friend.fname,
+                   lname: friend.lname }
     end
 
     current_user.friends_as_requestee.each do |friendship|
-      friends << { user_id: friendship.requester_id, accepted: friendship.accepted }
+      friend = User.find(friendship.requester_id)
+      friends << { user_id: friend.id,
+                   accepted: friendship.accepted,
+                   requester: false,
+                   fname: friend.fname,
+                   lname: friend.lname }
     end
 
     friends

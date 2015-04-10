@@ -6,5 +6,9 @@
   $(document).ready(function(){
     MovementCentral.initialize();
   });
-  MovementCentral.current_user_id = <%= current_user.id %>
+  MovementCentral.current_user = { id: <%= current_user.id %>,
+                                   email: "<%= current_user.email %>",
+                                   fname: "<%= current_user.fname %>",
+                                   lname: "<%= current_user.lname %>",
+                                   dance_style: "<%= current_user.dance_style %>"}
 </script>

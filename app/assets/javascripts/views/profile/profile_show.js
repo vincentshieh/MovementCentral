@@ -25,7 +25,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       }
     }
 
-    if (user_id === MovementCentral.current_user_id) {
+    if (user_id === MovementCentral.current_user.id) {
       return "";
     } else {
       return "Add Friend";
@@ -38,7 +38,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
     if (friendButtonVal === "Add Friend") {
       var friendship = new MovementCentral.Models.Friendship({
-        requester_id: MovementCentral.current_user_id,
+        requester_id: MovementCentral.current_user.id,
         requestee_id: this.user_id
       });
       friendship.save({}, {
@@ -61,6 +61,9 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     this.$el.html(renderedContent);
     this.renderPostForm();
     this.renderPostsIndex();
+    if (this.user_id === MovementCentral.current_user.id) {
+      this.renderFriendRequestsShow();
+    }
     return this;
   },
 
@@ -81,5 +84,13 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       user_id: this.user_id,
     });
     this.unshiftSubview('.received-posts', indexView);
+  },
+
+  renderFriendRequestsShow: function () {
+    var showView = new MovementCentral.Views.FriendRequestsShow({
+      collection: this.friendships,
+      user_id: this.user_id
+    });
+    this.unshiftSubview('.friend-requests', showView);
   }
 });
