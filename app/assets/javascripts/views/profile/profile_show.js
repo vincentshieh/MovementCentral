@@ -8,7 +8,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user_id = options.user_id;
     this.friendships = options.friendships;
-    this.listenTo(this.friendships, 'sync add', this.render);
+    this.listenTo(this.friendships, 'sync add remove', this.render);
   },
 
   friendButtonVal: function () {
@@ -19,7 +19,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       if (friendship.get('user_id') === user_id &&
           user_id !== MovementCentral.current_user.id) {
         if (friendship.get('accepted')) {
-          return "Friends";
+          return "Unfriend";
         } else {
           return friendship.get('requester') ? "Friend Request Sent" : "Respond to Friend Request";
         }
@@ -34,23 +34,25 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   handleFriendClick: function (event) {
-    var friendButtonVal = $(event.currentTarget).text(),
-      view = this;
+    var friendButtonVal = $(event.currentTarget).text();
+    var view = this;
+    var friendship;
 
     if (friendButtonVal === "Add Friend") {
-      var friendship = new MovementCentral.Models.Friendship({
+      friendship = new MovementCentral.Models.Friendship({
         requester_id: MovementCentral.current_user.id,
         requestee_id: this.user_id
       });
       friendship.save({}, {
         success: function () {
-          view.friendships.add(new MovementCentral.Models.Friendship({
-            user_id: view.user_id,
-            accepted: false
-          }));
+          view.friendships.add(friendship);
+          view.friendships.fetch();
           Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
         }
       });
+    } else if (friendButtonVal === "Unfriend") {
+      friendship = this.friendships.findWhere({ user_id: this.user_id });
+      friendship.destroy();
     }
   },
 

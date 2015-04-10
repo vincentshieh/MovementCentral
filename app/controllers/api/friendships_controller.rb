@@ -11,10 +11,7 @@ module Api
     end
 
     def destroy
-      @friendship = current_user.friends_as_requester.find_by(requestee_id: params[:user_id])
-      if !@friendship
-        @friendship = current_user.friends_as_requestee.find_by(requester_id: params[:user_id])
-      end
+      @friendship = Friendship.find(params[:id])
       @friendship.destroy!
       render json: {}
     end
