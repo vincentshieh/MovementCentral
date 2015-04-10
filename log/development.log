@@ -23968,3 +23968,555 @@ Processing by Api::PostsController#index as JSON
   [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
   Rendered api/posts/index.json.jbuilder (2.4ms)
 Completed 200 OK in 11ms (Views: 4.0ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:14:27 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 296ms (Views: 292.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:14:28 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.9ms)
+Completed 200 OK in 9ms (Views: 4.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:14:28 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:17:05 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  Rendered static_pages/root.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+Completed 200 OK in 398ms (Views: 348.7ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:17:06 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (7.3ms)
+Completed 200 OK in 53ms (Views: 14.1ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:17:06 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:22:19 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 180ms (Views: 177.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:22:19 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:22:19 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (2.0ms)
+Completed 200 OK in 10ms (Views: 5.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:23:05 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 276ms (Views: 274.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:23:06 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.7ms)
+Completed 200 OK in 7ms (Views: 3.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:23:06 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:25:50 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 247ms (Views: 245.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:25:50 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (2.1ms)
+Completed 200 OK in 8ms (Views: 3.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:25:50 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:34:51 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 259ms (Views: 257.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:34:51 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.4ms)
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:34:51 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 17:35:23 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"0safWtbXDJYXhRo0VMjMyQvrJijtf4798H/8BOJvJzoNxv6jc2RKvmcHv+UAb1jY+jkptsAYmoXJDxDRUohLZA=="}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "dIQ7sHII4Qrqbn2L0WxFCw"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kb@dance.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'noVeLmp6UNxUO01cK6rVrQ' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "noVeLmp6UNxUO01cK6rVrQ"], ["updated_at", "2015-04-10 00:35:23.166100"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 30ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 17:35:23 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.2ms)
+  Rendered sessions/new.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 198ms (Views: 196.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for ::1 at 2015-04-09 17:35:24 -0700
+Processing by UsersController#new as HTML
+  Rendered shared/_login.html.erb (0.4ms)
+  Rendered users/new.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 192ms (Views: 190.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-04-09 17:35:35 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"3syDxdt/rkz2lOsRdALteQ8/tGsGC7ext7kbSJ2kt/QBzOI8fszoZIYWTsAgpXlo/u279Stso8mOyfedLUPbqg==", "user"=>{"fname"=>"Misty", "lname"=>"Copeland", "email"=>"mc@dance.com", "password"=>"[FILTERED]", "dance_style"=>"Ballet"}}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'mc@dance.com' LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = '_43QrDak7j8h8rnNr65CHw' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("email", "password_digest", "fname", "lname", "dance_style", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["email", "mc@dance.com"], ["password_digest", "$2a$10$TyMKQpDCjPOAFW/Gr.aKOuEW5fLyx94HPMWRDNKwRoaXFu3wGXtLW"], ["fname", "Misty"], ["lname", "Copeland"], ["dance_style", "Ballet"], ["session_token", "_43QrDak7j8h8rnNr65CHw"], ["created_at", "2015-04-10 00:35:35.535783"], ["updated_at", "2015-04-10 00:35:35.535783"]]
+  [1m[36m (8.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 3) LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'TADRlBXnfM4BdBUv6-NQWQ' AND "users"."id" != 3) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"], ["updated_at", "2015-04-10 00:35:35.553914"], ["id", 3]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+Redirected to http://localhost:3000/#users/3
+Completed 302 Found in 127ms (ActiveRecord: 14.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:35:35 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 188ms (Views: 186.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-09 17:35:36 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  Rendered api/posts/index.json.jbuilder (1.9ms)
+Completed 200 OK in 9ms (Views: 3.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:35:36 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 3]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 3]]
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:35:39 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 211ms (Views: 208.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:35:40 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.2ms)
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:35:40 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 3]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 3]]
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:35:42 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 3]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 3]]
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 17:35:42 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  Rendered api/posts/index.json.jbuilder (2.2ms)
+Completed 200 OK in 12ms (Views: 6.1ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/friendships" for ::1 at 2015-04-09 17:36:20 -0700
+Processing by Api::FriendshipsController#create as JSON
+  Parameters: {"requester_id"=>3, "requestee_id"=>1, "friendship"=>{"requester_id"=>3, "requestee_id"=>1}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+Unpermitted parameter: requester_id
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "friendships" ("requestee_id", "requester_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["requestee_id", 1], ["requester_id", 3], ["created_at", "2015-04-10 00:36:20.471122"], ["updated_at", "2015-04-10 00:36:20.471122"]]
+  [1m[36m (8.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 17ms (Views: 1.0ms | ActiveRecord: 9.4ms)
+  [1m[35mFriendship Load (0.8ms)[0m  SELECT "friendships".* FROM "friendships"
+
+
+Started GET "/" for ::1 at 2015-04-09 17:37:46 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 268ms (Views: 265.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-09 17:37:46 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  Rendered api/posts/index.json.jbuilder (2.1ms)
+Completed 200 OK in 10ms (Views: 5.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:37:46 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[36mFriendship Load (1.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 3]]
+  [1m[35mFriendship Load (0.7ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 3]]
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:41:40 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 341ms (Views: 339.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:41:40 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.2ms)
+Completed 200 OK in 7ms (Views: 2.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:41:40 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 3]]
+  [1m[36mFriendship Load (0.2ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 3]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/friendships" for ::1 at 2015-04-09 17:41:56 -0700
+Processing by Api::FriendshipsController#create as JSON
+  Parameters: {"requester_id"=>3, "requestee_id"=>2, "friendship"=>{"requester_id"=>3, "requestee_id"=>2}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+Unpermitted parameter: requester_id
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "friendships" ("requestee_id", "requester_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["requestee_id", 2], ["requester_id", 3], ["created_at", "2015-04-10 00:41:56.121613"], ["updated_at", "2015-04-10 00:41:56.121613"]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.5ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:42:11 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 275ms (Views: 272.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:42:11 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.5ms)
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:42:11 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 3]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 3]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-09 17:42:18 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"stEEApQ3bIZSsad1ZEBy9xeMkM6IHIeuijrZAPisS6dt0WX7MYQqriIzAqQw5+bm5l6fUKV7k9azSjXVSEsn+Q=="}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "TADRlBXnfM4BdBUv6-NQWQ"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mc@dance.com' AND "users"."id" != 3) LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'Lj2Z03JgeqAwcUCu6PupCQ' AND "users"."id" != 3) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "Lj2Z03JgeqAwcUCu6PupCQ"], ["updated_at", "2015-04-10 00:42:18.956836"], ["id", 3]]
+  [1m[35m (8.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 20ms (ActiveRecord: 11.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-09 17:42:18 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.4ms)
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 197ms (Views: 196.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for ::1 at 2015-04-09 17:42:20 -0700
+Processing by UsersController#new as HTML
+  Rendered shared/_login.html.erb (0.5ms)
+  Rendered users/new.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 182ms (Views: 180.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-04-09 17:42:33 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"yvpFqWhECyk9nA1jCWXSrJcTlq23TxfjJkIgH2IE/4IV+iRQzfdNAU0eqLJdwka9ZsGZM5ooA5sfMszK0uOT3A==", "user"=>{"fname"=>"Sergei", "lname"=>"Polunin", "email"=>"sp@dance.com", "password"=>"[FILTERED]", "dance_style"=>"Ballet"}}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'sp@dance.com' LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'F36x3HLUUe-YOO5mmB5HJw' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("email", "password_digest", "fname", "lname", "dance_style", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["email", "sp@dance.com"], ["password_digest", "$2a$10$M2vZPHMXPaT6nnmcBAugXO2XKMcnleRZshkaBGvgAl5134pB46YPe"], ["fname", "Sergei"], ["lname", "Polunin"], ["dance_style", "Ballet"], ["session_token", "F36x3HLUUe-YOO5mmB5HJw"], ["created_at", "2015-04-10 00:42:33.700857"], ["updated_at", "2015-04-10 00:42:33.700857"]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'sp@dance.com' AND "users"."id" != 4) LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'oOxHf3pSf4KFf2qmp_dcGw' AND "users"."id" != 4) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"], ["updated_at", "2015-04-10 00:42:33.717868"], ["id", 4]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+Redirected to http://localhost:3000/#users/4
+Completed 302 Found in 119ms (ActiveRecord: 14.3ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:42:33 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 182ms (Views: 180.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=4" for ::1 at 2015-04-09 17:42:34 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  Rendered api/posts/index.json.jbuilder (1.9ms)
+Completed 200 OK in 8ms (Views: 3.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:42:34 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 4]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 4]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:42:37 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (6.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 4]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 4]]
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-09 17:42:37 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  Rendered api/posts/index.json.jbuilder (1.4ms)
+Completed 200 OK in 10ms (Views: 3.4ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/friendships" for ::1 at 2015-04-09 17:42:38 -0700
+Processing by Api::FriendshipsController#create as JSON
+  Parameters: {"requester_id"=>4, "requestee_id"=>3, "friendship"=>{"requester_id"=>4, "requestee_id"=>3}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+Unpermitted parameter: requester_id
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "friendships" ("requestee_id", "requester_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["requestee_id", 3], ["requester_id", 4], ["created_at", "2015-04-10 00:42:38.837922"], ["updated_at", "2015-04-10 00:42:38.837922"]]
+  [1m[35m (8.6ms)[0m  COMMIT
+Completed 200 OK in 15ms (Views: 0.5ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-09 17:47:54 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 264ms (Views: 262.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-09 17:47:54 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  Rendered api/posts/index.json.jbuilder (1.6ms)
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:47:54 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 4]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 4]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/posts?user_id=4" for ::1 at 2015-04-09 17:47:57 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"4"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 4]]
+  Rendered api/posts/index.json.jbuilder (1.8ms)
+Completed 200 OK in 7ms (Views: 3.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:47:57 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 4]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 4]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-09 17:47:59 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  Rendered api/posts/index.json.jbuilder (1.8ms)
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-09 17:47:59 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 4]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 4]]
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/friendships" for ::1 at 2015-04-09 17:48:01 -0700
+Processing by Api::FriendshipsController#create as JSON
+  Parameters: {"requester_id"=>4, "requestee_id"=>2, "friendship"=>{"requester_id"=>4, "requestee_id"=>2}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oOxHf3pSf4KFf2qmp_dcGw"]]
+Unpermitted parameter: requester_id
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "friendships" ("requestee_id", "requester_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["requestee_id", 2], ["requester_id", 4], ["created_at", "2015-04-10 00:48:01.451023"], ["updated_at", "2015-04-10 00:48:01.451023"]]
+  [1m[36m (8.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 9.2ms)
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships"[0m
