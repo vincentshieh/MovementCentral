@@ -13,13 +13,8 @@ MovementCentral.Views.FriendRequestsShow = Backbone.View.extend({
   acceptFriendRequest: function (event) {
     var $target = $(event.currentTarget);
     var friend_id = $target.data('friend-id');
-    var friendship = new MovementCentral.Models.Friendship({
-      requester_id: friend_id,
-      requestee_id: this.user_id,
-      accepted: true
-    });
-
-    friendship.save({}, { patch: true });
+    var friendship = this.collection.findWhere({ user_id: friend_id });
+    friendship.save({ accepted: true });
   },
 
   render: function () {

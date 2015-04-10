@@ -24,15 +24,15 @@ module Api
     end
 
     def update
-      @friendship = current_user.friends_as_requestee.find(friendship_params.requester_id)
-      @friendship.update_attributes(accepted: friendship_params.accepted)
+      @friendship = current_user.friends_as_requestee.find(friendship_params[:id])
+      @friendship.update_attributes(accepted: friendship_params[:accepted])
       render json: {}
     end
 
     private
 
     def friendship_params
-      params.require(:friendship).permit(:accepted, :requestee_id, :requester_id)
+      params.require(:friendship).permit(:id, :accepted, :requestee_id, :requester_id)
     end
   end
 end

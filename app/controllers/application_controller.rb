@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
 
     current_user.friends_as_requester.each do |friendship|
       friend = User.find(friendship.requestee_id)
-      friends << { user_id: friend.id,
+      friends << { id: friendship.id,
+                   user_id: friend.id,
                    accepted: friendship.accepted,
                    requester: true,
                    fname: friend.fname,
@@ -26,7 +27,8 @@ class ApplicationController < ActionController::Base
 
     current_user.friends_as_requestee.each do |friendship|
       friend = User.find(friendship.requester_id)
-      friends << { user_id: friend.id,
+      friends << { id: friendship.id,
+                   user_id: friend.id,
                    accepted: friendship.accepted,
                    requester: false,
                    fname: friend.fname,

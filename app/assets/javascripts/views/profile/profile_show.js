@@ -56,6 +56,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   render: function () {
     var renderedContent = this.template({
       user_id: this.user_id,
+      // friendship: this.friendships.findWhere({ user_id: this.user_id }), need all users in Backbone
       friend_button_val: this.friendButtonVal()
     });
     this.$el.html(renderedContent);
