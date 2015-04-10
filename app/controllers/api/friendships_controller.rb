@@ -1,7 +1,7 @@
 module Api
   class FriendshipsController < ApiController
     def create
-      @friendship = current_user.friends_as_requester.new(friendship_params)
+      @friendship = current_user.friendships_as_requester.new(friendship_params)
 
       if @friendship.save
         render json: @friendship
@@ -17,11 +17,11 @@ module Api
     end
 
     def index
-      render json: friends_of_current_user
+      render json: friendships_of_current_user
     end
 
     def update
-      @friendship = current_user.friends_as_requestee.find(friendship_params[:id])
+      @friendship = current_user.friendships_as_requestee.find(friendship_params[:id])
       @friendship.update_attributes(accepted: friendship_params[:accepted])
       render json: {}
     end

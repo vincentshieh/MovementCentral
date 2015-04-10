@@ -12,9 +12,9 @@ module Api
 
     def feed
       @posts = current_user.received_posts.includes(:comments)
-      accepted_friends = friends_of_current_user.select { |friend| friend[:accepted] }
-      accepted_friends.each do |friend|
-        friend_user = User.find(friend[:user_id])
+      accepted_friendships = friendships_of_current_user.select { |friendship| friendship[:accepted] }
+      accepted_friendships.each do |friendship|
+        friend_user = User.find(friendship[:user_id])
         friend_user.authored_posts.each do |post|
           @posts << post unless @posts.include?(post)
         end

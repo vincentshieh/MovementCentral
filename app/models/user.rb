@@ -37,12 +37,12 @@ class User < ActiveRecord::Base
     class_name: "Comment"
   )
   has_many(
-    :friends_as_requester,
+    :friendships_as_requester,
     foreign_key: :requester_id,
     class_name: "Friendship"
   )
   has_many(
-    :friends_as_requestee,
+    :friendships_as_requestee,
     foreign_key: :requestee_id,
     class_name: "Friendship"
   )

@@ -14,23 +14,20 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
   friendButtonVal: function () {
     var user_id = this.user_id;
-
-    for(var i = 0; i < this.friendships.length; i++) {
-      var friendship = this.friendships.models[i];
-      if (friendship.get('user_id') === user_id &&
-          user_id !== MovementCentral.current_user.id) {
-        if (friendship.get('accepted')) {
-          return "Unfriend";
-        } else {
-          return friendship.get('requester') ? "Friend Request Sent" : "Respond to Friend Request";
-        }
-      }
+    var friendship = this.friendships.findWhere({ user_id: user_id });
+    if (!friendship) {
+      return "";
     }
-
-    if (user_id === MovementCentral.current_user.id) {
+    if (friendship.get('stranger')) {
+      return "Add Friend";
+    } else if (friendship.get('self')) {
       return "";
     } else {
-      return "Add Friend";
+      if (friendship.get('accepted')) {
+        return "Unfriend";
+      } else {
+        return friendship.get('requester') ? "Friend Request Sent" : "Respond to Friend Request";
+      }
     }
   },
 

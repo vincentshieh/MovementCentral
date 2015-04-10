@@ -12,15 +12,15 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
-  def friends_of_current_user
-    friends = [ { user_id: current_user.id,
-                  requester: true,
+  def friendships_of_current_user
+    friendships = [ { user_id: current_user.id,
+                  self: true,
                   fname: current_user.fname,
                   lname: current_user.lname } ]
 
-    current_user.friends_as_requester.each do |friendship|
+    current_user.friendships_as_requester.each do |friendship|
       friend = User.find(friendship.requestee_id)
-      friends << { id: friendship.id,
+      friendships << { id: friendship.id,
                    user_id: friend.id,
                    accepted: friendship.accepted,
                    requester: true,
@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
                    lname: friend.lname }
     end
 
-    current_user.friends_as_requestee.each do |friendship|
+    current_user.friendships_as_requestee.each do |friendship|
       friend = User.find(friendship.requester_id)
-      friends << { id: friendship.id,
+      friendships << { id: friendship.id,
                    user_id: friend.id,
                    accepted: friendship.accepted,
                    requester: false,
@@ -38,7 +38,17 @@ class ApplicationController < ActionController::Base
                    lname: friend.lname }
     end
 
-    friends
+    friend_ids = friendships.map { |friendship| friendship[:user_id] }
+    remaining_users = User.all.select { |user| !friend_ids.include?(user.id) }
+
+    remaining_users.each do |user|
+      friendships << { user_id: user.id,
+                       stranger: true,
+                       fname: user.fname,
+                       lname: user.lname }
+    end
+
+    friendships
   end
 
   def logged_in?
