@@ -4,8 +4,25 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'profileShow',
+    '': 'feedShow',
     'users/:id': 'profileShow'
+  },
+
+  feedShow: function () {
+    var posts = MovementCentral.Collections.posts;
+    var friendships = MovementCentral.Collections.friendships;
+
+    posts.fetch({
+      url: 'api/posts/feed'
+    });
+    friendships.fetch();
+
+    var feedView = new MovementCentral.Views.FeedShow({
+      collection: posts,
+      friendships: friendships
+    });
+
+    this._swapView(feedView);
   },
 
   profileShow: function (id) {

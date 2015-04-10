@@ -8,6 +8,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
 
   initialize: function (options) {
     this.user_id = options.user_id;
+    this.feed = options.feed;
   },
 
   addPhoto: function (event) {
@@ -44,7 +45,11 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
           recipient_id: view.user_id
         });
         view.$('.post-content').val("");
-        Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
+        if (view.feed) {
+          Backbone.history.navigate("/", { trigger: true });
+        } else {
+          Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
+        }
       }
     });
   }

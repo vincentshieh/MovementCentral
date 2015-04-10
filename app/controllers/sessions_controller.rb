@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       render :new
     else
       login_user!(user)
-      redirect_to "/#users/#{current_user.id}"
+      redirect_to "/"
     end
   end
 
