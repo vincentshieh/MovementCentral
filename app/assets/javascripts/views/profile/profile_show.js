@@ -8,7 +8,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user_id = options.user_id;
     this.friendships = options.friendships;
-    this.listenTo(this.collection, 'add', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.friendships, 'sync add remove', this.render);
   },
 
