@@ -6,7 +6,7 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.post_id = this.model.get('post_id');
+    this.post_id = this.model.escape('post_id');
     this.user_id = options.user_id;
     this.listenTo(this.model, 'sync', this.render);
   },

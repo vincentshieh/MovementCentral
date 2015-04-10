@@ -2,15 +2,16 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
   template: JST['posts/index_item'],
 
   initialize: function (options) {
-    this.collection = this.model.comments();
     this.user_id = options.user_id;
+    this.friendships = options.friendships;
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addComment);
   },
 
   addComment: function (comment) {
     var showView = new MovementCentral.Views.CommentShow({
-      model: comment
+      model: comment,
+      friendships: this.friendships
     });
     this.pushSubview('.comments', showView);
   },
@@ -26,7 +27,8 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
 
   renderPost: function () {
     var showView = new MovementCentral.Views.PostShow({
-      model: this.model
+      model: this.model,
+      friendships: this.friendships
     });
     this.unshiftSubview('.post', showView);
   },

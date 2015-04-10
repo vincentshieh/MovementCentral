@@ -4,13 +4,16 @@ MovementCentral.Views.PostsIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user_id = options.user_id;
     this.friendship = options.friendship;
+    this.friendships = options.friendships;
     this.listenTo(this.collection, 'sync', this.render);
   },
 
   addPostItem: function (post) {
     var itemView = new MovementCentral.Views.PostsIndexItem({
       model: post,
-      user_id: this.user_id
+      collection: post.comments(),
+      user_id: this.user_id,
+      friendships: this.friendships
     });
     this.unshiftSubview('.posts', itemView);
   },

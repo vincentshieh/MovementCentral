@@ -1,3 +1,7 @@
+<% if (author && recipient) { %>
+  <%= author.escape('fname') %> <%= author.escape('lname') %> =>
+  <%= recipient.escape('fname') %> <%= recipient.escape('lname') %><br>
+<% } %>
 <%= post.escape('content') %>
 <% if (post.escape("picture")) { %>
   <img src="<%= post.escape("picture") %>">
