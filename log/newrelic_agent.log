@@ -1250,3 +1250,61 @@
 [04/10/15 08:47:49 -0700 Vincents-MacBook-Air.local (689)] INFO : Installing Rails 4 view instrumentation
 [04/10/15 08:47:49 -0700 Vincents-MacBook-Air.local (689)] INFO : Installing Rails 4 Error instrumentation
 [04/10/15 08:47:49 -0700 Vincents-MacBook-Air.local (689)] INFO : Finished instrumentation
+[04/10/15 16:27:01 -0700 Vincents-MacBook-Air.local (482)] INFO : Starting Agent shutdown
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Starting the New Relic agent in "development" environment.
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Environment: development
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : No known dispatcher detected.
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Application: development
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing ActiveJob instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing ActiveRecord 4 instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing Net instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing deferred Rack instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing Rack::Builder middleware instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing Rails 3+ middleware instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing Rails 4 Controller instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing Rails 4 view instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Installing Rails 4 Error instrumentation
+[04/10/15 16:27:46 -0700 Vincents-MacBook-Air.local (4822)] INFO : Finished instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Starting the New Relic agent in "development" environment.
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Environment: development
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Dispatcher: webrick
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Application: development
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing ActiveJob instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing ActiveRecord 4 instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing Net instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing deferred Rack instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing Rack::Builder middleware instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing Rails 3+ middleware instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing Rails 4 Controller instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing Rails 4 view instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Installing Rails 4 Error instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Finished instrumentation
+[04/10/15 16:27:58 -0700 Vincents-MacBook-Air.local (4857)] INFO : Doing deferred dependency-detection before Rack startup
+[04/10/15 16:28:08 -0700 Vincents-MacBook-Air.local (4857)] ERROR : Invalid license key, please contact support@newrelic.com
+[04/10/15 16:28:08 -0700 Vincents-MacBook-Air.local (4857)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Starting the New Relic agent in "development" environment.
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Environment: development
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : No known dispatcher detected.
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Application: development
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing ActiveJob instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing ActiveRecord 4 instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing Net instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing deferred Rack instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing Rack::Builder middleware instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing Rails 3+ middleware instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing Rails 4 Controller instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing Rails 4 view instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Installing Rails 4 Error instrumentation
+[04/10/15 16:28:22 -0700 Vincents-MacBook-Air.local (4926)] INFO : Finished instrumentation

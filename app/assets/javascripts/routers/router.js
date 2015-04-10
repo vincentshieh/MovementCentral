@@ -28,7 +28,6 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   profileShow: function (id) {
     var posts = MovementCentral.Collections.posts;
     var friendships = MovementCentral.Collections.friendships;
-    id = id || MovementCentral.current_user.id;
 
     posts.fetch({
       data: {

@@ -12,7 +12,9 @@ module Api
 
     def feed
       @posts = current_user.received_posts.includes(:comments)
-      accepted_friendships = friendships_of_current_user.select { |friendship| friendship[:accepted] }
+      accepted_friendships = friendships_of_current_user.select do |friendship|
+        friendship[:accepted]
+      end
       accepted_friendships.each do |friendship|
         friend_user = User.find(friendship[:user_id])
         friend_user.authored_posts.each do |post|
