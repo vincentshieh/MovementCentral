@@ -1,4 +1,6 @@
-<h3>User <%= user_id %>'s Received Posts</h3>
+<% if (this.friendship) { %>
+  <h3><%= friendship.escape('fname') %>'s Received Posts</h3>
+<% } %>
 
 <div class="posts">
 </div>

@@ -21,7 +21,8 @@ MovementCentral.Views.FriendRequestsShow = Backbone.View.extend({
     var friendships = this.collection;
     var friend_requests = new MovementCentral.Collections.Friendships();
     for(var i = 0; i < friendships.length; i++) {
-      if (!friendships.models[i].get('requester')) {
+      if (!friendships.models[i].get('requester') &&
+          !friendships.models[i].get('accepted')) {
         friend_requests.add(friendships.models[i]);
       }
     }

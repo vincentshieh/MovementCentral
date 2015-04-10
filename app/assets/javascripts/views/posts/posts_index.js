@@ -3,6 +3,7 @@ MovementCentral.Views.PostsIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.user_id = options.user_id;
+    this.friendship = options.friendship;
     this.listenTo(this.collection, 'sync', this.render);
   },
 
@@ -17,7 +18,7 @@ MovementCentral.Views.PostsIndex = Backbone.CompositeView.extend({
   render: function () {
     var renderedContent = this.template({
       posts: this.collection,
-      user_id: this.user_id
+      friendship: this.friendship
     });
     this.$el.html(renderedContent);
     this.renderPostItems();

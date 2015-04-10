@@ -16,11 +16,12 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
     for(var i = 0; i < this.friendships.length; i++) {
       var friendship = this.friendships.models[i];
-      if (friendship.get('user_id') === user_id) {
+      if (friendship.get('user_id') === user_id &&
+          user_id !== MovementCentral.current_user.id) {
         if (friendship.get('accepted')) {
           return "Friends";
         } else {
-          return "Friend Request Sent";
+          return friendship.get('requester') ? "Friend Request Sent" : "Respond to Friend Request";
         }
       }
     }
@@ -55,8 +56,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
   render: function () {
     var renderedContent = this.template({
-      user_id: this.user_id,
-      // friendship: this.friendships.findWhere({ user_id: this.user_id }), need all users in Backbone
+      friendship: this.friendships.findWhere({ user_id: this.user_id }),
       friend_button_val: this.friendButtonVal()
     });
     this.$el.html(renderedContent);
@@ -83,6 +83,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     var indexView = new MovementCentral.Views.PostsIndex({
       collection: this.collection,
       user_id: this.user_id,
+      friendship: this.friendships.findWhere({ user_id: this.user_id })
     });
     this.unshiftSubview('.received-posts', indexView);
   },

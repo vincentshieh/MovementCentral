@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def friends_of_current_user
-    friends = []
+    friends = [ { user_id: current_user.id,
+                  requester: true,
+                  fname: current_user.fname,
+                  lname: current_user.lname } ]
 
     current_user.friends_as_requester.each do |friendship|
       friend = User.find(friendship.requestee_id)
