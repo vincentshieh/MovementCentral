@@ -10,7 +10,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
     var renderedContent = this.template({
       comment: this.model,
       author: this.friendships.findWhere({
-        user_id: parseInt(this.model.escape('author_id'))
+        user_id: parseInt(this.model.get('author_id'))
       })
     });
     this.$el.html(renderedContent);

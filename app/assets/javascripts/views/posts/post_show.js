@@ -9,10 +9,10 @@ MovementCentral.Views.PostShow = Backbone.View.extend({
     var renderedContent = this.template({
       post: this.model,
       author: this.friendships.findWhere({
-        user_id: parseInt(this.model.escape('author_id'))
+        user_id: parseInt(this.model.get('author_id'))
       }),
       recipient: this.friendships.findWhere({
-        user_id: parseInt(this.model.escape('recipient_id'))
+        user_id: parseInt(this.model.get('recipient_id'))
       })
     });
     this.$el.html(renderedContent);

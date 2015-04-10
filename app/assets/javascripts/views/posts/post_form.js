@@ -43,6 +43,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
         view.model = new MovementCentral.Models.Post({
           recipient_id: view.user_id
         });
+        view.$('.post-content').val("");
         Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
       }
     });

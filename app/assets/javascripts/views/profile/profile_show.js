@@ -16,12 +16,12 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
     for(var i = 0; i < this.friendships.length; i++) {
       var friendship = this.friendships.models[i];
-      if (friendship.escape('user_id') === user_id &&
+      if (friendship.get('user_id') === user_id &&
           user_id !== MovementCentral.current_user.id) {
-        if (friendship.escape('accepted')) {
+        if (friendship.get('accepted')) {
           return "Unfriend";
         } else {
-          return friendship.escape('requester') ? "Friend Request Sent" : "Respond to Friend Request";
+          return friendship.get('requester') ? "Friend Request Sent" : "Respond to Friend Request";
         }
       }
     }

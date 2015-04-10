@@ -10,6 +10,21 @@ module Api
       end
     end
 
+    def feed
+      @posts = current_user.received_posts.includes(:comments)
+      accepted_friends = friends_of_current_user.select { |friend| friend[:accepted] }
+      accepted_friends.each do |friend|
+        friend_user = User.find(friend[:user_id])
+        friend_user.authored_posts.each do |post|
+          @posts << post unless @posts.include?(post)
+        end
+        friend_user.received_posts.each do |post|
+          @posts << post unless @posts.include?(post)
+        end
+      end
+      render :index
+    end
+
     def index
       user = User.find(params[:user_id])
       @posts = user.received_posts.includes(:comments)
