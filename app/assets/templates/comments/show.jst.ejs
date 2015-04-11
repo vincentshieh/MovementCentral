@@ -1,4 +1,6 @@
 <% if (author) { %>
-  <%= author.escape('fname') %> <%= author.escape('lname') %><br>
+  <a href="/#/users/<%= author.escape('user_id') %>">
+    <%= author.escape('fname') %> <%= author.escape('lname') %>
+  </a><br>
 <% } %>
 <%= comment.escape('content') %>

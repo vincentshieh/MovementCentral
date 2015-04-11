@@ -1,6 +1,10 @@
 <% if (author && recipient) { %>
-  <%= author.escape('fname') %> <%= author.escape('lname') %> =>
-  <%= recipient.escape('fname') %> <%= recipient.escape('lname') %><br>
+  <a href="/#/users/<%= author.escape('user_id') %>">
+    <%= author.escape('fname') %> <%= author.escape('lname') %>
+  </a> =>
+  <a href="/#/users/<%= recipient.escape('user_id') %>">
+    <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>
+  </a><br>
 <% } %>
 <%= post.escape('content') %>
 <% if (post.escape("picture")) { %>
