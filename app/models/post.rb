@@ -29,4 +29,5 @@ class Post < ActiveRecord::Base
     foreign_key: :post_id,
     class_name: "Comment"
   )
+  has_many :likes, as: :likable
 end

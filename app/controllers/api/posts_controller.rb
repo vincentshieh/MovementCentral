@@ -33,6 +33,18 @@ module Api
       render :index
     end
 
+    def like
+      post = Post.find(params[:id])
+      post.likes.new(user_id: current_user.id).save
+      render json: {}
+    end
+
+    def unlike
+      post = Post.find(params[:id])
+      post.likes.find_by_user_id(current_user.id).destroy
+      render json: {}
+    end
+
     private
 
     def post_params
