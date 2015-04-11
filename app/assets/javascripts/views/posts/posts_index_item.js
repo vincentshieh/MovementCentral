@@ -4,6 +4,8 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user_id = options.user_id;
     this.friendships = options.friendships;
+    this.comment_likes = options.comment_likes;
+    this.post_likes = options.post_likes;
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addComment);
   },
@@ -11,7 +13,8 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
   addComment: function (comment) {
     var showView = new MovementCentral.Views.CommentShow({
       model: comment,
-      friendships: this.friendships
+      friendships: this.friendships,
+      comment_likes: this.comment_likes
     });
     this.pushSubview('.comments', showView);
   },
@@ -28,7 +31,8 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
   renderPost: function () {
     var showView = new MovementCentral.Views.PostShow({
       model: this.model,
-      friendships: this.friendships
+      friendships: this.friendships,
+      post_likes: this.post_likes
     });
     this.unshiftSubview('.post', showView);
   },

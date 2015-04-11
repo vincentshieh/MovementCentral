@@ -4,3 +4,11 @@
   </a><br>
 <% } %>
 <%= comment.escape('content') %>
+<button class="like">
+  <% if (liked) { %>
+    Unlike
+  <% } else { %>
+    Like
+  <% } %>
+</button>
+Likes: <%= numLikes %>

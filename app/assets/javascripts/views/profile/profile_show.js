@@ -8,6 +8,8 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user_id = options.user_id;
     this.friendships = options.friendships;
+    this.comment_likes = options.comment_likes;
+    this.post_likes = options.post_likes;
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.friendships, 'sync add remove', this.render);
   },
@@ -84,7 +86,9 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       collection: this.collection,
       user_id: this.user_id,
       friendship: this.friendships.findWhere({ user_id: this.user_id }),
-      friendships: this.friendships
+      friendships: this.friendships,
+      comment_likes: this.comment_likes,
+      post_likes: this.post_likes
     });
     this.unshiftSubview('.received-posts', indexView);
   },

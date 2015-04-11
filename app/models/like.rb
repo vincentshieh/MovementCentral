@@ -13,5 +13,6 @@
 class Like < ActiveRecord::Base
   validates :user_id, :likable_type, :likable_id, presence: true
 
+  belongs_to :user
   belongs_to :likable, polymorphic: true
 end

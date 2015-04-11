@@ -32940,3 +32940,1723 @@ Processing by Api::PostsController#index as JSON
   [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
   Rendered api/posts/index.json.jbuilder (3.9ms)
 Completed 200 OK in 9ms (Views: 4.9ms | ActiveRecord: 1.6ms)
+  [1m[36mPost Load (11.8ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36mSQL (7.2ms)[0m  [1mINSERT INTO "likes" ("user_id", "likable_type", "likable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1], ["likable_type", "post"], ["likable_id", 1], ["created_at", "2015-04-11 20:32:11.870749"], ["updated_at", "2015-04-11 20:32:11.870749"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mLike Load (0.6ms)[0m  [1mSELECT "likes".* FROM "likes"[0m
+
+
+Started GET "/" for ::1 at 2015-04-11 13:32:38 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 12ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-11 13:32:38 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.3ms)
+  Rendered sessions/new.html.erb within layouts/application (9.8ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 698ms (Views: 671.1ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api/likes/post_likes" for ::1 at 2015-04-11 13:32:54 -0700
+Processing by Api::LikesController#post_likes as JSON
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 13:33:02 -0700
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-11 13:33:02 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.4ms)
+  Rendered sessions/new.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 211ms (Views: 209.8ms | ActiveRecord: 0.0ms)
+  [1m[35mUser Load (5.2ms)[0m  SELECT "users".* FROM "users"
+
+
+Started POST "/session" for ::1 at 2015-04-11 13:33:15 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"9GfLtGYz8ANKoDCiq/7uXOkUBJgQV6xF4A1RtYYLwCgj3xL+WU2jiwsuYmuEl8jxau5B13ZizQtQf5Pqj1momQ==", "user"=>{"email"=>"kb@dance.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (2.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "kb@dance.com"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kb@dance.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'AbQT94kG5yHBMCd44cgLsg' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (4.1ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "AbQT94kG5yHBMCd44cgLsg"], ["updated_at", "2015-04-11 20:33:15.910046"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 140ms (ActiveRecord: 11.2ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 13:33:15 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 244ms (Views: 241.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-11 13:33:16 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (2.7ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mPost Load (1.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (4.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (43.8ms)
+Completed 200 OK in 112ms (Views: 42.5ms | ActiveRecord: 16.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 13:33:16 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/likes/post_likes" for ::1 at 2015-04-11 13:33:25 -0700
+Processing by Api::LikesController#post_likes as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+Completed 500 Internal Server Error in 5ms
+
+ArgumentError - wrong number of arguments (1 for 0):
+  app/controllers/api/likes_controller.rb:25:in `post_likes'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.0) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal.rb:236:in `block in action'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/rack/browser_monitoring.rb:23:in `traced_call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/fb12991e9f51e04b/variables" for ::1 at 2015-04-11 13:33:25 -0700
+
+
+Started GET "/api/likes/post_likes" for ::1 at 2015-04-11 13:34:22 -0700
+Processing by Api::LikesController#post_likes as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.8ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."id" IN (NULL, NULL)[0m
+Completed 404 Not Found in 29ms
+
+ActiveRecord::RecordNotFound - Couldn't find all Likes with 'id': (all, {:conditions=>{:likable_type=>"post"}}) (found 0 results, but was looking for 2):
+  activerecord (4.2.0) lib/active_record/relation/finder_methods.rb:336:in `raise_record_not_found_exception!'
+  activerecord (4.2.0) lib/active_record/relation/finder_methods.rb:479:in `find_some'
+  activerecord (4.2.0) lib/active_record/relation/finder_methods.rb:438:in `find_with_ids'
+  activerecord (4.2.0) lib/active_record/relation/finder_methods.rb:71:in `find'
+  activerecord (4.2.0) lib/active_record/querying.rb:3:in `find'
+  activerecord (4.2.0) lib/active_record/core.rb:128:in `find'
+  app/controllers/api/likes_controller.rb:25:in `post_likes'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.0) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal.rb:236:in `block in action'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/rack/browser_monitoring.rb:23:in `traced_call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  newrelic_rpm (3.11.1.284) lib/new_relic/agent/instrumentation/middleware_tracing.rb:67:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/vincentshieh/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/e39f343c393c3302/variables" for ::1 at 2015-04-11 13:34:22 -0700
+
+
+Started GET "/api/likes/post_likes" for ::1 at 2015-04-11 13:37:48 -0700
+Processing by Api::LikesController#post_likes as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "post"]]
+Completed 200 OK in 30ms (Views: 4.6ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 13:39:17 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "post"]]
+Completed 200 OK in 29ms (Views: 4.6ms | ActiveRecord: 6.4ms)
+  [1m[36mPost Load (8.4ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_id" = $1 AND "likes"."likable_type" = $2  [["likable_id", 1], ["likable_type", "Post"]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "likes" SET "likable_type" = $1, "updated_at" = $2 WHERE "likes"."id" = $3  [["likable_type", "Post"], ["updated_at", "2015-04-11 20:42:07.353686"], ["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mLike Load (0.6ms)[0m  SELECT "likes".* FROM "likes"
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mLike Load (0.6ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_id" = $1 AND "likes"."likable_type" = $2  [["likable_id", 1], ["likable_type", "Post"]]
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 13:44:14 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 39ms (Views: 5.7ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:05:02 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:05:07 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 419ms (Views: 416.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-11 14:05:08 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (23.8ms)
+Completed 200 OK in 56ms (Views: 25.6ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:05:08 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:05:08 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.5ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:05:08 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.5ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:05:11 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (4.0ms)
+Completed 200 OK in 11ms (Views: 5.1ms | ActiveRecord: 1.8ms)
+  [1m[36mPost Load (1.1ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mFriendship Load (0.8ms)[0m  SELECT "friendships".* FROM "friendships"
+
+
+Started GET "/" for ::1 at 2015-04-11 14:10:30 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 347ms (Views: 325.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-11 14:10:30 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  [1m[36mPost Load (8.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+  Rendered api/posts/index.json.jbuilder (1.8ms)
+Completed 200 OK in 88ms (Views: 7.2ms | ActiveRecord: 18.4ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:10:30 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:10:30 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.3ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 16ms (Views: 1.2ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:10:30 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.9ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 12ms (Views: 6.0ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-11 14:10:37 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  Rendered api/posts/index.json.jbuilder (2.1ms)
+Completed 200 OK in 13ms (Views: 5.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:10:37 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:10:37 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:10:37 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/posts" for ::1 at 2015-04-11 14:10:43 -0700
+Processing by Api::PostsController#create as JSON
+  Parameters: {"recipient_id"=>3, "content"=>"new post", "post"=>{"recipient_id"=>3, "content"=>"new post"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (8.3ms)[0m  INSERT INTO "posts" ("content", "recipient_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "new post"], ["recipient_id", 3], ["author_id", 1], ["created_at", "2015-04-11 21:10:43.020182"], ["updated_at", "2015-04-11 21:10:43.020182"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 18ms (Views: 0.6ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:11:21 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 205ms (Views: 203.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-11 14:11:22 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (4)[0m
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.2ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  Rendered api/posts/index.json.jbuilder (2.4ms)
+Completed 200 OK in 22ms (Views: 4.7ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:11:22 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 7ms (Views: 0.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:11:22 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:11:22 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.3ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-11 14:11:31 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (4)[0m
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+  Rendered api/posts/index.json.jbuilder (2.0ms)
+Completed 200 OK in 17ms (Views: 3.9ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:14:13 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 317ms (Views: 315.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-11 14:14:14 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (4)[0m
+  Rendered api/posts/index.json.jbuilder (3.9ms)
+Completed 200 OK in 11ms (Views: 5.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:14:14 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:14:14 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 1.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:14:14 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:14:23 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 220ms (Views: 217.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=3" for ::1 at 2015-04-11 14:14:23 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 3]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (4)
+  Rendered api/posts/index.json.jbuilder (4.8ms)
+Completed 200 OK in 11ms (Views: 6.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:14:23 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:14:23 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (2.8ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 18ms (Views: 0.5ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:14:23 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 1.7ms | ActiveRecord: 1.0ms)
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments"[0m
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:14:57 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:14:57 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (1.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (8.6ms)
+Completed 200 OK in 16ms (Views: 10.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:14:57 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.3ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 1.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:14:57 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (1.2ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (2.8ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (1.3ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 6.0ms)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "likes" ("user_id", "likable_type", "likable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1], ["likable_type", "Comment"], ["likable_id", 1], ["created_at", "2015-04-11 21:16:14.252995"], ["updated_at", "2015-04-11 21:16:14.252995"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mLike Load (0.9ms)[0m  [1mSELECT "likes".* FROM "likes"[0m
+
+
+Started GET "/" for ::1 at 2015-04-11 14:16:39 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 249ms (Views: 247.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:16:40 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  Rendered api/posts/index.json.jbuilder (7.0ms)
+Completed 200 OK in 18ms (Views: 10.5ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:16:40 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (1.2ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 17ms (Views: 0.7ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:16:40 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 7ms (Views: 2.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:16:40 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:28:50 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 396ms (Views: 392.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:29:02 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (5.6ms)
+Completed 200 OK in 12ms (Views: 6.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:29:02 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:29:02 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.9ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 10ms (Views: 3.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:29:02 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (2.2ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:29:05 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 229ms (Views: 225.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:29:05 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  Rendered api/posts/index.json.jbuilder (6.3ms)
+Completed 200 OK in 14ms (Views: 9.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:29:05 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (1.1ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:29:05 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (1.6ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:29:05 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:30:39 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 223ms (Views: 219.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:30:40 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (5.1ms)
+Completed 200 OK in 11ms (Views: 6.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:30:40 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:30:40 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.7ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (1.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 16ms (Views: 1.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:30:40 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.7ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 2.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:31:54 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 334ms (Views: 332.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:31:55 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.9ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  Rendered api/posts/index.json.jbuilder (6.8ms)
+Completed 200 OK in 14ms (Views: 8.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:31:55 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.2ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:31:55 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:31:55 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.7ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:33:19 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 363ms (Views: 360.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:33:19 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (6.7ms)
+Completed 200 OK in 13ms (Views: 7.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:33:19 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.8ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:33:19 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 9ms (Views: 3.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:33:19 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.8ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 1.2ms)
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users"
+
+
+Started GET "/" for ::1 at 2015-04-11 14:35:26 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 448ms (Views: 445.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:35:27 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (3.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)[0m
+  Rendered api/posts/index.json.jbuilder (5.8ms)
+Completed 200 OK in 16ms (Views: 7.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:35:27 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.8ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 10ms (Views: 0.7ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:35:27 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.6ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:35:27 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:36:57 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 238ms (Views: 236.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=1" for ::1 at 2015-04-11 14:36:58 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2)
+  Rendered api/posts/index.json.jbuilder (6.3ms)
+Completed 200 OK in 14ms (Views: 8.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:36:58 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:36:58 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:36:58 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 8ms (Views: 3.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:38:41 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.3ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:40:38 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (6.8ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (1.2ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:40:38 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (4.7ms)
+Completed 200 OK in 22ms (Views: 7.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:40:38 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (2.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 9ms (Views: 1.9ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:40:38 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.5ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:40:53 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 397ms (Views: 395.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:40:54 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:40:54 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (5.0ms)
+Completed 200 OK in 11ms (Views: 6.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:40:54 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (1.8ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:40:54 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (1.0ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 2.6ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/comments" for ::1 at 2015-04-11 14:41:03 -0700
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"post_id"=>3, "content"=>"hi back", "comment"=>{"post_id"=>3, "content"=>"hi back"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "comments" ("content", "post_id", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "hi back"], ["post_id", 3], ["author_id", 1], ["created_at", "2015-04-11 21:41:03.749097"], ["updated_at", "2015-04-11 21:41:03.749097"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:41:15 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 218ms (Views: 216.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:41:15 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (4.6ms)
+Completed 200 OK in 11ms (Views: 6.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:41:15 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:41:15 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (2.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.6ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 7ms (Views: 1.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:41:15 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (2.1ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 2.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:42:02 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 308ms (Views: 305.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:42:02 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (5.3ms)
+Completed 200 OK in 11ms (Views: 6.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:42:02 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:42:02 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (2.2ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 9ms (Views: 1.8ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:42:02 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.7ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 2.2ms)
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "likes" ("user_id", "likable_type", "likable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1], ["likable_type", "Comment"], ["likable_id", 3], ["created_at", "2015-04-11 21:43:00.955455"], ["updated_at", "2015-04-11 21:43:00.955455"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+  [1m[36mLike Load (0.6ms)[0m  [1mSELECT "likes".* FROM "likes"[0m
+
+
+Started GET "/" for ::1 at 2015-04-11 14:43:15 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 207ms (Views: 204.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:43:16 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (5.0ms)
+Completed 200 OK in 12ms (Views: 6.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:43:16 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:43:16 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (1.1ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 8ms (Views: 3.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:43:16 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.9ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 8ms (Views: 1.8ms | ActiveRecord: 2.1ms)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "likes" ("user_id", "likable_type", "likable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["user_id", 2], ["likable_type", "Comment"], ["likable_id", 3], ["created_at", "2015-04-11 21:44:24.547429"], ["updated_at", "2015-04-11 21:44:24.547429"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mLike Load (0.7ms)[0m  SELECT "likes".* FROM "likes"
+
+
+Started GET "/" for ::1 at 2015-04-11 14:44:34 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 252ms (Views: 249.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:44:35 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (4.9ms)
+Completed 200 OK in 11ms (Views: 6.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:44:35 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:44:35 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (3.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (1.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 15ms (Views: 2.7ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:44:35 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.7ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:56:52 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 389ms (Views: 387.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:56:53 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (2.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (4.6ms)
+Completed 200 OK in 22ms (Views: 15.7ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:56:53 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 12ms (Views: 0.6ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:56:53 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.5ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 10ms (Views: 4.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:56:53 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.9ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 14:59:08 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 323ms (Views: 320.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 14:59:09 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (5.4ms)
+Completed 200 OK in 12ms (Views: 6.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 14:59:09 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 14:59:09 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 14:59:09 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 1.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 15:01:21 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 313ms (Views: 311.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:01:22 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (4.2ms)
+Completed 200 OK in 10ms (Views: 5.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:01:22 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:01:22 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.4ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:01:22 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.3ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 15:03:11 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 385ms (Views: 382.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:03:12 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (4.5ms)
+Completed 200 OK in 10ms (Views: 6.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:03:12 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:03:12 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:03:12 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (2.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 1.6ms | ActiveRecord: 2.9ms)
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments"[0m
+
+
+Started GET "/" for ::1 at 2015-04-11 15:06:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 376ms (Views: 373.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:06:45 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (5.0ms)
+Completed 200 OK in 12ms (Views: 7.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:06:45 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.9ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (1.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 11ms (Views: 0.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:06:45 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (1.0ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 10ms (Views: 4.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:06:45 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.3ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 15:07:46 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 377ms (Views: 375.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:07:46 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (2.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (2.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (9.9ms)
+Completed 200 OK in 21ms (Views: 10.7ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:07:46 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.9ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 12ms (Views: 1.7ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:07:46 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (1.9ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 9ms (Views: 4.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:07:46 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (1.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (1.0ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 9ms (Views: 3.0ms | ActiveRecord: 2.9ms)
+
+
+Started DELETE "/api/likes/3" for ::1 at 2015-04-11 15:08:04 -0700
+Processing by Api::LikesController#destroy as JSON
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT  "likes".* FROM "likes" WHERE "likes"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mDELETE FROM "likes" WHERE "likes"."id" = $1[0m  [["id", 3]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.9ms)
+  [1m[35mLike Load (0.5ms)[0m  SELECT "likes".* FROM "likes"
+
+
+Started GET "/" for ::1 at 2015-04-11 15:09:08 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 380ms (Views: 377.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:09:09 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (5.1ms)
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:09:09 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.8ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:09:09 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.6ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:09:09 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 15:09:35 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 395ms (Views: 392.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:09:35 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)
+  Rendered api/posts/index.json.jbuilder (4.4ms)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:09:35 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:09:35 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (0.5ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Comment"]]
+Completed 200 OK in 9ms (Views: 2.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:09:35 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[35mLike Load (1.9ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for ::1 at 2015-04-11 15:16:57 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 406ms (Views: 403.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts?user_id=2" for ::1 at 2015-04-11 15:16:58 -0700
+Processing by Api::PostsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 2]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3)[0m
+  Rendered api/posts/index.json.jbuilder (5.3ms)
+Completed 200 OK in 12ms (Views: 7.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-11 15:16:58 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mFriendship Load (0.6ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 11ms (Views: 0.6ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-11 15:16:58 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (2.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 9ms (Views: 1.8ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-11 15:16:58 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.6ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/likes" for ::1 at 2015-04-11 15:16:59 -0700
+Processing by Api::LikesController#create as JSON
+  Parameters: {"user_id"=>1, "likable_type"=>"Comment", "likable_id"=>3, "like"=>{"user_id"=>1, "likable_type"=>"Comment", "likable_id"=>3}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "likes" ("user_id", "likable_type", "likable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["user_id", 1], ["likable_type", "Comment"], ["likable_id", 3], ["created_at", "2015-04-11 22:16:59.913518"], ["updated_at", "2015-04-11 22:16:59.913518"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 24ms (Views: 0.4ms | ActiveRecord: 2.0ms)
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes"[0m
+
+
+Started DELETE "/api/likes/5" for ::1 at 2015-04-11 15:17:21 -0700
+Processing by Api::LikesController#destroy as JSON
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AbQT94kG5yHBMCd44cgLsg"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT  "likes".* FROM "likes" WHERE "likes"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "likes" WHERE "likes"."id" = $1[0m  [["id", 5]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 1.9ms)
+  [1m[35mLike Load (0.6ms)[0m  SELECT "likes".* FROM "likes"

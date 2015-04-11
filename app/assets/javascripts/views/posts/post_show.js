@@ -3,6 +3,7 @@ MovementCentral.Views.PostShow = Backbone.View.extend({
 
   initialize: function (options) {
     this.friendships = options.friendships;
+    this.post_likes = options.post_likes;
   },
 
   render: function () {
@@ -17,5 +18,5 @@ MovementCentral.Views.PostShow = Backbone.View.extend({
     });
     this.$el.html(renderedContent);
     return this;
-  },
+  }
 });

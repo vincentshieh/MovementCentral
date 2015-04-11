@@ -8,11 +8,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:create, :index]
     resources :comments, only: [:create, :index]
     resources :friendships, only: [:create, :destroy, :index, :update]
+    resources :likes, only: [:create, :destroy]
 
     get 'posts/feed', to: 'posts#feed'
-    post 'posts/:id/like', to: 'posts#like', as: 'post_like'
-    post 'posts/:id/unlike', to: 'posts#unlike', as: 'post_unlike'
-    post 'comments/:id/like', to: 'comments#like', as: 'comment_like'
-    post 'comments/:id/unlike', to: 'comments#unlike', as: 'comment_unlike'
+    get 'likes/comment_index', to: 'likes#comment_index'
+    get 'likes/post_index', to: 'likes#post_index'
   end
 end

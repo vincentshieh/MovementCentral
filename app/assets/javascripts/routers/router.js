@@ -11,15 +11,25 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   feedShow: function () {
     var posts = MovementCentral.Collections.posts;
     var friendships = MovementCentral.Collections.friendships;
+    var comment_likes = MovementCentral.Collections.comment_likes;
+    var post_likes = MovementCentral.Collections.post_likes;
 
     posts.fetch({
       url: 'api/posts/feed'
     });
     friendships.fetch();
+    comment_likes.fetch({
+      url: 'api/likes/comment_index'
+    });
+    post_likes.fetch({
+      url: 'api/likes/post_index'
+    });
 
     var feedView = new MovementCentral.Views.FeedShow({
       collection: posts,
-      friendships: friendships
+      friendships: friendships,
+      comment_likes: comment_likes,
+      post_likes: post_likes
     });
 
     this._swapView(feedView);
@@ -28,6 +38,8 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   profileShow: function (id) {
     var posts = MovementCentral.Collections.posts;
     var friendships = MovementCentral.Collections.friendships;
+    var comment_likes = MovementCentral.Collections.comment_likes;
+    var post_likes = MovementCentral.Collections.post_likes;
 
     posts.fetch({
       data: {
@@ -35,11 +47,19 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
       }
     });
     friendships.fetch();
+    comment_likes.fetch({
+      url: 'api/likes/comment_index'
+    });
+    post_likes.fetch({
+      url: 'api/likes/post_index'
+    });
 
     var profileView = new MovementCentral.Views.ProfileShow({
       collection: posts,
       user_id: parseInt(id),
-      friendships: friendships
+      friendships: friendships,
+      comment_likes: comment_likes,
+      post_likes: post_likes
     });
 
     this._swapView(profileView);

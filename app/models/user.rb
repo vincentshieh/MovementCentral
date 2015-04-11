@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
     foreign_key: :requestee_id,
     class_name: "Friendship"
   )
+  has_many :likes
 
   after_initialize :ensure_session_token
 
