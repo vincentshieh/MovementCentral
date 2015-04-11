@@ -8,27 +8,26 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
   initialize: function (options) {
     this.friendships = options.friendships;
     this.comment_likes = options.comment_likes;
-    this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.comment_likes, 'sync add remove', this.render);
   },
 
   handleLikeClick: function (event) {
-    var $target = $(event.currentTarget);
-    var commentId = this.model.get('id');
+    var comment_id = this.model.get('id');
     var current_user_id = MovementCentral.current_user.id;
     var like;
     var view = this;
+
     if (this.liked()) {
       like = this.comment_likes.findWhere({
         user_id: current_user_id,
-        likable_id: commentId
+        likable_id: comment_id
       });
       like.destroy();
     } else {
       like = new MovementCentral.Models.Like({
         user_id: current_user_id,
         likable_type: 'Comment',
-        likable_id: commentId
+        likable_id: comment_id
       });
       like.save({}, {
         success: function () {

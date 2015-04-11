@@ -3,7 +3,9 @@
     <%= author.escape('fname') %> <%= author.escape('lname') %>
   </a><br>
 <% } %>
+
 <%= comment.escape('content') %>
+
 <button class="like">
   <% if (liked) { %>
     Unlike

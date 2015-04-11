@@ -6,7 +6,18 @@
     <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>
   </a><br>
 <% } %>
+
 <%= post.escape('content') %>
+
 <% if (post.escape('picture')) { %>
   <img src="<%= post.escape('picture') %>">
 <% } %>
+
+<button class="like">
+  <% if (liked) { %>
+    Unlike
+  <% } else { %>
+    Like
+  <% } %>
+</button>
+Likes: <%= numLikes %>

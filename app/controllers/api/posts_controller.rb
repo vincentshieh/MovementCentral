@@ -11,11 +11,12 @@ module Api
     end
 
     def feed
-      @posts = current_user.received_posts.includes(:comments)
-      @posts = @posts.concat(current_user.authored_posts.includes(:comments))
+      @posts = current_user.received_posts.includes(:comments).concat(
+               current_user.authored_posts.includes(:comments))
       accepted_friendships = friendships_of_current_user.select do |friendship|
         friendship[:accepted]
       end
+
       accepted_friendships.each do |friendship|
         friend_user = User.find(friendship[:user_id])
         friend_user.authored_posts.each do |post|
@@ -25,6 +26,7 @@ module Api
           @posts << post unless @posts.include?(post)
         end
       end
+      
       render :index
     end
 
