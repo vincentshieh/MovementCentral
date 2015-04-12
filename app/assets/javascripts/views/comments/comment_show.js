@@ -73,6 +73,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
       return result;
     } else if (numLikers === 1) {
       liker1 = likers.models[0];
+
       if (liker1.get('user_id') === current_user_id) {
         result = "You like this.";
       } else {
@@ -82,6 +83,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
     } else if (numLikers === 2) {
       liker1 = likers.models[0];
       liker2 = likers.models[1];
+
       if (liker1.get('user_id') === current_user_id) {
         result = "You and " + liker2.get('fname') + " " +
                               liker2.get('lname') + " like this.";
@@ -98,6 +100,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
       liker1 = likers.models[0];
       liker2 = likers.models[1];
       liker3 = likers.models[2];
+
       if (liker1.get('user_id') === current_user_id) {
         result = "You, " + liker2.get('fname') + " " +
                            liker2.get('lname') + " and " +
@@ -125,11 +128,10 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
       liker1 = likers.models[0];
       liker2 = likers.models[1];
       liker3 = likers.models[2];
-      var endString;
-
-      endString = (numLikers === 4) ?
+      var endString = (numLikers === 4) ?
         " and 1 other person like this." :
         " and " + (numLikers - 3) + " others like this.";
+
       if (liker1.get('user_id') === current_user_id) {
         result = "You, " + liker2.get('fname') + " " +
                            liker2.get('lname') + ", " +
@@ -151,8 +153,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
                  liker2.get('fname') + " " + liker2.get('lname') +
                  ", " +
                  liker3.get('fname') + " " + liker3.get('lname') +
-                 " and " +
-                 (numLikers - 3) + " others like this.";
+                 endString;
       }
     }
 
