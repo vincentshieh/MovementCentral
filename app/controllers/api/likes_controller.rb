@@ -29,7 +29,7 @@ module Api
     private
 
     def like_params
-      params.require(:like).permit(:id, :user_id, :likable_type, :likable_id)
+      params.require(:like).permit(:user_id, :likable_type, :likable_id)
     end
   end
 end

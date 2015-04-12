@@ -16,18 +16,6 @@ module Api
       render json: @comments
     end
 
-    def like
-      comment = Comment.find(params[:id])
-      comment.likes.new(user_id: current_user.id).save
-      render json: {}
-    end
-
-    def unlike
-      comment = Comment.find(params[:id])
-      comment.likes.find_by_user_id(current_user.id).destroy
-      render json: {}
-    end
-
     private
 
     def comment_params

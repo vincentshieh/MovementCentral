@@ -13,4 +13,7 @@
     Like
   <% } %>
 </button>
-Likes: <%= numLikes %>
+
+<% if (likers) { %>
+  <%= likers %>
+<% } %>
