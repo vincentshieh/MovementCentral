@@ -1,10 +1,13 @@
 <% if (author && recipient) { %>
   <a href="/#/users/<%= author.escape('user_id') %>">
     <%= author.escape('fname') %> <%= author.escape('lname') %>
-  </a> =>
-  <a href="/#/users/<%= recipient.escape('user_id') %>">
-    <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>
-  </a><br>
+  </a>
+  <% if (author.escape('user_id') !== recipient.escape('user_id')) { %>
+     =>
+    <a href="/#/users/<%= recipient.escape('user_id') %>">
+      <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>
+    </a><br>
+  <% } %>
 <% } %>
 
 <%= post.escape('content') %>
