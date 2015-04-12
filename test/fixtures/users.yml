@@ -11,6 +11,11 @@
 #  fname           :string           not null
 #  lname           :string           not null
 #  dance_style     :string           not null
+#  gender          :string           not null
+#  company         :string           not null
+#  profile_picture :string
+#  cover_photo     :string
+#  nickname        :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -11,6 +11,11 @@
       Last name
       <input type="text" name="user[lname]">
     </label><br>
+
+    <label>
+      Nickname
+      <input type="text" name="user[nickname]">
+    </label><br>
   <% end %>
 
   <label>
@@ -24,6 +29,10 @@
   </label><br>
 
   <% if button_value == 'Sign Up' %>
+    <input type="radio" name="user[gender]" value="Female">Female
+    <input type="radio" name="user[gender]" value="Male">Male
+    <br>
+
     <label>
       Dance Style
       <select name="user[dance_style]">
@@ -31,6 +40,11 @@
           <option value="<%= ds %>"><%= ds %></option>
         <% end %>
       </select>
+    </label><br>
+
+    <label>
+      Company
+      <input type="text" name="user[company]">
     </label><br>
   <% end %>
 

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
-  DANCE_STYLES = %w(Ballet Ballroom Contemporary Hip-hop)
+  DANCE_STYLES = %w(Ballet Ballroom Contemporary Hip-hop Jazz Modern)
 
   private
 
@@ -16,7 +16,13 @@ class ApplicationController < ActionController::Base
     friendships = [ { user_id: current_user.id,
                   self: true,
                   fname: current_user.fname,
-                  lname: current_user.lname } ]
+                  lname: current_user.lname,
+                  dance_style: current_user.dance_style,
+                  gender: current_user.gender,
+                  company: current_user.company,
+                  profile_picture: current_user.profile_picture,
+                  cover_photo: current_user.cover_photo,
+                  nickname: current_user.nickname } ]
 
     current_user.friendships_as_requester.each do |friendship|
       friend = User.find(friendship.requestee_id)
@@ -25,7 +31,13 @@ class ApplicationController < ActionController::Base
                    accepted: friendship.accepted,
                    requester: true,
                    fname: friend.fname,
-                   lname: friend.lname }
+                   lname: friend.lname,
+                   dance_style: friend.dance_style,
+                   gender: friend.gender,
+                   company: friend.company,
+                   profile_picture: friend.profile_picture,
+                   cover_photo: friend.cover_photo,
+                   nickname: friend.nickname }
     end
 
     current_user.friendships_as_requestee.each do |friendship|
@@ -35,7 +47,13 @@ class ApplicationController < ActionController::Base
                    accepted: friendship.accepted,
                    requester: false,
                    fname: friend.fname,
-                   lname: friend.lname }
+                   lname: friend.lname,
+                   dance_style: friend.dance_style,
+                   gender: friend.gender,
+                   company: friend.company,
+                   profile_picture: friend.profile_picture,
+                   cover_photo: friend.cover_photo,
+                   nickname: friend.nickname }
     end
 
     friend_ids = friendships.map { |friendship| friendship[:user_id] }
@@ -45,7 +63,10 @@ class ApplicationController < ActionController::Base
       friendships << { user_id: user.id,
                        stranger: true,
                        fname: user.fname,
-                       lname: user.lname }
+                       lname: user.lname,
+                       profile_picture: user.profile_picture,
+                       cover_photo: user.cover_photo,
+                       nickname: user.nickname }
     end
 
     friendships

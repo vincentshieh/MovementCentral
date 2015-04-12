@@ -1,5 +1,17 @@
 <% if (friendship) { %>
-  <h2><%= friendship.escape('fname') %> <%= friendship.escape('lname') %></h2>
+  <h2><%= friendship.escape('fname') %>
+  <% if (friendship.escape('nickname')) { %>
+    "<%= friendship.escape('nickname') %>"
+  <% } %>
+  <%= friendship.escape('lname') %></h2>
+
+  <% if (!friendship.escape('stranger')) { %>
+    <h4><%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %></h4>
+  <% } %>
+  
+  <% if (friendship.escape('profile_picture')) { %>
+    <div class="profile-picture"><img src="<%= friendship.escape('profile_picture') %>"></div>
+  <% } %>
 <% } %>
 
 <% if (friend_button_val) { %>
