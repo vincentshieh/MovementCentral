@@ -43497,3 +43497,875 @@ Processing by Api::LikesController#comment_index as JSON
   [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9jkuOaxmZwNr7aNibk83Rg"]]
   [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
 Completed 200 OK in 6ms (Views: 1.7ms | ActiveRecord: 1.7ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-12 16:55:32 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"xBJp4scwhC4o1lXOZ7A3hsn73c3aWyC/DoeTm0iWcbxNf2BnRuJ6vl7mjJqFNpOhAYyjgfFQz6PQoQRXuKNvpg=="}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9jkuOaxmZwNr7aNibk83Rg"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'ZMCvRmXXZFVuv1mRj2z3Hg' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "ZMCvRmXXZFVuv1mRj2z3Hg"], ["updated_at", "2015-04-12 23:55:32.231336"], ["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 13ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:55:32 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.9ms)
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 354ms (Views: 353.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-12 16:55:38 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"FzdC3ravg9ClIPGs1EaqDaSPACLb4DXTMheot7HSojueWktbN319QNMQKPg2wA4qbPh+bvDr2s/sMT97Qee8IQ==", "user"=>{"email"=>"mistyc@abt.org", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mistyc@abt.org"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'D_HVIvlTrXd33--JwvnCEw' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "D_HVIvlTrXd33--JwvnCEw"], ["updated_at", "2015-04-12 23:55:38.222889"], ["id", 1]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 117ms (ActiveRecord: 11.2ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:55:38 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "D_HVIvlTrXd33--JwvnCEw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 238ms (Views: 235.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:55:38 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "D_HVIvlTrXd33--JwvnCEw"]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (8.1ms)
+Completed 200 OK in 71ms (Views: 9.1ms | ActiveRecord: 15.2ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:55:38 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "D_HVIvlTrXd33--JwvnCEw"]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 22ms (Views: 1.3ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:55:38 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "D_HVIvlTrXd33--JwvnCEw"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:55:38 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "D_HVIvlTrXd33--JwvnCEw"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.1ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-12 16:55:45 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"zCStKUpY1oNx7ELvxpxGY6Wr3y9Ur8vxJCPdqQaw8q9FSaSsy4ooEwfcm7skGuJEbdyhY3+kJO36BUpl9oXstQ=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "D_HVIvlTrXd33--JwvnCEw"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'bYECSwgkFn8i_0cyGBO2CQ' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (1.1ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "bYECSwgkFn8i_0cyGBO2CQ"], ["updated_at", "2015-04-12 23:55:45.422954"], ["id", 1]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 20ms (ActiveRecord: 11.7ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:55:45 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 261ms (Views: 260.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:56:05 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.0ms)
+  Rendered sessions/new.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 254ms (Views: 252.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-12 16:56:11 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"VuY4HfOeFOMKXqiKSb/+bhD83U2Tuk0ZA1dxIsedCvHfizGYckzqc3xucd6rOVpJ2IujAbixogXdcebuN6gU6w==", "user"=>{"email"=>"mistyc@abt.org", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mistyc@abt.org"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'iLXUyndGHQbM6yrhZ7YN2w' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"], ["updated_at", "2015-04-12 23:56:11.143492"], ["id", 1]]
+  [1m[36m (8.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 107ms (ActiveRecord: 11.6ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:56:11 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 239ms (Views: 237.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:56:11 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.3ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (8.4ms)
+Completed 200 OK in 63ms (Views: 9.5ms | ActiveRecord: 14.4ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:56:11 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 22ms (Views: 1.5ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:56:11 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:56:11 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 7ms (Views: 4.4ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-12 16:56:22 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"29FLZC8VrGFmViOI8YDPNGqVftkESC8v9vH9BXWfYCBSvELhrsdS8RBm+twTBmsTouIAlS9DwDMo12rJhap+Og=="}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "iLXUyndGHQbM6yrhZ7YN2w"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '0DpZZn5H2x2qGp15OawJbg' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "0DpZZn5H2x2qGp15OawJbg"], ["updated_at", "2015-04-12 23:56:22.143103"], ["id", 1]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 21ms (ActiveRecord: 11.4ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:56:22 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.1ms)
+  Rendered sessions/new.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 253ms (Views: 252.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:56:24 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 248ms (Views: 246.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-12 16:56:30 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"sHzkjCAOke7U2uprocYYE17McipfNNIOFlrAjUidk7w5Ee0JodxvfqLqMz9DQLw0lrsMZnQ/PRLIfFdBuKiNpg==", "user"=>{"email"=>"mistyc@abt.org", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mistyc@abt.org"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'ru48QPK3E50t06yxrvXXsw' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "ru48QPK3E50t06yxrvXXsw"], ["updated_at", "2015-04-12 23:56:30.410708"], ["id", 1]]
+  [1m[36m (8.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 120ms (ActiveRecord: 11.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:56:30 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "ru48QPK3E50t06yxrvXXsw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 237ms (Views: 235.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:56:30 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "ru48QPK3E50t06yxrvXXsw"]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (9.9ms)
+Completed 200 OK in 75ms (Views: 11.5ms | ActiveRecord: 15.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:56:31 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "ru48QPK3E50t06yxrvXXsw"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:56:31 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "ru48QPK3E50t06yxrvXXsw"]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.3ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 23ms (Views: 1.7ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:56:31 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "ru48QPK3E50t06yxrvXXsw"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.8ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-12 16:56:44 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"YnE1i+Gloj5yUpdYoKS9nQLHeKgtoYq4KDTIdcCX5c7rHDwOYHdcrgRiTgxCIhm6yrAG5AaqZaT2El+5MKL71A=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "ru48QPK3E50t06yxrvXXsw"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '0Lkp4xk_RzfrjV31svkbcQ' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "0Lkp4xk_RzfrjV31svkbcQ"], ["updated_at", "2015-04-12 23:56:44.478070"], ["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 11ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:56:44 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (1.4ms)
+  Rendered sessions/new.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 244ms (Views: 242.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:56:48 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 259ms (Views: 258.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-12 16:56:55 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"GeD5TX5XrPQ0rLmSuRZRJ1G0i2khEYwxzCQLddRolTWQjfDI/4VSZEKcYMZbkPUAmcP1JQoaYy0SApy5JF2LLw==", "user"=>{"email"=>"mistyc@abt.org", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mistyc@abt.org"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '9EjJUVYTSTMS2Mv4CCnJ3w' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"], ["updated_at", "2015-04-12 23:56:55.497679"], ["id", 1]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 112ms (ActiveRecord: 11.2ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:56:55 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 247ms (Views: 245.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:56:56 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (2.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (8.2ms)
+Completed 200 OK in 70ms (Views: 9.5ms | ActiveRecord: 17.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:56:56 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 9ms (Views: 5.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:56:56 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 24ms (Views: 1.7ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:56:56 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:57:21 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 259ms (Views: 257.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:57:21 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.6ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (8.3ms)
+Completed 200 OK in 75ms (Views: 9.3ms | ActiveRecord: 14.4ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:57:21 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 24ms (Views: 2.0ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:57:21 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 7ms (Views: 2.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:57:21 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-12 16:57:23 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"saMIGyrsv/ExTX7uxoo6qmbvP50ubr/ROCNw1pQs9DU4zgGeqz5BYUd9p7okDJ6NrphB0QVlUM3mBecaZBnqLw=="}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "9EjJUVYTSTMS2Mv4CCnJ3w"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'wqqejEEl4ocxFpU166QA6Q' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "wqqejEEl4ocxFpU166QA6Q"], ["updated_at", "2015-04-12 23:57:23.112823"], ["id", 1]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 18ms (ActiveRecord: 10.8ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:57:23 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.9ms)
+  Rendered sessions/new.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 255ms (Views: 253.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-12 16:57:26 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"odSGlNtXysQh+wqsM6iPYqfrHB4SXcvfZ9aGKTcqHb8ouY8RWoU0VFfL0/jRLitFb5xiUjlWJMO58BHlxx8DpQ==", "user"=>{"email"=>"mistyc@abt.org", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mistyc@abt.org"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'OWJnxxqvaBEnYAcffgEIbg' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"], ["updated_at", "2015-04-12 23:57:26.701273"], ["id", 1]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 113ms (ActiveRecord: 11.4ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:57:26 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 244ms (Views: 242.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:57:27 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.5ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (9.9ms)
+Completed 200 OK in 73ms (Views: 12.0ms | ActiveRecord: 15.2ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:57:27 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:57:27 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 22ms (Views: 1.6ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:57:27 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"]]
+  [1m[36mLike Load (0.5ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/session" for ::1 at 2015-04-12 16:57:30 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"dt+53lx3AnmYwVVdJa/1yadTnncz2EBm5fZ71CM5SbH/srBb3aX86e7xjAnHKVHubyTgOxjTr3o70OwY0wxXqw=="}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "OWJnxxqvaBEnYAcffgEIbg"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'PCajJpwQDo-Xt5UjCbQQCg' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "PCajJpwQDo-Xt5UjCbQQCg"], ["updated_at", "2015-04-12 23:57:30.790530"], ["id", 1]]
+  [1m[36m (8.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 19ms (ActiveRecord: 10.8ms)
+
+
+Started GET "/session/new" for ::1 at 2015-04-12 16:57:30 -0700
+Processing by SessionsController#new as HTML
+  Rendered shared/_login.html.erb (0.4ms)
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 265ms (Views: 263.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-04-12 16:57:34 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"P9CnLgsUlZzwKi7zi1mKbxghgRWl4gcA8b+wSwiEtfW2va6risZrDIYa96dp3y5I0Fb/WY7p6BwvmSeH+LGr7w==", "user"=>{"email"=>"mistyc@abt.org", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "mistyc@abt.org"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'mistyc@abt.org' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'b-XqXn_ErfVMJ5FW6VbGXA' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "b-XqXn_ErfVMJ5FW6VbGXA"], ["updated_at", "2015-04-12 23:57:34.500555"], ["id", 1]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 126ms (ActiveRecord: 11.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-12 16:57:34 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "b-XqXn_ErfVMJ5FW6VbGXA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 246ms (Views: 243.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/feed" for ::1 at 2015-04-12 16:57:35 -0700
+Processing by Api::PostsController#feed as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "b-XqXn_ErfVMJ5FW6VbGXA"]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1]]
+  [1m[36mComment Load (1.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (1, 5)[0m
+  [1m[35mFriendship Load (0.7ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1  [["requester_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mFriendship Load (0.4ms)[0m  SELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1  [["requestee_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 2]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 4]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 9]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 10]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 10]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 6]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 7]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1[0m  [["recipient_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 8]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."recipient_id" = $1  [["recipient_id", 8]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 6]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1  [["post_id", 8]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 7]]
+  Rendered api/posts/index.json.jbuilder (9.4ms)
+Completed 200 OK in 65ms (Views: 10.2ms | ActiveRecord: 15.4ms)
+
+
+Started GET "/api/likes/comment_index" for ::1 at 2015-04-12 16:57:35 -0700
+Processing by Api::LikesController#comment_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "b-XqXn_ErfVMJ5FW6VbGXA"]]
+  [1m[36mLike Load (0.3ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Comment"]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2015-04-12 16:57:35 -0700
+Processing by Api::FriendshipsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "b-XqXn_ErfVMJ5FW6VbGXA"]]
+  [1m[36mFriendship Load (0.5ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requester_id" = $1[0m  [["requester_id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1mSELECT "friendships".* FROM "friendships" WHERE "friendships"."requestee_id" = $1[0m  [["requestee_id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 24ms (Views: 1.5ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/api/likes/post_index" for ::1 at 2015-04-12 16:57:35 -0700
+Processing by Api::LikesController#post_index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "b-XqXn_ErfVMJ5FW6VbGXA"]]
+  [1m[36mLike Load (0.4ms)[0m  [1mSELECT "likes".* FROM "likes" WHERE "likes"."likable_type" = $1[0m  [["likable_type", "Post"]]
+Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 1.0ms)

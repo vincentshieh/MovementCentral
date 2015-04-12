@@ -20,12 +20,12 @@
 
   <label>
     Email
-    <input type="text" name="user[email]">
+    <input type="text" name="user[email]" class="email">
   </label><br>
 
   <label>
     Password
-    <input type="password" name="user[password]">
+    <input type="password" name="user[password]" class="password">
   </label><br>
 
   <% if button_value == 'Sign Up' %>
@@ -48,5 +48,29 @@
     </label><br>
   <% end %>
 
-  <input type="submit" value="<%= button_value %>">
+  <input type="submit" value="<%= button_value %>" class="login">
 </form>
+
+<% if button_value == 'Log In' %>
+  <button onclick="demo()">Guest Log In</button>
+<% end %>
+
+<script>
+  var demo = function () {
+    $(function () {
+      $(".email").typed({
+        strings: ["mistyc@abt.org"],
+        typeSpeed: 30,
+        callback: function () {
+          $(".password").typed({
+            strings: ["mistymisty"],
+            typeSpeed: 30,
+            callback: function () {
+              $('.login').click()
+            }
+          });
+        }
+      });
+    });
+  }
+</script>
