@@ -16,10 +16,6 @@
   background: dodgerblue;
 }
 
-// .post-form > form {
-//   border-bottom: 10px solid darkslateblue;
-// }
-
 .post-form > form,
 .post-index-item {
   padding: 20px 20px;
@@ -42,4 +38,8 @@
 .post img {
   width: 100%;
   height: auto;
+}
+
+.profile-picture > img {
+  width: 300px;
 }
