@@ -17,18 +17,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.posts {
-  color: green;
-}
-
-.posts .comments {
-  color: blue;
-}
-
-.posts .new-comment {
-  color: blue;
-}
-
 html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
@@ -80,7 +68,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  background: white;
+  background: darkslateblue;
 }
 
 .header {

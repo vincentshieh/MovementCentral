@@ -1,12 +1,14 @@
 <% if (author) { %>
-  <a href="/#/users/<%= author.escape('user_id') %>">
+  <a href="/#/users/<%= author.escape('user_id') %>"
+     class="comment-author">
     <%= author.escape('fname') %> <%= author.escape('lname') %>
-  </a><br>
+  </a>
 <% } %>
 
-<%= comment.escape('content') %>
+ <%= comment.escape('content') %>
+<br>
 
-<button class="like">
+<button class="like btn btn-primary btn-xs">
   <% if (liked) { %>
     Unlike
   <% } else { %>

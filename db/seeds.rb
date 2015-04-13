@@ -91,7 +91,7 @@ Post.create!(author_id: 1, recipient_id: 1,
              picture: 'https://s-media-cache-ak0.pinimg.com/736x/c2/4e/dd/c24eddada7b47ce854946ed508858c1b.jpg')
 Post.create!(author_id: 3, recipient_id: 4,
              content: 'Victorious at Blackpool 2014!',
-             picture: 'https://s-media-cache-ak0.pinimg.com/236x/23/6e/d7/236ed703a2ebc9ab862a29619f112dd9.jpg')
+             picture: 'http://www.dance-mag.com/wp-content/uploads/2010/06/bp10-pro-lat-037.jpg')
 Post.create!(author_id: 7, recipient_id: 7,
              content: '#fam #whatdoyouwantmos?',
              picture: 'http://www.mtv.com/onair/dance_crew/season_7/photos/cast/mos_wanted_crew/flipbook/group.jpg')

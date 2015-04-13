@@ -1,21 +1,31 @@
 <% if (friendship) { %>
-  <h2><%= friendship.escape('fname') %>
-  <% if (friendship.escape('nickname')) { %>
-    "<%= friendship.escape('nickname') %>"
-  <% } %>
-  <%= friendship.escape('lname') %></h2>
+  <div class="user-basic-info">
+    <div class="user-fullname">
+      <%= friendship.escape('fname') %>
+      <% if (friendship.escape('nickname')) { %>
+        "<%= friendship.escape('nickname') %>"
+      <% } %>
+      <%= friendship.escape('lname') %>
+    </div>
 
-  <% if (!friendship.escape('stranger')) { %>
-    <h4><%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %></h4>
-  <% } %>
-  
-  <% if (friendship.escape('profile_picture')) { %>
-    <div class="profile-picture"><img src="<%= friendship.escape('profile_picture') %>"></div>
-  <% } %>
+    <% if (!friendship.escape('stranger')) { %>
+      <div class="dance-info">
+        <%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %>
+      </div>
+    <% } %>
+
+    <% if (friendship.escape('profile_picture')) { %>
+      <div class="profile-picture">
+        <img src="<%= friendship.escape('profile_picture') %>">
+      </div>
+    <% } %>
+  </div>
 <% } %>
 
 <% if (friend_button_val) { %>
-  <button class="friend-button"><%= friend_button_val %></button>
+  <button class="friend-button btn btn-default btn-lg">
+    <%= friend_button_val %>
+  </button>
 <% } %>
 
 <div class="new-post">

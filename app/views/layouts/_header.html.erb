@@ -17,7 +17,7 @@
       <% if logged_in? %>
         <li class="nav-link-logged-in">
           <a href="/#/users/<%= current_user.id %>">
-            Profile
+            <%= current_user.fname %>
           </a>
         </li>
 
@@ -46,10 +46,6 @@
     </ul>
   </nav>
 </header>
-
-<% if logged_in? %>
-  Logged in as: <%= current_user.email %>
-<% end %>
 
 <ul>
   <% flash[:errors] && flash[:errors].each do |error| %>

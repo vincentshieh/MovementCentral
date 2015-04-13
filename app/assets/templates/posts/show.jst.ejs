@@ -1,22 +1,28 @@
 <% if (author && recipient) { %>
-  <a href="/#/users/<%= author.escape('user_id') %>">
-    <%= author.escape('fname') %> <%= author.escape('lname') %>
-  </a>
-  <% if (author.escape('user_id') !== recipient.escape('user_id')) { %>
-     =>
-    <a href="/#/users/<%= recipient.escape('user_id') %>">
-      <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>
-    </a><br>
-  <% } %>
+  <div class="post-author-recipient">
+    <a href="/#/users/<%= author.escape('user_id') %>"
+       class="post-author">
+      <%= author.escape('fname') %> <%= author.escape('lname') %>
+    </a>
+    <% if (author.escape('user_id') !== recipient.escape('user_id')) { %>
+      to
+      <a href="/#/users/<%= recipient.escape('user_id') %>"
+         class="post-recipient">
+        <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>
+      </a>
+    <% } %>
+    <br><br>
+  </div>
 <% } %>
 
 <%= post.escape('content') %>
+<br><br>
 
 <% if (post.escape('picture')) { %>
   <img src="<%= post.escape('picture') %>">
 <% } %>
 
-<button class="like">
+<button class="like btn btn-primary btn-xs">
   <% if (liked) { %>
     Unlike
   <% } else { %>
@@ -25,5 +31,7 @@
 </button>
 
 <% if (likers) { %>
-  <%= likers %>
+  <div class="likers">
+    <%= likers %>
+  </div>
 <% } %>

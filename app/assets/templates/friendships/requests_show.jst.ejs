@@ -3,8 +3,14 @@
 <ul>
   <% for(var i = 0; i < friend_requests.length; i++) { %>
     <li>
-      <%= friend_requests.models[i].escape('fname') %> <%= friend_requests.models[i].escape('lname') %>
-      <button class="accept-friend-request" data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">Confirm</button>
+      <span class="requester-fullname">
+        <%= friend_requests.models[i].escape('fname') %>
+         <%= friend_requests.models[i].escape('lname') %>
+      </span>
+      <button class="accept-friend-request btn btn-primary"
+              data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
+        Confirm
+      </button>
     </li>
   <% } %>
 </ul>
