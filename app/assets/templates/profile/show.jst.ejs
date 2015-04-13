@@ -8,7 +8,7 @@
       <%= friendship.escape('lname') %>
     </div>
 
-    <% if (!friendship.escape('stranger')) { %>
+    <% if (!friendship.escape('stranger') && show_info) { %>
       <div class="dance-info">
         <%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %>
       </div>

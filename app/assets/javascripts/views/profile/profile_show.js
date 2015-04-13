@@ -11,7 +11,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     this.comment_likes = options.comment_likes;
     this.post_likes = options.post_likes;
     this.listenTo(this.collection, 'sync', this.render);
-    this.listenTo(this.friendships, 'sync add remove', this.render);
+    this.listenTo(this.friendships, 'sync add', this.render);
   },
 
   friendButtonVal: function () {
@@ -34,7 +34,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   handleFriendClick: function (event) {
-    var friendButtonVal = $(event.currentTarget).text();
+    var friendButtonVal = $(event.currentTarget).text().trim();
     var view = this;
     var friendship;
 
@@ -52,14 +52,24 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       });
     } else if (friendButtonVal === "Unfriend") {
       friendship = this.friendships.findWhere({ user_id: this.user_id });
-      friendship.destroy();
+      friendship.destroy({
+        success: function () {
+          view.friendships.fetch();
+        }
+      });
     }
   },
 
   render: function () {
+    var friendship = this.friendships.findWhere({ user_id: this.user_id });
+    var show_info;
+    if (friendship) {
+      show_info = friendship.get('accepted') || friendship.get('self');
+    }
     var renderedContent = this.template({
-      friendship: this.friendships.findWhere({ user_id: this.user_id }),
-      friend_button_val: this.friendButtonVal()
+      friendship: friendship,
+      friend_button_val: this.friendButtonVal(),
+      show_info: show_info
     });
     this.$el.html(renderedContent);
     this.renderPostForm();
