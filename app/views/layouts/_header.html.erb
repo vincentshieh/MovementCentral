@@ -15,19 +15,29 @@
 
     <ul class="header-list">
       <% if logged_in? %>
-        <li class="profile-link">
+        <li class="nav-link-logged-in">
           <a href="/#/users/<%= current_user.id %>">
             Profile
           </a>
         </li>
+
+        <li class="nav-link-logged-in">
+          <a href="/">
+            Home
+          </a>
+        </li>
+
+        <li class="nav-link-logged-in">
+          <%= link_to "Log Out", session_url, method: :delete %>
+        </li>
       <% else %>
-        <li class="sign-up-link">
+        <li class="nav-link-logged-out">
           <a href="/users/new">
             Sign Up
           </a>
         </li>
 
-        <li class="log-in-link">
+        <li class="nav-link-logged-out">
           <a href="/session/new">
             Log In
           </a>
@@ -39,7 +49,6 @@
 
 <% if logged_in? %>
   Logged in as: <%= current_user.email %>
-  <%= button_to "Log Out", session_url, method: :delete %>
 <% end %>
 
 <ul>

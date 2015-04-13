@@ -14,6 +14,9 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 .posts {
   color: green;
 }
@@ -123,15 +126,27 @@ body {
   float: left;
 }
 
-.header-list > li:hover {
+.header-list > li > a:hover {
   color: slateblue;
+  text-decoration: none;
 }
 
-.sign-up-link,
-.log-in-link {
-  padding: 54px 20px;
+.nav-link-logged-out {
+  margin: 54px 20px;
 }
 
-.profile-link {
-  padding: 34px 20px;
+.nav-link-logged-in {
+  margin: 34px 20px;
+}
+
+.body {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 20px;
 }

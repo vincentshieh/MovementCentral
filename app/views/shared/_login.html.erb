@@ -1,59 +1,77 @@
-<form action="<%= url %>" method="post">
-  <%= auth_input %>
+<div class="login-form">
+  <form action="<%= url %>" method="post">
+    <%= auth_input %>
 
-  <% if button_value == 'Sign Up' %>
-    <label>
-      First name
-      <input type="text" name="user[fname]">
-    </label><br>
+    <% if button_value == 'Sign Up' %>
+      <input type="text"
+             name="user[fname]"
+             placeholder="First name"
+             class="form-control"><br>
 
-    <label>
-      Last name
-      <input type="text" name="user[lname]">
-    </label><br>
+      <input type="text"
+             name="user[lname]"
+             placeholder="Last name"
+             class="form-control"><br>
 
-    <label>
-      Nickname
-      <input type="text" name="user[nickname]">
-    </label><br>
+      <input type="text"
+             name="user[nickname]"
+             placeholder="Nickname"
+             class="form-control"><br>
+    <% end %>
+
+    <input type="email"
+           name="user[email]"
+           placeholder="Email"
+           class="email form-control"><br>
+
+    <input type="password"
+           name="user[password]"
+           placeholder="Password"
+           class="password form-control"><br>
+
+    <% if button_value == 'Sign Up' %>
+      <div class="radio-inline">
+        <label>
+          <input type="radio" name="user[gender]" value="Female">
+          Female
+        </label>
+      </div>
+
+      <div class="radio-inline">
+        <label>
+          <input type="radio" name="user[gender]" value="Male">
+          Male
+        </label>
+      </div><br>
+
+      <div class="dance-style-select">
+        <label>
+          <div class="dance-style-label">Dance Style</div>
+          <select name="user[dance_style]"
+                  class="form-control dance-style-dropdown">
+            <option value="" disabled selected>Choose Style</option>
+            <% @dance_styles.each do |ds| %>
+              <option value="<%= ds %>"><%= ds %></option>
+            <% end %>
+          </select>
+        </label><br>
+      </div>
+
+      <input type="text"
+             name="user[company]"
+             placeholder="Dance Company"
+             class="form-control"><br>
+    <% end %>
+
+    <input type="submit"
+           value="<%= button_value %>"
+           class="login-button btn btn-success btn-lg btn-block">
+  </form>
+
+  <% if button_value == 'Log In' %>
+    <button onclick="demo()" class="btn btn-primary btn-lg btn-block">Guest Log In</button>
   <% end %>
-
-  <label>
-    Email
-    <input type="email" name="user[email]" class="email">
-  </label><br>
-
-  <label>
-    Password
-    <input type="password" name="user[password]" class="password">
-  </label><br>
-
-  <% if button_value == 'Sign Up' %>
-    <input type="radio" name="user[gender]" value="Female">Female
-    <input type="radio" name="user[gender]" value="Male">Male
-    <br>
-
-    <label>
-      Dance Style
-      <select name="user[dance_style]">
-        <% @dance_styles.each do |ds| %>
-          <option value="<%= ds %>"><%= ds %></option>
-        <% end %>
-      </select>
-    </label><br>
-
-    <label>
-      Company
-      <input type="text" name="user[company]">
-    </label><br>
-  <% end %>
-
-  <input type="submit" value="<%= button_value %>" class="login">
-</form>
-
-<% if button_value == 'Log In' %>
-  <button onclick="demo()">Guest Log In</button>
-<% end %>
+</div>
 
 <script>
   var demo = function () {
@@ -66,7 +84,7 @@
             strings: ["mistymisty"],
             typeSpeed: 30,
             callback: function () {
-              $('.login').click()
+              $('.login-button').click()
             }
           });
         }
