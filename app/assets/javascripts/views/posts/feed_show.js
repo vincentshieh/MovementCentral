@@ -24,7 +24,7 @@ MovementCentral.Views.FeedShow = Backbone.CompositeView.extend({
         recipient_id: MovementCentral.current_user.id
       }),
       user_id: MovementCentral.current_user.id,
-      feed: true
+      is_feed: true
     });
     this.unshiftSubview('.new-post', formView);
   },
@@ -34,7 +34,8 @@ MovementCentral.Views.FeedShow = Backbone.CompositeView.extend({
       collection: this.collection,
       friendships: this.friendships,
       comment_likes: this.comment_likes,
-      post_likes: this.post_likes
+      post_likes: this.post_likes,
+      is_feed: true
     });
     this.unshiftSubview('.feed-posts', indexView);
   }

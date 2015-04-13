@@ -6,6 +6,7 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
     this.friendships = options.friendships;
     this.comment_likes = options.comment_likes;
     this.post_likes = options.post_likes;
+    this.is_feed = options.is_feed;
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addComment);
   },
@@ -47,7 +48,8 @@ MovementCentral.Views.PostsIndexItem = Backbone.CompositeView.extend({
       model: new MovementCentral.Models.Comment({
         post_id: this.model.id
       }),
-      user_id: this.user_id
+      user_id: this.user_id,
+      is_feed: this.is_feed
     });
     this.unshiftSubview('.new-comment', formView);
   }

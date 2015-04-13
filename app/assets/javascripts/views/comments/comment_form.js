@@ -8,6 +8,7 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
   initialize: function (options) {
     this.post_id = this.model.get('post_id');
     this.user_id = options.user_id;
+    this.is_feed = options.is_feed;
     this.listenTo(this.model, 'sync', this.render);
   },
 
@@ -19,8 +20,8 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
 
   submit: function (event) {
     event.preventDefault();
-    var attrs = this.$('form').serializeJSON(),
-      view = this;
+    var attrs = this.$('form').serializeJSON();
+    var view = this;
 
     this.model.set(attrs);
     this.model.save({}, {
@@ -30,7 +31,11 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
           post_id: view.post_id
         });
         view.$('.comment-content').val("");
-        Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
+        if (view.is_feed) {
+          Backbone.history.navigate("/", { trigger: true });
+        } else {
+          Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
+        }
       }
     });
   }

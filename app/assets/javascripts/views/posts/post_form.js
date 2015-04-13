@@ -8,7 +8,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
 
   initialize: function (options) {
     this.user_id = options.user_id;
-    this.feed = options.feed;
+    this.is_feed = options.is_feed;
   },
 
   addPhoto: function (event) {
@@ -45,7 +45,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
           recipient_id: view.user_id
         });
         view.$('.post-content').val("");
-        if (view.feed) {
+        if (view.is_feed) {
           Backbone.history.navigate("/", { trigger: true });
         } else {
           Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
