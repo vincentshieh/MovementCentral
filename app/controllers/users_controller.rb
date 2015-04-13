@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       redirect_to "/#users/#{current_user.id}"
     else
       flash.now[:errors] = @user.errors.full_messages
+      @dance_styles = DANCE_STYLES
       render :new
     end
   end

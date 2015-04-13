@@ -7,4 +7,3 @@ development:
   <<: *default
   database: movement_central_development
   host: localhost
-  username: vincentshieh

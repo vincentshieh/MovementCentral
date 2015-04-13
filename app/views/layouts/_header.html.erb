@@ -1,51 +1,50 @@
-<header class="header">
-  <nav class="header-nav group">
-
-    <h1 class="header-logo">
-      <% if logged_in? %>
-        <a href="/">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/">
+        <% if logged_in? %>
           <%= image_tag("minilogo.png", class: "minilogo") %>
-        </a>
-      <% else %>
-        <a href="/">
+        <% else %>
           <%= image_tag("logo.png", class: "logo") %>
-        </a>
-      <% end %>
-    </h1>
+        <% end %>
+      </a>
+    </div>
 
-    <ul class="header-list">
-      <% if logged_in? %>
-        <li class="nav-link-logged-in">
-          <a href="/#/users/<%= current_user.id %>">
-            <%= current_user.fname %>
-          </a>
-        </li>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li>
+            <a href="/#/users/<%= current_user.id %>">
+              <%= current_user.fname %>
+            </a>
+          </li>
 
-        <li class="nav-link-logged-in">
-          <a href="/">
-            Home
-          </a>
-        </li>
+          <li>
+            <a href="/">
+              Home
+            </a>
+          </li>
 
-        <li class="nav-link-logged-in">
-          <%= link_to "Log Out", session_url, method: :delete %>
-        </li>
-      <% else %>
-        <li class="nav-link-logged-out">
-          <a href="/users/new">
-            Sign Up
-          </a>
-        </li>
+          <li>
+            <%= link_to "Log Out", session_url, method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <a href="/users/new">
+              Sign Up
+            </a>
+          </li>
 
-        <li class="nav-link-logged-out">
-          <a href="/session/new">
-            Log In
-          </a>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
-</header>
+          <li>
+            <a href="/session/new">
+              Log In
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <ul>
   <% flash[:errors] && flash[:errors].each do |error| %>
