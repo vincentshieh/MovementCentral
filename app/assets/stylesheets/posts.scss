@@ -8,6 +8,7 @@
 .posts.col-md-4,
 .post-form.col-md-4 {
   width: 600px;
+  padding: 0;
 }
 
 .post-form,
@@ -15,8 +16,14 @@
   background: dodgerblue;
 }
 
+// .post-form > form {
+//   border-bottom: 10px solid darkslateblue;
+// }
+
+.post-form > form,
 .post-index-item {
-  padding: 20px 0;
+  padding: 20px 20px;
+  border-bottom: 10px solid darkslateblue;
 }
 
 .post-author-recipient {
@@ -33,6 +40,6 @@
 }
 
 .post img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
