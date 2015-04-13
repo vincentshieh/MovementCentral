@@ -45,7 +45,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
           recipient_id: view.user_id
         });
         view.$('.post-content').val("");
-        if (view.is_feed) {
+        if (view.is_feed || !view.user_id) {
           Backbone.history.navigate("/", { trigger: true });
         } else {
           Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
