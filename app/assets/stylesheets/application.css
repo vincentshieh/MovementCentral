@@ -25,3 +25,113 @@
 .posts .new-comment {
   color: blue;
 }
+
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  appearance: none;
+}
+
+button, a,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  background: white;
+}
+
+.header {
+  background: cornflowerblue;
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+.header a {
+  display: block;
+}
+
+.minilogo {
+  width: 55px;
+}
+
+.minilogo:hover {
+  background: royalblue;
+}
+
+.logo {
+  width: 300px;
+}
+
+.logo:hover {
+  background: royalblue;
+}
+
+.header-nav {
+  margin: 0 auto;
+  width: 900px;
+}
+
+.header-logo {
+  float: left;
+}
+
+.header-list {
+  float: right;
+}
+
+.header-list > li {
+  float: left;
+}
+
+.header-list > li:hover {
+  color: slateblue;
+}
+
+.sign-up-link,
+.log-in-link {
+  padding: 54px 20px;
+}
+
+.profile-link {
+  padding: 34px 20px;
+}

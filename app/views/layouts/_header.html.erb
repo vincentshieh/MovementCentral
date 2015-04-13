@@ -1,3 +1,42 @@
+<header class="header">
+  <nav class="header-nav group">
+
+    <h1 class="header-logo">
+      <% if logged_in? %>
+        <a href="/">
+          <%= image_tag("minilogo.png", class: "minilogo") %>
+        </a>
+      <% else %>
+        <a href="/">
+          <%= image_tag("logo.png", class: "logo") %>
+        </a>
+      <% end %>
+    </h1>
+
+    <ul class="header-list">
+      <% if logged_in? %>
+        <li class="profile-link">
+          <a href="/#/users/<%= current_user.id %>">
+            Profile
+          </a>
+        </li>
+      <% else %>
+        <li class="sign-up-link">
+          <a href="/users/new">
+            Sign Up
+          </a>
+        </li>
+
+        <li class="log-in-link">
+          <a href="/session/new">
+            Log In
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+
 <% if logged_in? %>
   Logged in as: <%= current_user.email %>
   <%= button_to "Log Out", session_url, method: :delete %>
