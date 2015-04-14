@@ -29,14 +29,18 @@ MovementCentral.Views.SearchForm = Backbone.CompositeView.extend({
     this.$el.html(renderedContent);
 
     setTimeout(function () {
-      this.$('.search-query').off('input');
-      this.$('.search-query').on('input', function() {
+      this.$('.search-query').off('input focus');
+      this.$('.search-query').on('input focus', function() {
         view.collection.fetch({
           url: 'api/users/search',
           data: {
             query: view.$('.search-query').val()
           }
         });
+      });
+      this.$('.search-query').off('blur');
+      this.$('.search-query').blur(function () {
+        view.$('.search-items').empty();
       });
     }, 0);
 
