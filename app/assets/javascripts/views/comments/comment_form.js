@@ -10,12 +10,29 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
     this.user_id = options.user_id;
     this.is_feed = options.is_feed;
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'error', this.renderErrors);
   },
 
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
     return this;
+  },
+
+  renderErrors: function (post, resp) {
+    var errors = resp.responseJSON;
+    var error_message;
+    var view = this;
+
+    for(var i = 0; i < errors.length; i++) {
+      error_alert = '<div class="alert alert-danger comment-error" role="alert">' +
+                    errors[i] + '</div>';
+      this.$el.prepend(error_alert);
+    }
+
+    setTimeout(function () {
+      view.$('.comment-error').remove();
+    }, 5000);
   },
 
   submit: function (event) {
