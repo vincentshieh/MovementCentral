@@ -82,7 +82,28 @@ body {
   }
 }
 
+.search-form .search-query,
+.search-items {
+  width: 400px;
+}
+
+.search-form {
+  float: left;
+}
+
+.search-form form {
+  margin-top: 15px;
+}
+
+.search-query-and-items {
+  position: relative;
+}
+
 .search-items {
   position: absolute;
-  z-index: 1;
+}
+
+.search-item {
+  border: 1px solid black;
+  background: white;
 }

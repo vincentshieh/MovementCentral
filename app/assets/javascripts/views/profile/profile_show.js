@@ -10,6 +10,9 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     this.friendships = options.friendships;
     this.comment_likes = options.comment_likes;
     this.post_likes = options.post_likes;
+    this.searchFormView = new MovementCentral.Views.SearchForm({
+      collection: MovementCentral.Collections.search_results
+    });
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.friendships, 'sync add', this.render);
   },
@@ -72,6 +75,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       show_info: show_info
     });
     this.$el.html(renderedContent);
+    this.renderSearchForm();
     this.renderPostForm();
     this.renderPostsIndex();
     if (this.user_id === MovementCentral.current_user.id) {
@@ -109,5 +113,9 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       user_id: this.user_id
     });
     this.unshiftSubview('.friend-requests', showView);
+  },
+
+  renderSearchForm: function () {
+    $(".search-form").html(this.searchFormView.render().$el);
   }
 });
