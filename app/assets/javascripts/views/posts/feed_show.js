@@ -5,6 +5,9 @@ MovementCentral.Views.FeedShow = Backbone.CompositeView.extend({
     this.friendships = options.friendships;
     this.comment_likes = options.comment_likes;
     this.post_likes = options.post_likes;
+    this.searchFormView = new MovementCentral.Views.SearchForm({
+      collection: MovementCentral.Collections.search_results
+    });
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.friendships, 'sync', this.render);
   },
@@ -12,6 +15,7 @@ MovementCentral.Views.FeedShow = Backbone.CompositeView.extend({
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
+    this.renderSearchForm();
     this.renderPostForm();
     this.renderPostsIndex();
     return this;
@@ -38,5 +42,9 @@ MovementCentral.Views.FeedShow = Backbone.CompositeView.extend({
       is_feed: true
     });
     this.unshiftSubview('.feed-posts', indexView);
+  },
+
+  renderSearchForm: function () {
+    $(".search-form").html(this.searchFormView.render().$el);
   }
 });

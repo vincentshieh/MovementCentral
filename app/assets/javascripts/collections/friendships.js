@@ -5,3 +5,4 @@ MovementCentral.Collections.Friendships = Backbone.Collection.extend({
 });
 
 MovementCentral.Collections.friendships = new MovementCentral.Collections.Friendships();
+MovementCentral.Collections.search_results = new MovementCentral.Collections.Friendships();

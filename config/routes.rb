@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     get 'posts/feed', to: 'posts#feed'
     get 'likes/comment_index', to: 'likes#comment_index'
     get 'likes/post_index', to: 'likes#post_index'
+    get 'users/search', to: 'users#search'
   end
 end

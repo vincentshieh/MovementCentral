@@ -64,6 +64,9 @@ class ApplicationController < ActionController::Base
                        stranger: true,
                        fname: user.fname,
                        lname: user.lname,
+                       dance_style: user.dance_style,
+                       gender: user.gender,
+                       company: user.company,
                        profile_picture: user.profile_picture,
                        cover_photo: user.cover_photo,
                        nickname: user.nickname }
