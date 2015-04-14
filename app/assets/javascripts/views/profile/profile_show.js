@@ -50,7 +50,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
         success: function () {
           view.friendships.add(friendship);
           view.friendships.fetch();
-          Backbone.history.navigate("#users/" + view.user_id, { trigger: true });
+          Backbone.history.navigate("#/users/" + view.user_id, { trigger: true });
         }
       });
     } else if (friendButtonVal === "Unfriend") {

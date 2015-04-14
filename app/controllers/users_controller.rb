@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login_user!(@user)
-      redirect_to "/#users/#{current_user.id}"
+      redirect_to "/#/users/#{current_user.id}"
     else
       flash.now[:errors] = @user.errors.full_messages
       @dance_styles = DANCE_STYLES

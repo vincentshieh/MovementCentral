@@ -1,2 +1,4 @@
-<%= user.escape('fname') %> <%= user.escape('lname') %><br>
-<%= user.escape('dance_style') %> | <%= user.escape('company') %>
+<div class="user<%= user.escape('id') %>-info">
+  <%= user.escape('fname') %> <%= user.escape('lname') %><br>
+  <%= user.escape('dance_style') %> | <%= user.escape('company') %>
+</div>

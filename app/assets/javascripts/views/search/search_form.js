@@ -9,6 +9,17 @@ MovementCentral.Views.SearchForm = Backbone.CompositeView.extend({
     var itemView = new MovementCentral.Views.SearchItem({
       model: user
     });
+    var selector = '.user' + user.get('id') + '-info';
+    var view = this;
+
+    setTimeout(function () {
+      this.$(selector).on('click', function() {
+        view.collection.reset();
+        view.$('.search-items').empty();
+        Backbone.history.navigate("#/users/" + user.get('id'), { trigger: true });
+      });
+    }, 0);
+
     this.pushSubview('.search-items', itemView);
   },
 
@@ -16,7 +27,6 @@ MovementCentral.Views.SearchForm = Backbone.CompositeView.extend({
     var renderedContent = this.template();
     var view = this;
     this.$el.html(renderedContent);
-    this.renderSearchItems();
 
     setTimeout(function () {
       this.$('.search-query').off('input');
