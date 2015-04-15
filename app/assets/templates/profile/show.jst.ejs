@@ -1,37 +1,41 @@
-<% if (friendship) { %>
-  <div class="user-basic-info">
-    <div class="user-fullname">
-      <%= friendship.escape('fname') %>
-      <% if (friendship.escape('nickname')) { %>
-        "<%= friendship.escape('nickname') %>"
+<div class="cover-photo-area">
+  <% if (friendship) { %>
+    <div class="user-basic-info">
+      <div class="user-fullname">
+        <%= friendship.escape('fname') %>
+        <% if (friendship.escape('nickname')) { %>
+          "<%= friendship.escape('nickname') %>"
+        <% } %>
+        <%= friendship.escape('lname') %>
+      </div>
+
+      <% if (!friendship.escape('stranger') && show_info) { %>
+        <div class="dance-info">
+          <%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %>
+        </div>
       <% } %>
-      <%= friendship.escape('lname') %>
+
+      <% if (friendship.escape('profile_picture')) { %>
+        <div class="profile-picture">
+          <img src="<%= friendship.escape('profile_picture') %>">
+        </div>
+      <% } %>
     </div>
+  <% } %>
 
-    <% if (!friendship.escape('stranger') && show_info) { %>
-      <div class="dance-info">
-        <%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %>
-      </div>
-    <% } %>
+  <% if (friend_button_val) { %>
+    <button class="friend-button btn btn-default btn-lg">
+      <%= friend_button_val %>
+    </button>
+  <% } %>
+</div>
 
-    <% if (friendship.escape('profile_picture')) { %>
-      <div class="profile-picture">
-        <img src="<%= friendship.escape('profile_picture') %>">
-      </div>
-    <% } %>
+<div class="profile-navbar">
+  <div class="btn-group profile-nav-buttons" role="group">
+    <button class="btn btn-primary btn-lg subview-btn">Timeline</button>
+    <button class="btn btn-primary btn-lg subview-btn">About</button>
+    <button class="btn btn-primary btn-lg subview-btn">Friends</button>
   </div>
-<% } %>
-
-<% if (friend_button_val) { %>
-  <button class="friend-button btn btn-default btn-lg">
-    <%= friend_button_val %>
-  </button>
-<% } %>
-
-<div class="btn-group" role="group" aria-label="...">
-  <button class="btn btn-default btn-lg subview-btn">Timeline</button>
-  <button class="btn btn-default btn-lg subview-btn">About</button>
-  <button class="btn btn-default btn-lg subview-btn">Friends</button>
 </div>
 
 <% if (subviewType === 'timeline') { %>

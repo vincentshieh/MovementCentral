@@ -1,32 +1,57 @@
+.cover-photo-area {
+  height: 250px;
+}
+
 .user-basic-info,
 .friend-requests {
   margin-left: 50px;
 }
 
 .friend-button {
-  margin-left: 60px;
+  position: absolute;
+  bottom: 140px;
+  right: 200px;
 }
 
 .user-fullname,
-.dance-info,
-.profile-picture {
+.dance-info {
   color: white;
   font-size: 24px;
   margin: 10px;
 }
 
+.user-fullname {
+  position: absolute;
+  top: 250px;
+  left: 430px;
+}
+
 .dance-info {
   font-size: 20px;
+  position: absolute;
+  top: 290px;
+  left: 430px;
 }
 
 .profile-picture {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 170px;
 }
 
 .profile-picture > img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.profile-navbar {
+  background: dodgerblue;
+  margin-bottom: 20px;
+}
+
+.profile-nav-buttons {
+  margin-left: 400px;
 }
 
 .requester-fullname {
