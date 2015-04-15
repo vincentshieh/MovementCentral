@@ -5,7 +5,23 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'feedShow',
-    'users/:id': 'profileShow'
+    'users/:id': 'timelineShow',
+    'users/:id/about': 'aboutShow',
+    'users/:id/friends': 'friendsShow'
+  },
+
+  aboutShow: function (id) {
+    var friendships = MovementCentral.Collections.friendships;
+
+    friendships.fetch();
+
+    var aboutView = new MovementCentral.Views.ProfileShow({
+      friendships: friendships,
+      user_id: parseInt(id),
+      subviewType: 'about'
+    });
+
+    this._swapView(aboutView);
   },
 
   feedShow: function () {
@@ -35,7 +51,21 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
     this._swapView(feedView);
   },
 
-  profileShow: function (id) {
+  friendsShow: function (id) {
+    var friendships = MovementCentral.Collections.friendships;
+
+    friendships.fetch();
+
+    var friendsView = new MovementCentral.Views.ProfileShow({
+      friendships: friendships,
+      user_id: parseInt(id),
+      subviewType: 'friends'
+    });
+
+    this._swapView(friendsView);
+  },
+
+  timelineShow: function (id) {
     var posts = MovementCentral.Collections.posts;
     var friendships = MovementCentral.Collections.friendships;
     var comment_likes = MovementCentral.Collections.comment_likes;
@@ -54,15 +84,16 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
       url: 'api/likes/post_index'
     });
 
-    var profileView = new MovementCentral.Views.ProfileShow({
-      collection: posts,
+    var timelineView = new MovementCentral.Views.ProfileShow({
+      posts: posts,
       user_id: parseInt(id),
       friendships: friendships,
       comment_likes: comment_likes,
-      post_likes: post_likes
+      post_likes: post_likes,
+      subviewType: 'timeline'
     });
 
-    this._swapView(profileView);
+    this._swapView(timelineView);
   },
 
   _swapView: function (newView) {

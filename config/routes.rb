@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     get 'likes/comment_index', to: 'likes#comment_index'
     get 'likes/post_index', to: 'likes#post_index'
     get 'users/search', to: 'users#search'
+    get 'friendships/friends', to: 'friendships#friends'
   end
 end

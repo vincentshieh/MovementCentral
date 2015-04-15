@@ -6,15 +6,19 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
+    this.posts = options.posts;
     this.user_id = options.user_id;
     this.friendships = options.friendships;
     this.comment_likes = options.comment_likes;
     this.post_likes = options.post_likes;
+    this.subviewType = options.subviewType;
     this.searchFormView = new MovementCentral.Views.SearchForm({
       collection: MovementCentral.Collections.search_results
     });
-    this.listenTo(this.collection, 'sync', this.render);
-    this.listenTo(this.friendships, 'sync add', this.render);
+    if (this.subviewType === 'timeline') {
+      this.listenTo(this.posts, 'sync', this.render);
+    }
+    this.listenTo(this.friendships, 'sync', this.render);
   },
 
   friendButtonVal: function () {
@@ -72,21 +76,45 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     var renderedContent = this.template({
       friendship: friendship,
       friend_button_val: this.friendButtonVal(),
-      show_info: show_info
+      show_info: show_info,
+      subviewType: this.subviewType
     });
     this.$el.html(renderedContent);
     this.renderSearchForm();
-    this.renderPostForm();
-    this.renderPostsIndex();
-    if (this.user_id === MovementCentral.current_user.id) {
-      this.renderFriendRequestsShow();
+    if (this.subviewType === 'timeline') {
+      this.renderPostForm();
+      this.renderPostsIndex();
+      if (this.user_id === MovementCentral.current_user.id) {
+        this.renderFriendRequestsShow();
+      }
+    } else if (this.subviewType === 'about') {
+      this.renderAboutShow();
+    } else if (this.subviewType === 'friends') {
+      this.renderFriendsShow();
     }
+
     return this;
+  },
+
+  renderAboutShow: function () {
+    var showView = new MovementCentral.Views.AboutShow({
+      collection: this.friendships,
+      user_id: this.user_id
+    });
+    this.unshiftSubview('.about', showView);
+  },
+
+  renderFriendsShow: function () {
+    var showView = new MovementCentral.Views.FriendsShow({
+      collection: new MovementCentral.Collections.Friendships(),
+      user_id: this.user_id
+    });
+    this.unshiftSubview('.friends', showView);
   },
 
   renderPostForm: function () {
     var formView = new MovementCentral.Views.PostForm({
-      collection: this.collection,
+      collection: this.posts,
       model: new MovementCentral.Models.Post({
         recipient_id: this.user_id
       }),
@@ -97,7 +125,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
   renderPostsIndex: function () {
     var indexView = new MovementCentral.Views.PostsIndex({
-      collection: this.collection,
+      collection: this.posts,
       user_id: this.user_id,
       friendship: this.friendships.findWhere({ user_id: this.user_id }),
       friendships: this.friendships,

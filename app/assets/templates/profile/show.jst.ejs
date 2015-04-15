@@ -28,11 +28,19 @@
   </button>
 <% } %>
 
-<div class="new-post">
-</div>
+<% if (subviewType === 'timeline') { %>
+  <div class="new-post">
+  </div>
 
-<div class="received-posts">
-</div>
+  <div class="received-posts">
+  </div>
 
-<div class="friend-requests">
-</div>
+  <div class="friend-requests">
+  </div>
+<% } else if (subviewType === 'about') { %>
+  <div class="about">
+  </div>
+<% } else if (subviewType === 'friends') { %>
+  <div class="friends">    
+  </div>
+<% } %>
