@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   def friendships_of_current_user
     friendships = [ { user_id: current_user.id,
                   self: true,
+                  email: current_user.email,
                   fname: current_user.fname,
                   lname: current_user.lname,
                   dance_style: current_user.dance_style,
@@ -31,6 +32,7 @@ class ApplicationController < ActionController::Base
                    user_id: friend.id,
                    accepted: friendship.accepted,
                    requester: true,
+                   email: friend.email,
                    fname: friend.fname,
                    lname: friend.lname,
                    dance_style: friend.dance_style,
@@ -47,6 +49,7 @@ class ApplicationController < ActionController::Base
                    user_id: friend.id,
                    accepted: friendship.accepted,
                    requester: false,
+                   email: friend.email,
                    fname: friend.fname,
                    lname: friend.lname,
                    dance_style: friend.dance_style,
@@ -63,6 +66,7 @@ class ApplicationController < ActionController::Base
     remaining_users.each do |user|
       friendships << { user_id: user.id,
                        stranger: true,
+                       email: user.email,
                        fname: user.fname,
                        lname: user.lname,
                        dance_style: user.dance_style,

@@ -22,8 +22,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   friendButtonVal: function () {
-    var user_id = this.user_id;
-    var friendship = this.friendships.findWhere({ user_id: user_id });
+    var friendship = this.friendships.findWhere({ user_id: this.user_id });
     if (!friendship) {
       return "";
     }
@@ -97,8 +96,12 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   renderAboutShow: function () {
+    var friendship;
+    if (this.friendships) {
+      friendship = this.friendships.findWhere({ user_id: this.user_id });
+    }
     var showView = new MovementCentral.Views.AboutShow({
-      collection: this.friendships,
+      friendship: friendship,
       user_id: this.user_id
     });
     this.unshiftSubview('.about', showView);

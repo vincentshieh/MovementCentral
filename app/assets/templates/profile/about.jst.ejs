@@ -1,0 +1,13 @@
+<ul class="user-info-list">
+  <% if (friendship) { %>
+    <% if (show_info) { %>
+      <li>
+        Email: <%= friendship.escape('email') %>
+      </li>
+    <% } %>
+
+    <li>
+      Gender: <%= friendship.escape('gender') %>
+    </li>
+  <% } %>
+</ul>
