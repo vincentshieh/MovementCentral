@@ -1,8 +1,12 @@
-<ul class="friends-list">
-  <% friends.each(function (friend) { %>
-    <li>
-      <%= friend.escape('fname') %> <%= friend.escape('lname') %><br>
+<% friends.each(function (friend) { %>
+  <div class="panel panel-info friend-item"
+       data-user-id="<%= friend.escape('user_id') %>">
+    <div class="panel-heading">
+      <%= friend.escape('fname') %> <%= friend.escape('lname') %>
+    </div>
+
+    <div class="panel-body">
       <%= friend.escape('dance_style') %> | <%= friend.escape('company') %>
-    </li>
-  <% }) %>
-</ul>
+    </div>
+  </div>
+<% }) %>
