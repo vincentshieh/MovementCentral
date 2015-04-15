@@ -16,19 +16,23 @@ User.create!(email: 'sergeip@opera-novosibirsk.ru', password: 'sergei',
 User.create!(email: 'ric@rydance.com', password: 'riccardo',
              fname: 'Riccardo', lname: 'Cocchi', dance_style: 'Ballroom',
              gender: 'Male', company: 'Riccardo and Yulia',
-             profile_picture: 'https://s-media-cache-ak0.pinimg.com/736x/0f/cc/9a/0fcc9a7f93604dedbc0a3fc80616f987.jpg')
+             profile_picture: 'https://s-media-cache-ak0.pinimg.com/736x/0f/cc/9a/0fcc9a7f93604dedbc0a3fc80616f987.jpg',
+             cover_photo: 'https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/941645_10151604935169526_1399257331_n.jpg?oh=987a5c919fa45ffcecba8aa854b77f75&oe=55A3CA80&__gda__=1436219483_9386297d69ee75021bbdef41b56a838d')
 User.create!(email: 'yulia@rydance.com', password: 'yuliayulia',
              fname: 'Yulia', lname: 'Zagoruychenko', dance_style: 'Ballroom',
              gender: 'Female', company: 'Riccardo and Yulia',
-             profile_picture: 'https://s-media-cache-ak0.pinimg.com/236x/7e/4c/d8/7e4cd82a37730a16bb961aa4675125f8.jpg')
+             profile_picture: 'https://s-media-cache-ak0.pinimg.com/236x/7e/4c/d8/7e4cd82a37730a16bb961aa4675125f8.jpg',
+             cover_photo: 'http://www.enmotionphoto.com/img/s1/v54/p1156821972-3.jpg')
 User.create!(email: 'ricky@sytycd11.com', password: 'rickyricky',
              fname: 'Ricky', lname: 'Ubeda', dance_style: 'Contemporary',
              gender: 'Male', company: 'So You Think You Can Dance',
-             profile_picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/04/so-you-think-you-can-dance-winner-ricky-ubeda-is-adorable-and-tired/jcr:content/image.img.2000.jpg/1409867456714.cached.jpg')
+             profile_picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/04/so-you-think-you-can-dance-winner-ricky-ubeda-is-adorable-and-tired/jcr:content/image.img.2000.jpg/1409867456714.cached.jpg',
+             cover_photo: 'http://static2.hypable.com/wp-content/uploads/2014/07/SYTYCD-season-11-200th-episode-recap-666x341.jpg')
 User.create!(email: 'travis@sytycd.com', password: 'travis',
              fname: 'Travis', lname: 'Wall', dance_style: 'Contemporary',
              gender: 'Male', company: 'So You Think You Can Dance',
-             profile_picture: 'http://h.fastcompany.net/multisite_files/fastcompany/imagecache/1280/poster/2014/08/3034678-poster-p-1-all-the-right-moves-how-dancer-travis-wall-stepped-up-to-choreographer.jpg')
+             profile_picture: 'http://h.fastcompany.net/multisite_files/fastcompany/imagecache/1280/poster/2014/08/3034678-poster-p-1-all-the-right-moves-how-dancer-travis-wall-stepped-up-to-choreographer.jpg',
+             cover_photo: 'http://www.etonline.com/media/photo/2013/08/24036735/640_travis_wall_3_130830.jpg')
 User.create!(email: 'ianeastwood@mwc.com', password: 'ianian',
              fname: 'Ian', lname: 'Eastwood', dance_style: 'Hip-hop',
              gender: 'Male', company: 'Mos Wanted Crew',
