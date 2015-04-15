@@ -2,7 +2,8 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   template: JST['profile/show'],
 
   events: {
-    'click .friend-button': 'handleFriendClick'
+    'click .friend-button': 'handleFriendClick',
+    'click .subview-btn': 'handleSubviewClick'
   },
 
   initialize: function (options) {
@@ -63,6 +64,18 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
           view.friendships.fetch();
         }
       });
+    }
+  },
+
+  handleSubviewClick: function (event) {
+    var subviewButtonVal = $(event.currentTarget).text().trim();
+
+    if (subviewButtonVal === "Timeline") {
+      Backbone.history.navigate("#/users/" + this.user_id, { trigger: true });
+    } else if (subviewButtonVal === "About") {
+      Backbone.history.navigate("#/users/" + this.user_id + "/about", { trigger: true });
+    } else if (subviewButtonVal === "Friends") {
+      Backbone.history.navigate("#/users/" + this.user_id + "/friends", { trigger: true });
     }
   },
 

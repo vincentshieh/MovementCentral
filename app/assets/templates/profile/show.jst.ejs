@@ -28,6 +28,12 @@
   </button>
 <% } %>
 
+<div class="btn-group" role="group" aria-label="...">
+  <button class="btn btn-default btn-lg subview-btn">Timeline</button>
+  <button class="btn btn-default btn-lg subview-btn">About</button>
+  <button class="btn btn-default btn-lg subview-btn">Friends</button>
+</div>
+
 <% if (subviewType === 'timeline') { %>
   <div class="new-post">
   </div>
@@ -41,6 +47,6 @@
   <div class="about">
   </div>
 <% } else if (subviewType === 'friends') { %>
-  <div class="friends">    
+  <div class="friends">
   </div>
 <% } %>
