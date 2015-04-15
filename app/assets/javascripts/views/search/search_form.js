@@ -40,7 +40,9 @@ MovementCentral.Views.SearchForm = Backbone.CompositeView.extend({
       });
       this.$('.search-query').off('blur');
       this.$('.search-query').blur(function () {
-        view.$('.search-items').empty();
+        setTimeout(function () {
+          view.$('.search-items').empty();
+        }, 80);
       });
     }, 0);
 
