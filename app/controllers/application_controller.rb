@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return nil unless session[:session_token]
-    @current_user ||= User.find_by_session_token(session[:session_token])
+    current_session = Session.find_by_session_token(session[:session_token])
+    @current_user ||= User.find(current_session.user_id)
+    # @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
   def friendships_of_current_user
@@ -80,12 +82,24 @@ class ApplicationController < ActionController::Base
   end
 
   def login_user!(user)
-    session[:session_token] = user.reset_session_token!
+    new_session_token = SecureRandom.urlsafe_base64(16)
+
+    while Session.exists?(session_token: new_session_token)
+      new_session_token = SecureRandom.urlsafe_base64(16)
+    end
+
+    new_session = user.sessions.new(session_token: new_session_token)
+    new_session.save!
+    session[:session_token] = new_session.session_token
+    # session[:session_token] = user.reset_session_token!
   end
 
   def logout_user!
-    current_user.reset_session_token!
+    current_session = Session.find_by_session_token(session[:session_token])
+    current_session.destroy!
     session[:session_token] = nil
+    # current_user.reset_session_token!
+    # session[:session_token] = nil
   end
 
   def require_logged_out!
@@ -93,6 +107,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_logged_in!
-    redirect_to new_session_url unless logged_in?
+    redirect_to new_sessions_url unless logged_in?
   end
 end

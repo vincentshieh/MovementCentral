@@ -5,7 +5,6 @@
 #  id              :integer          not null, primary key
 #  email           :string           not null
 #  password_digest :string           not null
-#  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  fname           :string           not null
@@ -52,8 +51,9 @@ class User < ActiveRecord::Base
     class_name: "Friendship"
   )
   has_many :likes
+  has_many :sessions
 
-  after_initialize :ensure_session_token
+  # after_initialize :ensure_session_token
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -71,15 +71,15 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(password)
   end
 
-  def reset_session_token!
-    self.session_token = SecureRandom.urlsafe_base64(16)
-    self.save!
-    self.session_token
-  end
-
-  private
-
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64(16)
-  end
+  # def reset_session_token!
+  #   self.session_token = SecureRandom.urlsafe_base64(16)
+  #   self.save!
+  #   self.session_token
+  # end
+  #
+  # private
+  #
+  # def ensure_session_token
+  #   self.session_token ||= SecureRandom.urlsafe_base64(16)
+  # end
 end
