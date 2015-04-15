@@ -69,5 +69,6 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = newView;
     this.$rootEl.html(newView.render().$el);
+    $(document).scrollTop(0);
   }
 });
