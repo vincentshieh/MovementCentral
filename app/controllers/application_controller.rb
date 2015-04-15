@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     return nil unless session[:session_token]
     current_session = Session.find_by_session_token(session[:session_token])
     @current_user ||= User.find(current_session.user_id)
-    # @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
   def friendships_of_current_user
@@ -91,15 +90,12 @@ class ApplicationController < ActionController::Base
     new_session = user.sessions.new(session_token: new_session_token)
     new_session.save!
     session[:session_token] = new_session.session_token
-    # session[:session_token] = user.reset_session_token!
   end
 
   def logout_user!
     current_session = Session.find_by_session_token(session[:session_token])
     current_session.destroy!
     session[:session_token] = nil
-    # current_user.reset_session_token!
-    # session[:session_token] = nil
   end
 
   def require_logged_out!
