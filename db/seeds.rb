@@ -7,7 +7,8 @@ Like.destroy_all()
 User.create!(email: 'mistyc@abt.org', password: 'mistymisty',
              fname: 'Misty', lname: 'Copeland', dance_style: 'Ballet',
              gender: 'Female', company: 'American Ballet Theatre',
-             profile_picture: 'http://www.joelminden.com/wp-content/uploads/2013/08/Misty-Copeland-5C.jpg')
+             profile_picture: 'http://www.joelminden.com/wp-content/uploads/2013/08/Misty-Copeland-5C.jpg',
+             cover_photo: 'https://s-media-cache-ak0.pinimg.com/736x/c2/4e/dd/c24eddada7b47ce854946ed508858c1b.jpg')
 User.create!(email: 'sergeip@opera-novosibirsk.ru', password: 'sergei',
              fname: 'Sergei', lname: 'Polunin', dance_style: 'Ballet',
              gender: 'Male', company: 'Novosibirsk Opera and Ballet Theatre',

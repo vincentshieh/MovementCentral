@@ -1,7 +1,7 @@
 .posts,
 .post-form {
   width: 600px;
-  background: dodgerblue;
+  background: cornflowerblue;
   color: black;
 }
 
@@ -11,9 +11,13 @@
   padding: 0;
 }
 
+.post-form.col-md-4 {
+  margin-top: 10px;
+}
+
 .post-form,
 .post {
-  background: dodgerblue;
+  background: cornflowerblue;
 }
 
 .post-form > form,

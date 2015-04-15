@@ -1,5 +1,8 @@
-<div class="cover-photo-area">
-  <% if (friendship) { %>
+<% if (friendship) { %>
+  <div class="cover-photo-area" style="
+       background: url(<%= friendship.escape('cover_photo') %>);
+       background-size: cover;
+       background-position: center center;">
     <div class="user-basic-info">
       <div class="user-fullname">
         <%= friendship.escape('fname') %>
@@ -16,19 +19,21 @@
       <% } %>
 
       <% if (friendship.escape('profile_picture')) { %>
-        <div class="profile-picture">
-          <img src="<%= friendship.escape('profile_picture') %>">
+        <div class="profile-picture" style="
+             background: url(<%= friendship.escape('profile_picture') %>);
+             background-size: cover;
+             background-position: center center;">
         </div>
       <% } %>
     </div>
-  <% } %>
 
-  <% if (friend_button_val) { %>
-    <button class="friend-button btn btn-default btn-lg">
-      <%= friend_button_val %>
-    </button>
-  <% } %>
-</div>
+    <% if (friend_button_val) { %>
+      <button class="friend-button btn btn-default btn-lg">
+        <%= friend_button_val %>
+      </button>
+    <% } %>
+  </div>
+<% } %>
 
 <div class="profile-navbar">
   <div class="btn-group profile-nav-buttons" role="group">
