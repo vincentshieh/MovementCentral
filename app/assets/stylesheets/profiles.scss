@@ -53,6 +53,7 @@
 
 .profile-nav-buttons {
   margin-left: 240px;
+  z-index: 0;
 }
 
 .requester-fullname {
@@ -61,4 +62,5 @@
 
 .friend-item:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 5px white;
 }
