@@ -1,7 +1,7 @@
 .new-post,
 .received-posts {
-  position: absolute;
   right: 270px;
+  float: right;
 }
 
 .received-posts {
@@ -31,6 +31,10 @@
   background: cornflowerblue;
 }
 
+.post-form .form-group {
+  margin-bottom: 0;
+}
+
 .post-form > form,
 .post-index-item {
   padding: 20px 20px;
@@ -47,6 +51,11 @@
 .post-author,
 .post-recipient {
   color: indigo;
+}
+
+.post-content {
+  width: 558px;
+  word-break: break-all;
 }
 
 .likers {

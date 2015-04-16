@@ -12,12 +12,6 @@
         <%= friendship.escape('lname') %>
       </div>
 
-      <% if (!friendship.escape('stranger') && show_info) { %>
-        <div class="dance-info">
-          <%= friendship.escape('dance_style') %> | <%= friendship.escape('company') %>
-        </div>
-      <% } %>
-
       <% if (friendship.escape('profile_picture')) { %>
         <div class="profile-picture" style="
              background: url(<%= friendship.escape('profile_picture') %>);

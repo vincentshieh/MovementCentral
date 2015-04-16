@@ -1,17 +1,29 @@
 <% if (friendship) { %>
   <div class="user-info-item">
-    <%= friendship.escape('job_title') %> at <%= friendship.escape('company') %>
+    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+    <span>
+      <%= friendship.escape('job_title') %> at <%= friendship.escape('company') %>
+    </span>
   </div>
 
   <div class="user-info-item">
-    Trained in <%= friendship.escape('dance_style') %> at <%= friendship.escape('school') %>
+    <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+    <span>
+      Trained in <%= friendship.escape('dance_style') %> at <%= friendship.escape('school') %>
+    </span>
   </div>
 
   <div class="user-info-item">
-    Lives in <%= friendship.escape('current_city') %>
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    <span>
+      Lives in <%= friendship.escape('current_city') %>
+    </span>
   </div>
 
   <div class="user-info-item">
-    From <%= friendship.escape('hometown') %>
+    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+    <span>
+      From <%= friendship.escape('hometown') %>
+    </span>
   </div>
 <% } %>

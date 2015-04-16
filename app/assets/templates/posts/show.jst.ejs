@@ -15,8 +15,9 @@
   </div>
 <% } %>
 
-<%= post.escape('content') %>
-<br><br>
+<div class="post-content">
+  <%= post.escape('content') %>
+</div>
 
 <% if (post.escape('picture')) { %>
   <img src="<%= post.escape('picture') %>">
