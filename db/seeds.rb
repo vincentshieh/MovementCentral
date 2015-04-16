@@ -8,7 +8,12 @@ User.create!(email: 'mistyc@abt.org', password: 'mistymisty',
              fname: 'Misty', lname: 'Copeland', dance_style: 'Ballet',
              gender: 'Female', company: 'American Ballet Theatre',
              profile_picture: 'http://www.joelminden.com/wp-content/uploads/2013/08/Misty-Copeland-5C.jpg',
-             cover_photo: 'https://s-media-cache-ak0.pinimg.com/736x/c2/4e/dd/c24eddada7b47ce854946ed508858c1b.jpg')
+             cover_photo: 'https://s-media-cache-ak0.pinimg.com/736x/c2/4e/dd/c24eddada7b47ce854946ed508858c1b.jpg',
+             job_title: 'Principal dancer', school: 'San Francisco Ballet School',
+             current_city: 'New York City, New York', hometown: 'Los Angeles, California',
+             bio: "Misty Copeland (born September 10, 1982) is an author, entertainer, and American ballet dancer for American Ballet Theatre (ABT), one of the three leading classical ballet companies in the United States (along with New York City Ballet and San Francisco Ballet). She is the third African-American soloist and first in two decades with ABT, where she has endured the cultural pressure associated with this role.
+                   Copeland is considered a prodigy who rose to stardom despite not starting ballet until the age of 13. By age 15, Copeland's mother and ballet teachers, who were serving as her custodial guardians, fought a custody battle over her. Meanwhile, Copeland, who was already an award-winning dancer, was fielding professional offers. The 1998 legal proceedings involved filings for emancipation by Copeland and restraining orders by her mother. Both sides dropped legal proceedings, and Copeland moved home to begin studying under a new teacher who was a former ABT member.
+                   In 1997, Copeland won the Los Angeles Music Center Spotlight Award as the best dancer in Southern California. After two summer workshops with the ABT, she became a member of the Studio Company in 2000, a member of the corps de ballet in 2001, and a soloist in 2007. Stylistically, she is considered a classical ballet dancer. As a soloist since the autumn of 2007, she has been described as having matured into a more contemporary and sophisticated dancer.")
 User.create!(email: 'sergeip@opera-novosibirsk.ru', password: 'sergei',
              fname: 'Sergei', lname: 'Polunin', dance_style: 'Ballet',
              gender: 'Male', company: 'Novosibirsk Opera and Ballet Theatre',

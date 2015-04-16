@@ -1,12 +1,7 @@
 .cover-photo-area {
   height: 250px;
-  border: 1px solid gray;
+  border: 1px solid #bce8f1;
   border-top: 0;
-}
-
-.user-basic-info,
-.friend-requests {
-  margin-left: 50px;
 }
 
 .friend-button {
@@ -41,7 +36,7 @@
   position: absolute;
   top: 150px;
   left: 290px;
-  border: 1px solid gray;
+  border: 1px solid #bce8f1;
   border-radius: 3px;
 }
 
@@ -55,6 +50,9 @@
   margin-bottom: 10px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+  border-left: 1px solid #bce8f1;
+  border-right: 1px solid #bce8f1;
+  border-bottom: 1px solid #bce8f1;
 }
 
 .profile-nav-buttons {
@@ -75,4 +73,33 @@
 .friend-item:hover {
   cursor: pointer;
   box-shadow: 0px 0px 5px white;
+}
+
+.user-info {
+  font-size: 12px;
+  background: cornflowerblue;
+  border-radius: 3px;
+}
+
+.user-info.col-md-4,
+.friend-requests.col-md-4 {
+  width: 290px;
+  border: 1px solid #bce8f1;
+}
+
+.friend-requests.col-md-4 {
+  position: absolute;
+  top: 490px;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 3px;
+}
+
+.friend-requests .panel-heading {
+  font-size: 14px;
+  background: cornflowerblue;
+}
+
+.friend-requests .panel-body {
+  font-size: 12px;
 }

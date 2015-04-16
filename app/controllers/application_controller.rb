@@ -24,7 +24,12 @@ class ApplicationController < ActionController::Base
                   company: current_user.company,
                   profile_picture: current_user.profile_picture,
                   cover_photo: current_user.cover_photo,
-                  nickname: current_user.nickname } ]
+                  nickname: current_user.nickname,
+                  job_title: current_user.job_title,
+                  school: current_user.school,
+                  current_city: current_user.current_city,
+                  hometown: current_user.hometown,
+                  bio: current_user.bio } ]
 
     current_user.friendships_as_requester.each do |friendship|
       friend = User.find(friendship.requestee_id)
@@ -57,7 +62,12 @@ class ApplicationController < ActionController::Base
                    company: friend.company,
                    profile_picture: friend.profile_picture,
                    cover_photo: friend.cover_photo,
-                   nickname: friend.nickname }
+                   nickname: friend.nickname,
+                   job_title: current_user.job_title,
+                   school: current_user.school,
+                   current_city: current_user.current_city,
+                   hometown: current_user.hometown,
+                   bio: current_user.bio}
     end
 
     friend_ids = friendships.map { |friendship| friendship[:user_id] }

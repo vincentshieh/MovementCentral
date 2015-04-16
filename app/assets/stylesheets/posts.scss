@@ -1,18 +1,23 @@
+.new-post,
+.received-posts {
+  position: absolute;
+  right: 270px;
+}
+
+.received-posts {
+  top: 530px;
+}
+
 .posts,
 .post-form {
   width: 600px;
-  background: cornflowerblue;
   color: black;
 }
 
-.posts.col-md-4,
-.post-form.col-md-4 {
+.posts,
+.post-form {
   width: 600px;
   padding: 0;
-}
-
-.post-form.col-md-4 {
-  margin-top: 10px;
 }
 
 .post-form,
@@ -23,7 +28,10 @@
 .post-form > form,
 .post-index-item {
   padding: 20px 20px;
-  border-bottom: 10px solid darkslateblue;
+  margin-bottom: 10px;
+  border: 1px solid #bce8f1;
+  border-radius: 3px;
+  background: cornflowerblue;
 }
 
 .post-author-recipient {
@@ -42,7 +50,7 @@
 .post img {
   width: 100%;
   height: auto;
-  border: 1px solid gray;
+  border: 1px solid #bce8f1;
 }
 
 .post-error {

@@ -15,6 +15,11 @@
 #  profile_picture :string
 #  cover_photo     :string
 #  nickname        :string
+#  job_title       :string
+#  school          :string
+#  current_city    :string
+#  hometown        :string
+#  bio             :text
 #
 
 require 'test_helper'
