@@ -87,9 +87,13 @@
   border: 1px solid #bce8f1;
 }
 
+.user-info-item {
+  margin: 5px 0;
+}
+
 .friend-requests.col-md-4 {
   position: absolute;
-  top: 490px;
+  top: 520px;
   padding-left: 0;
   padding-right: 0;
   border-radius: 3px;
@@ -102,4 +106,8 @@
 
 .friend-requests .panel-body {
   font-size: 12px;
+}
+
+.about .table {
+  border-radius: 3px;
 }

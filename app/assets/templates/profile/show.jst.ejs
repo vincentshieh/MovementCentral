@@ -44,8 +44,10 @@
 </div>
 
 <% if (subviewType === 'timeline') { %>
-  <div class="user-info col-md-4">
-  </div>
+  <% if (show_info) { %>
+    <div class="user-info col-md-4">
+    </div>
+  <% } %>
 
   <div class="new-post">
   </div>
@@ -53,8 +55,10 @@
   <div class="received-posts">
   </div>
 
-  <div class="panel panel-info friend-requests col-md-4">
-  </div>
+  <% if (show_friend_requests) { %>
+    <div class="panel panel-info friend-requests col-md-4">
+    </div>
+  <% } %>
 <% } else if (subviewType === 'about') { %>
   <div class="about">
   </div>

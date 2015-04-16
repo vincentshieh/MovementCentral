@@ -1,17 +1,17 @@
 <% if (friendship) { %>
-  <div class="work">
+  <div class="user-info-item">
     <%= friendship.escape('job_title') %> at <%= friendship.escape('company') %>
   </div>
 
-  <div class="training">
+  <div class="user-info-item">
     Trained in <%= friendship.escape('dance_style') %> at <%= friendship.escape('school') %>
   </div>
 
-  <div class="current-city">
+  <div class="user-info-item">
     Lives in <%= friendship.escape('current_city') %>
   </div>
 
-  <div class="hometown">
+  <div class="user-info-item">
     From <%= friendship.escape('hometown') %>
   </div>
 <% } %>

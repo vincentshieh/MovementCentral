@@ -80,17 +80,34 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var friendship = this.friendships.findWhere({ user_id: this.user_id });
-    var show_info;
+    var friendships = this.friendships;
+    var friendship = friendships.findWhere({ user_id: this.user_id });
+    var show_info, show_friend_requests;
+    var friend_requests = new MovementCentral.Collections.Friendships();
+
+
     if (friendship) {
       show_info = friendship.get('self') || friendship.get('accepted') ||
                   (!friendship.get('stranger') &&
                    !friendship.get('requester'));
+
+      if (friendship.get('self')) {
+        for(var i = 0; i < friendships.length; i++) {
+          if (!friendships.models[i].get('self') &&
+              !friendships.models[i].get('stranger') &&
+              !friendships.models[i].get('requester') &&
+              !friendships.models[i].get('accepted')) {
+            friend_requests.add(friendships.models[i]);
+          }
+        }
+        show_friend_requests = friend_requests.length > 0;
+      }
     }
     var renderedContent = this.template({
       friendship: friendship,
       friend_button_val: this.friendButtonVal(),
       show_info: show_info,
+      show_friend_requests: show_friend_requests,
       subviewType: this.subviewType
     });
     this.$el.html(renderedContent);
@@ -102,8 +119,8 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       }
       this.renderPostForm();
       this.renderPostsIndex();
-      if (this.user_id === MovementCentral.current_user.id) {
-        this.renderFriendRequestsShow();
+      if (show_friend_requests) {
+        this.renderFriendRequestsShow(friend_requests);
       }
     } else if (this.subviewType === 'about') {
       this.renderAboutShow();
@@ -167,10 +184,9 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     this.unshiftSubview('.received-posts', indexView);
   },
 
-  renderFriendRequestsShow: function () {
+  renderFriendRequestsShow: function (friend_requests) {
     var showView = new MovementCentral.Views.FriendRequestsShow({
-      collection: this.friendships,
-      user_id: this.user_id
+      collection: friend_requests
     });
     this.unshiftSubview('.friend-requests', showView);
   },

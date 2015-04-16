@@ -1,13 +1,30 @@
-<ul class="about-list">
-  <% if (friendship) { %>
-    <% if (show_info) { %>
-      <li>
-        Email: <%= friendship.escape('email') %>
-      </li>
-    <% } %>
+<% if (friendship) { %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Basic Information
+    </div>
 
-    <li>
-      Gender: <%= friendship.escape('gender') %>
-    </li>
-  <% } %>
-</ul>
+    <table class="table">
+      <% if (show_info) { %>
+        <tr>
+          <td>Email</td>
+          <td><%= friendship.escape('email') %></td>
+        </tr>
+      <% } %>
+
+      <tr>
+        <td>Gender</td>
+        <td><%= friendship.escape('gender') %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Bio
+    </div>
+    <div class="panel-body">
+      <%= friendship.escape('bio') %>
+    </div>
+  </div>
+<% } %>
