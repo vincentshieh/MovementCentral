@@ -1,5 +1,7 @@
 .cover-photo-area {
   height: 250px;
+  border: 1px solid gray;
+  border-top: 0;
 }
 
 .user-basic-info,
@@ -39,6 +41,8 @@
   position: absolute;
   top: 150px;
   left: 290px;
+  border: 1px solid gray;
+  border-radius: 3px;
 }
 
 .profile-picture > img {
@@ -49,6 +53,8 @@
 .profile-navbar {
   background: cornflowerblue;
   margin-bottom: 10px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .profile-nav-buttons {
@@ -58,6 +64,12 @@
 
 .requester-fullname {
   padding-right: 10px;
+}
+
+.panel.friend-item {
+  width: 430px;
+  margin: 15px 8px 0;
+  display: inline-block;
 }
 
 .friend-item:hover {
