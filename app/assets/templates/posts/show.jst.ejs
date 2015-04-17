@@ -5,7 +5,7 @@
       <%= author.escape('fname') %> <%= author.escape('lname') %>
     </a>
     <% if (author.escape('user_id') !== recipient.escape('user_id')) { %>
-      to
+      <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
       <a href="/#/users/<%= recipient.escape('user_id') %>"
          class="post-recipient">
         <%= recipient.escape('fname') %> <%= recipient.escape('lname') %>

@@ -52,7 +52,10 @@
 }
 
 .post-author,
-.post-recipient {
+.post-recipient,
+.post-author:hover,
+.post-recipient:hover,
+.comment-author:hover {
   color: indigo;
 }
 
