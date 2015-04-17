@@ -15,7 +15,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   addPhoto: function (event) {
     event.preventDefault();
     var view = this;
-    var $filename = this.$('.photo-filename');
+    var $photo_preview = this.$('.photo-preview');
 
     filepicker.pick(
       {
@@ -24,7 +24,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
       },
       function (Blob) {
         view.model.set({ picture: Blob.url });
-        $filename.html(Blob.filename);
+        $photo_preview.html("<img src='" + Blob.url + "'>");
       }
     );
   },

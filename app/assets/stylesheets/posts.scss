@@ -1,17 +1,10 @@
 .new-post,
 .received-posts {
-  right: 270px;
   float: right;
 }
 
-.received-posts {
-  top: 530px;
-}
-
 .feed-posts {
-  position: absolute;
-  top: 230px;
-  right: 270px;
+  float: right;
 }
 
 .posts,
@@ -31,8 +24,14 @@
   background: cornflowerblue;
 }
 
-.post-form .form-group {
-  margin-bottom: 0;
+.form-control.new-post-content {
+  height: 100px;
+}
+
+.photo-preview > img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .post-form > form,
