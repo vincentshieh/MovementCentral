@@ -11,23 +11,19 @@
 }
 
 .user-fullname {
+  position: relative;
+  top: 200px;
+  left: 240px;
   color: white;
   font-size: 24px;
-  margin: 10px;
-}
-
-.user-fullname {
-  position: absolute;
-  top: 265px;
-  left: 500px;
 }
 
 .profile-picture {
   width: 200px;
   height: 200px;
-  position: absolute;
-  top: 150px;
-  left: 290px;
+  position: relative;
+  top: 44px;
+  left: 20px;
   border: 1px solid #bce8f1;
   border-radius: 3px;
 }

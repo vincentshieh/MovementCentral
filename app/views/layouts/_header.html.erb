@@ -10,43 +10,41 @@
       </a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <% if logged_in? %>
+      <div class="search-form"></div>
+    <% end %>
+
+    <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>
-        <div class="search-form"></div>
+        <li>
+          <a href="/#/users/<%= current_user.id %>">
+            <%= current_user.fname %>
+          </a>
+        </li>
+
+        <li>
+          <a href="/">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <%= link_to "Log Out", sessions_url, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <a href="/users/new">
+            Sign Up
+          </a>
+        </li>
+
+        <li>
+          <a href="/sessions/new">
+            Log In
+          </a>
+        </li>
       <% end %>
-
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
-          <li>
-            <a href="/#/users/<%= current_user.id %>">
-              <%= current_user.fname %>
-            </a>
-          </li>
-
-          <li>
-            <a href="/">
-              Home
-            </a>
-          </li>
-
-          <li>
-            <%= link_to "Log Out", sessions_url, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <a href="/users/new">
-              Sign Up
-            </a>
-          </li>
-
-          <li>
-            <a href="/sessions/new">
-              Log In
-            </a>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    </ul>
   </div>
 </nav>
 
