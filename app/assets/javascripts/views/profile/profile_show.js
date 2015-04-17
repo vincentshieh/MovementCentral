@@ -3,7 +3,8 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
   events: {
     'click .friend-button': 'handleFriendClick',
-    'click .subview-btn': 'handleSubviewClick'
+    'click .subview-btn': 'handleSubviewClick',
+    'click .change-profile-pic': 'changeProfilePic'
   },
 
   initialize: function (options) {
@@ -20,6 +21,27 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       this.listenTo(this.posts, 'sync', this.render);
     }
     this.listenTo(this.friendships, 'sync', this.render);
+  },
+
+  changeProfilePic: function (event) {
+    event.preventDefault();
+    var current_user = new MovementCentral.Models.Friendship();
+    var view = this;
+
+    filepicker.pick(
+      {
+        mimetypes: ['image/*'],
+        services: ['COMPUTER']
+      },
+      function (Blob) {
+        current_user.save({ profile_picture: Blob.url }, {
+          url: 'api/users_photo',
+          success: function () {
+            view.friendships.fetch();
+          }
+        });
+      }
+    );
   },
 
   friendButtonVal: function () {

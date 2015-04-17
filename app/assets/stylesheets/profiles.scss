@@ -122,3 +122,16 @@
   background: cornflowerblue;
   color: black;
 }
+
+.btn.change-profile-pic {
+  position: relative;
+  left: 160px;
+  top: 166px;
+  background: transparent;
+  border: 0;
+}
+
+.btn.change-profile-pic:hover {
+  background: transparent;
+  box-shadow: 0px 0px 20px white;
+}

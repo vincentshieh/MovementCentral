@@ -17,6 +17,11 @@
              background: url(<%= friendship.escape('profile_picture') %>);
              background-size: cover;
              background-position: center center;">
+          <% if (friendship.escape('self')) { %>
+            <button type="button" class="btn btn-default change-profile-pic" aria-label="Profile Picture">
+              <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+            </button>
+          <% } %>
         </div>
       <% } %>
     </div>
