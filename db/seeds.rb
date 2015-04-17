@@ -18,13 +18,13 @@ User.create!(email: 'sergeip@opera-novosibirsk.ru', password: 'sergei',
              fname: 'Sergei', lname: 'Polunin', dance_style: 'Ballet',
              gender: 'Male', company: 'Novosibirsk Opera and Ballet Theatre',
              profile_picture: 'http://ftape.com/media/wp-content/uploads/2014/10/Sergei-Polunin_Numero-Homme_04.jpg',
-             cover_photo: 'http://www.ukrainehousing.com/UserFiles/picKievSights5(1).jpg',
+             cover_photo: 'http://www.ballet.co.uk/albums/dm-ivan-putrov-men-in-motion-swt-0112/dm_narcisse_sergei_polunin_0923.jpg',
              job_title: 'Principal dancer', school: 'British Royal Ballet School',
              current_city: 'Novosibirsk, Russia', hometown: 'Kherson, Ukraine',
              bio: 'Sergei Vladimirovich Polunin is a Ukrainian ballet dancer who was formerly a principal dancer with the British Royal Ballet and is currently a principal dancer with Stanislavsky and Nemirovich-Danchenko Moscow Academic Music Theatre and the Novosibirsk Opera and Ballet Theatre.')
 User.create!(email: 'ric@rydance.com', password: 'riccardo',
              fname: 'Riccardo', lname: 'Cocchi', dance_style: 'Ballroom',
-             gender: 'Male', company: 'Riccardo and Yulia',
+             gender: 'Male', company: 'Riccardo and Yulia Dance',
              profile_picture: 'https://s-media-cache-ak0.pinimg.com/736x/0f/cc/9a/0fcc9a7f93604dedbc0a3fc80616f987.jpg',
              cover_photo: 'https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/941645_10151604935169526_1399257331_n.jpg?oh=987a5c919fa45ffcecba8aa854b77f75&oe=55A3CA80&__gda__=1436219483_9386297d69ee75021bbdef41b56a838d',
              job_title: 'Ballroom dancer and teacher', school: 'various studios',
@@ -32,7 +32,7 @@ User.create!(email: 'ric@rydance.com', password: 'riccardo',
              bio: 'The son of famed Italian ballroom coaches, Riccardo always knew that dance was his future and one day he would become the world champion. Riccardo was born in Terni, Italy. Currently, he resides in and represents the United States of America. Prior to partnering with Yulia, Riccardo and his previous partner were undefeated Italian Amateur Latin Champions and the World Amateur Latin Champions.')
 User.create!(email: 'yulia@rydance.com', password: 'yuliayulia',
              fname: 'Yulia', lname: 'Zagoruychenko', dance_style: 'Ballroom',
-             gender: 'Female', company: 'Riccardo and Yulia',
+             gender: 'Female', company: 'Riccardo and Yulia Dance',
              profile_picture: 'https://s-media-cache-ak0.pinimg.com/236x/7e/4c/d8/7e4cd82a37730a16bb961aa4675125f8.jpg',
              cover_photo: 'http://www.enmotionphoto.com/img/s1/v54/p1156821972-3.jpg',
              job_title: 'Ballroom dancer and teacher', school: 'various studios',
@@ -42,24 +42,45 @@ User.create!(email: 'ricky@sytycd11.com', password: 'rickyricky',
              fname: 'Ricky', lname: 'Ubeda', dance_style: 'Contemporary',
              gender: 'Male', company: 'So You Think You Can Dance',
              profile_picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/04/so-you-think-you-can-dance-winner-ricky-ubeda-is-adorable-and-tired/jcr:content/image.img.2000.jpg/1409867456714.cached.jpg',
-             cover_photo: 'http://static2.hypable.com/wp-content/uploads/2014/07/SYTYCD-season-11-200th-episode-recap-666x341.jpg')
+             cover_photo: 'http://static2.hypable.com/wp-content/uploads/2014/07/SYTYCD-season-11-200th-episode-recap-666x341.jpg',
+             job_title: 'Contemporary dancer', school: 'Stars Dance Company',
+             current_city: 'Los Angeles, California', hometown: 'Miami, Florida',
+             bio: 'Ricky Ubeda is the winner on season 11 of So You Think You Can Dance')
 User.create!(email: 'travis@sytycd.com', password: 'travis',
              fname: 'Travis', lname: 'Wall', dance_style: 'Contemporary',
              gender: 'Male', company: 'So You Think You Can Dance',
              profile_picture: 'http://h.fastcompany.net/multisite_files/fastcompany/imagecache/1280/poster/2014/08/3034678-poster-p-1-all-the-right-moves-how-dancer-travis-wall-stepped-up-to-choreographer.jpg',
-             cover_photo: 'http://www.etonline.com/media/photo/2013/08/24036735/640_travis_wall_3_130830.jpg')
+             cover_photo: 'http://www.etonline.com/media/photo/2013/08/24036735/640_travis_wall_3_130830.jpg',
+             job_title: 'Choreographer', school: "Denise Wall's Dance Energy",
+             current_city: 'Los Angeles, California', hometown: 'Virginia Beach, Virginia',
+             bio: "Travis Michael Wall (born September 16, 1987) is an American dancer and dance instructor, specializing in contemporary dance and jazz dance. He is best known for his 2006 appearance as a competitor on the second season of the television show So You Think You Can Dance, which airs on the Fox Network. As of 2012, he is currently a choreographer for the show. In 2011, he was nominated for an Emmy for his work on the show's seventh season. In 2012, he starred in the reality show All The Right Moves on Oxygen, where he, Teddy Forance, Nick Lazzarini and Kyle Robinson attempt to launch their own dance company called Shaping Sound.")
 User.create!(email: 'ianeastwood@mwc.com', password: 'ianian',
              fname: 'Ian', lname: 'Eastwood', dance_style: 'Hip-hop',
              gender: 'Male', company: 'Mos Wanted Crew',
-             profile_picture: 'https://pbs.twimg.com/profile_images/551779700603768832/P_Ha91D7.jpeg')
+             profile_picture: 'https://pbs.twimg.com/profile_images/551779700603768832/P_Ha91D7.jpeg',
+             cover_photo: 'http://i.ytimg.com/vi/tIWOYaQRGJY/maxresdefault.jpg',
+             job_title: 'Choreographer and dancer', school: 'various studios',
+             current_city: 'Los Angeles, California', hometown: 'Chicago, Illinois')
 User.create!(email: 'kyle@mm.com', password: 'kylekyle',
              fname: 'Kyle', lname: 'Hanagami', dance_style: 'Hip-hop',
              gender: 'Male', company: 'Making Moves',
-             profile_picture: 'http://www.drdancestudio.com/sites/default/files/instructor/photo/KyleHanagami-1.jpg')
+             profile_picture: 'http://cdn3.sportngin.com/attachments/photo/2611/0244/Kyle_Hanagami.jpeg',
+             cover_photo: 'http://i.ytimg.com/vi/GegLHQcNooY/maxresdefault.jpg',
+             job_title: 'Choreographer and dancer', school: 'Debbie Reynolds Dance Studios',
+             current_city: 'Los Angeles, California', hometown: 'Los Angeles, California',
+             bio: 'Kyle Hanagami is one of the most rapidly growing names in the Los Angeles dance industry. His creativity and unique take on choreography has earned him a spot as an in-demand choreographer across the United States and around the world.
+                   Currently, Kyle is on faculty at three of the top studios in Los Angeles; Debbie Reynolds Dance Studio, Movement Lifestyle, and Edge Performing Arts Center. Dance Spirit Magazine named him "Hollywood\'s hottest up-and-coming choreographer."
+                   Kyle has been recognized for his achievements by The Industry Voice Awards in the categories of Classof the Year at Debbie Reynolds and Edge, as well as for Performance of the Year at Carnival Choreographers Ball. His credits include choreographing for X Factor, Nickelodeon, Fanta, as well as dancing for artists such as Justin Bieber, Black Eyed Peas, and many more.')
 User.create!(email: 'sonya@stdance.com', password: 'sonyasonya',
              fname: 'Sonya', lname: 'Tayeh', dance_style: 'Jazz',
              gender: 'Female', company: 'Sonya Tayeh Dance',
-             profile_picture: 'http://newimages.bwwstatic.com/upload10/569758/Sonya3.jpeg')
+             profile_picture: 'http://newimages.bwwstatic.com/upload10/569758/Sonya3.jpeg',
+             cover_photo: 'https://wheninspirationstrikesme.files.wordpress.com/2012/07/2-tiffany-and-george-contemporary.jpg',
+             job_title: 'Choreographer', school: 'Full Circle Dance Company',
+             current_city: 'Los Angeles, California', hometown: 'Detroit, Michigan',
+             bio: 'Sonya Tayeh is a dance teacher and jazz and contemporary choreographer from Detroit, Michigan best known for being a choreographer on the television series So You Think You Can Dance. In 2013, she was nominated for an Emmy Award for her work on season nine.
+                   Tayeh was a house dancer during her teenage years and she did not start any formal dance training until she was 18 and a student at Wayne State University. After graduating in 2002, she moved to California and ran a dance company in San Francisco where she developed her own style of choreography which she calls combat jazz. In 2007, she was discovered by a talent agent from McDonald Selznick Associates who saw a performance she choreographed for The Carnival: Choreographer’s Ball. Three months after being signed, she booked a job on So You Think You Can Dance.
+                   Since gaining mainstream exposure, Tayeh has choreographed for Madonna, Florence and the Machine, Kylie Minogue, the Los Angeles Ballet, and the San Jose Reparatory Theater. Aside from theater and tours, she stays active teaching jazz and contemporary classes at dance conventions.')
 User.create!(email: 'hopeb@aa.com', password: 'hopehope',
              fname: 'Hope', lname: 'Boykin', dance_style: 'Modern',
              gender: 'Female', company: 'Alvin Ailey American Dance Theater',
