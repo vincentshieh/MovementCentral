@@ -11,10 +11,10 @@
     </div>
 
     <% if logged_in? %>
-      <div class="search-form"></div>
+      <div class="search-form hidden-xs"></div>
     <% end %>
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right hidden-xs">
       <% if logged_in? %>
         <li>
           <a href="/#/users/<%= current_user.id %>">
