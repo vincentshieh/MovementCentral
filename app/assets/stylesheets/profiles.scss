@@ -39,7 +39,6 @@
 
 .profile-navbar {
   background: cornflowerblue;
-  margin-bottom: 10px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   border-left: 1px solid #bce8f1;
@@ -80,6 +79,7 @@
 .user-info.col-md-4,
 .friend-requests.col-md-4 {
   width: 290px;
+  margin-top: 10px;
   border: 1px solid #bce8f1;
 }
 
@@ -111,6 +111,10 @@
 
 .friend-requests .panel-body {
   font-size: 12px;
+}
+
+.about {
+  margin-top: 10px;
 }
 
 .about .table {
