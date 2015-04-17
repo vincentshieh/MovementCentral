@@ -84,11 +84,19 @@ User.create!(email: 'sonya@stdance.com', password: 'sonyasonya',
 User.create!(email: 'hopeb@aa.com', password: 'hopehope',
              fname: 'Hope', lname: 'Boykin', dance_style: 'Modern',
              gender: 'Female', company: 'Alvin Ailey American Dance Theater',
-             profile_picture: 'http://m7.i.pbase.com/g9/26/574826/2/154649737.zuujnugs.jpg')
+             profile_picture: 'http://m7.i.pbase.com/g9/26/574826/2/154649737.zuujnugs.jpg',
+             cover_photo: 'https://origin.ih.constantcontact.com/fs103/1107310278977/img/360.jpg?ver=1392170825000',
+             job_title: 'Dancer', school: 'The Ailey School',
+             current_city: 'New York, New York', hometown: 'Durham, North Carolina',
+             bio: 'Hope Boykin (Durham, NC) is a three-time recipient of the American Dance Festival’s Young Tuition Scholarship.  She attended Howard University and while in Washington, DC she performed with Lloyd Whitmore’s New World Dance Company. Ms. Boykin was a student and intern at The Ailey School. She was assistant to the late Talley Beatty and an original member of Complexions. Ms. Boykin was a member of Philadanco and received a New York Dance and Performance Award (“Bessie”). In 2005, Ms. Boykin choreographed Acceptance In Surrender in collaboration with Abdur-Rahim Jackson and Matthew Rushing for Alvin Ailey American Dance Theater. Most recently she choreographed Go In Grace with award-winning singing group \'Sweet Honey In The Rock\' for the Company\'s 50th anniversary season. Ms. Boykin joined the Company in 2000.')
 User.create!(email: 'jerb@aa.com', password: 'jeroboam',
              fname: 'Jeroboam', lname: 'Bozeman', dance_style: 'Modern',
              gender: 'Male', company: 'Alvin Ailey American Dance Theater',
-             profile_picture: 'http://res.cloudinary.com/sagacity/image/upload/c_crop,h_736,w_640,x_0,y_34/c_fit,w_640/Jeroboam_Bozeman_Photo_Eduardo_Patino_izpuof.jpg')
+             profile_picture: 'http://res.cloudinary.com/sagacity/image/upload/c_crop,h_736,w_640,x_0,y_34/c_fit,w_640/Jeroboam_Bozeman_Photo_Eduardo_Patino_izpuof.jpg',
+             cover_photo: 'http://static01.nyt.com/images/2013/03/18/arts/ailey/ailey-articleLarge.jpg',
+             job_title: 'Dancer', school: 'Joffrey Ballet School',
+             current_city: 'New York, New York', hometown: 'Brooklyn, New York',
+             bio: 'Jeroboam Bozeman (Brooklyn, NY) began his dance training under Ruth Sistaire at the Ronald Edmonds Learning Center. He later joined Creative Outlet, under Jamel Gaines, and was granted full scholarships at the Joffrey Ballet School and Dance Theatre of Harlem School. Mr. Bozeman is a gold medal recipient from the NAACP ACT-SO Competition in Dance. He performed in Elton John and Tim Rice’s Broadway musical Aida (International tour in China) and was a part of Philadanco, Donald Byrd\'s Spectrum Dance Theater, and Ailey II. This is Mr. Bozeman’s first year with the Company.')
 
 Friendship.create!(requester_id: 1, requestee_id: 2, accepted: true)
 Friendship.create!(requester_id: 1, requestee_id: 3, accepted: true)
