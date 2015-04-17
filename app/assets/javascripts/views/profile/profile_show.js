@@ -156,7 +156,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       friendship = this.friendships.findWhere({ user_id: this.user_id });
     }
     var showView = new MovementCentral.Views.InfoShow({
-      friendship: friendship,
+      model: friendship,
     });
     this.unshiftSubview('.user-info', showView);
   },

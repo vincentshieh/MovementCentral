@@ -48,11 +48,6 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
           post_id: view.post_id
         });
         view.$('.comment-content').val("");
-        if (view.is_feed || !view.user_id) {
-          Backbone.history.navigate("/", { trigger: true });
-        } else {
-          Backbone.history.navigate("#/users/" + view.user_id, { trigger: true });
-        }
       }
     });
   }

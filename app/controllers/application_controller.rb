@@ -63,11 +63,11 @@ class ApplicationController < ActionController::Base
                    profile_picture: friend.profile_picture,
                    cover_photo: friend.cover_photo,
                    nickname: friend.nickname,
-                   job_title: current_user.job_title,
-                   school: current_user.school,
-                   current_city: current_user.current_city,
-                   hometown: current_user.hometown,
-                   bio: current_user.bio}
+                   job_title: friend.job_title,
+                   school: friend.school,
+                   current_city: friend.current_city,
+                   hometown: friend.hometown,
+                   bio: friend.bio}
     end
 
     friend_ids = friendships.map { |friendship| friendship[:user_id] }
