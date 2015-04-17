@@ -1,99 +1,141 @@
 <div class="login-form">
-  <form action="<%= url %>" method="post">
+  <form action="<%= url %>" method="post" data-toggle="validator" role="form">
     <%= auth_input %>
 
     <% if button_value == 'Sign Up' %>
-      <input type="text"
-             name="user[fname]"
-             placeholder="First name"
-             class="form-control"><br>
-
-      <input type="text"
-             name="user[lname]"
-             placeholder="Last name"
-             class="form-control"><br>
-
-      <input type="text"
-             name="user[nickname]"
-             placeholder="Nickname (optional)"
-             class="form-control"><br>
-    <% end %>
-
-    <input type="email"
-           name="user[email]"
-           placeholder="Email"
-           class="email form-control"><br>
-
-    <input type="password"
-           name="user[password]"
-           placeholder="Password"
-           class="password form-control"><br>
-
-    <% if button_value == 'Sign Up' %>
-      <div class="radio-inline">
-        <label>
-          <input type="radio" name="user[gender]" value="Female">
-          Female
-        </label>
+      <div class="form-group col-md-4">
+        <input type="text"
+               name="user[fname]"
+               placeholder="First name"
+               class="form-control"
+               data-error="Please enter first name"
+               required>
+        <div class="help-block with-errors"></div>
       </div>
 
-      <div class="radio-inline">
-        <label>
-          <input type="radio" name="user[gender]" value="Male">
-          Male
-        </label>
-      </div><br>
+      <div class="form-group col-md-4">
+        <input type="text"
+               name="user[nickname]"
+               placeholder="Nickname (optional)"
+               class="form-control">
+      </div>
 
-      <div class="dance-style-select">
-        <label>
-          <div class="dance-style-label">Dance Style</div>
+      <div class="form-group col-md-4">
+        <input type="text"
+               name="user[lname]"
+               placeholder="Last name"
+               class="form-control"
+               data-error="Please enter last name"
+               required>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+    <div class="form-group col-md-6">
+      <input type="email"
+             name="user[email]"
+             placeholder="Email"
+             class="email form-control"
+             data-error="Please enter valid email"
+             required>
+      <div class="help-block with-errors"></div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <input type="password"
+             name="user[password]"
+             placeholder="Password"
+             class="password form-control"
+             data-error="Please enter valid password (minimum 6 characters)"
+             required>
+      <div class="help-block with-errors"></div>
+    </div>
+
+    <% if button_value == 'Sign Up' %>
+      <div class="form-group col-md-4">
+        <div class="radio-inline">
+          <label>
+            <input type="radio" name="user[gender]" value="Female">
+            Female
+          </label>
+        </div>
+
+        <div class="radio-inline">
+          <label>
+            <input type="radio" name="user[gender]" value="Male">
+            Male
+          </label>
+        </div><br>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div class="dance-style-select">
           <select name="user[dance_style]"
                   class="form-control dance-style-dropdown">
-            <option value="" disabled selected>Choose Style</option>
+            <option value="" disabled selected>Dance Style</option>
             <% @dance_styles.each do |ds| %>
               <option value="<%= ds %>"><%= ds %></option>
             <% end %>
           </select>
-        </label><br>
+        </div>
       </div>
 
-      <input type="text"
-             name="user[company]"
-             placeholder="Dance Company"
-             class="form-control"><br>
+      <div class="form-group col-md-4">
+        <input type="text"
+               name="user[company]"
+               placeholder="Dance Company"
+               class="form-control"
+               data-error="Please enter dance company"
+               required>
+        <div class="help-block with-errors"></div>
+      </div>
 
-      <input type="text"
-             name="user[job_title]"
-             placeholder="Job Title (optional)"
-             class="form-control"><br>
+      <div class="form-group col-md-6">
+        <input type="text"
+               name="user[job_title]"
+               placeholder="Job Title (optional)"
+               class="form-control">
+      </div>
 
-      <input type="text"
-             name="user[school]"
-             placeholder="School (optional)"
-             class="form-control"><br>
+      <div class="form-group col-md-6">
+        <input type="text"
+               name="user[school]"
+               placeholder="School (optional)"
+               class="form-control">
+      </div>
 
-      <input type="text"
-             name="user[current_city]"
-             placeholder="Current City (optional)"
-             class="form-control"><br>
+      <div class="form-group col-md-6">
+        <input type="text"
+               name="user[current_city]"
+               placeholder="Current City (optional)"
+               class="form-control">
+      </div>
 
-      <input type="text"
-             name="user[hometown]"
-             placeholder="Hometown (optional)"
-             class="form-control"><br>
+      <div class="form-group col-md-6">
+        <input type="text"
+               name="user[hometown]"
+               placeholder="Hometown (optional)"
+               class="form-control">
+      </div>
 
-      <textarea name="user[bio]"
-                placeholder="Bio (optional)"
-                class="form-control"></textarea><br>
+      <div class="form-group col-md-12">
+        <textarea name="user[bio]"
+                  placeholder="Bio (optional)"
+                  class="form-control"></textarea>
+      </div>
     <% end %>
 
-    <input type="submit"
-           value="<%= button_value %>"
-           class="login-button btn btn-success btn-lg btn-block">
+    <div class="form-group col-md-12">
+      <input type="submit"
+             value="<%= button_value %>"
+             class="login-button btn btn-success btn-lg btn-block">
+    </div>
   </form>
 
   <% if button_value == 'Log In' %>
-    <button onclick="demo()" class="btn btn-primary btn-lg btn-block">Guest Log In</button>
+    <div class="form-group col-md-12">
+      <button onclick="demo()" class="btn btn-primary btn-lg btn-block">Guest Log In</button>
+    </div>
   <% end %>
 </div>
 

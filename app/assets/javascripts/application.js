@@ -18,6 +18,7 @@
 //= require backbone
 //= require movement_central
 //= require typed
+//= require validator
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models

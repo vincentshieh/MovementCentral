@@ -25,7 +25,7 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
     var view = this;
 
     for(var i = 0; i < errors.length; i++) {
-      error_alert = '<div class="alert alert-danger comment-error" role="alert">' +
+      error_alert = '<div class="alert alert-danger comment-error" role="alert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span> ' +
                     errors[i] + '</div>';
       this.$el.prepend(error_alert);
     }

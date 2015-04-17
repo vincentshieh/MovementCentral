@@ -41,14 +41,14 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
     var view = this;
 
     for(var i = 0; i < errors.length; i++) {
-      error_alert = '<div class="alert alert-danger post-error" role="alert">' +
+      error_alert = '<div class="alert alert-danger post-error" role="alert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span> ' +
                     errors[i] + '</div>';
-      this.$el.prepend(error_alert);
+      this.$('form').prepend(error_alert);
     }
 
-    setTimeout(function () {
-      view.$('.post-error').remove();
-    }, 5000);
+    // setTimeout(function () {
+    //   view.$('.post-error').remove();
+    // }, 5000);
   },
 
   submit: function (event) {

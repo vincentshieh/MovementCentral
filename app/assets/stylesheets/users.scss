@@ -2,13 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.dance-style-select,
-.dance-style-label,
-.dance-style-dropdown {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.login-form .help-block.with-errors {
+  margin: 0;
 }
 
-.dance-style-label {
-  font-size: 24px;
+.login-form .form-group {
+  margin: 10px 0;
 }
