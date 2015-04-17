@@ -24,6 +24,12 @@
           <% } %>
         </div>
       <% } %>
+
+      <% if (friendship.escape('self')) { %>
+        <button type="button" class="btn btn-default change-cover-photo" aria-label="Cover Photo">
+          <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+        </button>
+      <% } %>
     </div>
 
     <% if (friend_button_val) { %>
