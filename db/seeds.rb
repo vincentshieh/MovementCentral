@@ -17,17 +17,27 @@ User.create!(email: 'mistyc@abt.org', password: 'mistymisty',
 User.create!(email: 'sergeip@opera-novosibirsk.ru', password: 'sergei',
              fname: 'Sergei', lname: 'Polunin', dance_style: 'Ballet',
              gender: 'Male', company: 'Novosibirsk Opera and Ballet Theatre',
-             profile_picture: 'http://ftape.com/media/wp-content/uploads/2014/10/Sergei-Polunin_Numero-Homme_04.jpg')
+             profile_picture: 'http://ftape.com/media/wp-content/uploads/2014/10/Sergei-Polunin_Numero-Homme_04.jpg',
+             cover_photo: 'http://www.ukrainehousing.com/UserFiles/picKievSights5(1).jpg',
+             job_title: 'Principal dancer', school: 'British Royal Ballet School',
+             current_city: 'Novosibirsk, Russia', hometown: 'Kherson, Ukraine',
+             bio: 'Sergei Vladimirovich Polunin is a Ukrainian ballet dancer who was formerly a principal dancer with the British Royal Ballet and is currently a principal dancer with Stanislavsky and Nemirovich-Danchenko Moscow Academic Music Theatre and the Novosibirsk Opera and Ballet Theatre.')
 User.create!(email: 'ric@rydance.com', password: 'riccardo',
              fname: 'Riccardo', lname: 'Cocchi', dance_style: 'Ballroom',
              gender: 'Male', company: 'Riccardo and Yulia',
              profile_picture: 'https://s-media-cache-ak0.pinimg.com/736x/0f/cc/9a/0fcc9a7f93604dedbc0a3fc80616f987.jpg',
-             cover_photo: 'https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/941645_10151604935169526_1399257331_n.jpg?oh=987a5c919fa45ffcecba8aa854b77f75&oe=55A3CA80&__gda__=1436219483_9386297d69ee75021bbdef41b56a838d')
+             cover_photo: 'https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/941645_10151604935169526_1399257331_n.jpg?oh=987a5c919fa45ffcecba8aa854b77f75&oe=55A3CA80&__gda__=1436219483_9386297d69ee75021bbdef41b56a838d',
+             job_title: 'Ballroom dancer and teacher', school: 'various studios',
+             current_city: 'Los Angeles, California', hometown: 'Belgorod City, Russia',
+             bio: 'The son of famed Italian ballroom coaches, Riccardo always knew that dance was his future and one day he would become the world champion. Riccardo was born in Terni, Italy. Currently, he resides in and represents the United States of America. Prior to partnering with Yulia, Riccardo and his previous partner were undefeated Italian Amateur Latin Champions and the World Amateur Latin Champions.')
 User.create!(email: 'yulia@rydance.com', password: 'yuliayulia',
              fname: 'Yulia', lname: 'Zagoruychenko', dance_style: 'Ballroom',
              gender: 'Female', company: 'Riccardo and Yulia',
              profile_picture: 'https://s-media-cache-ak0.pinimg.com/236x/7e/4c/d8/7e4cd82a37730a16bb961aa4675125f8.jpg',
-             cover_photo: 'http://www.enmotionphoto.com/img/s1/v54/p1156821972-3.jpg')
+             cover_photo: 'http://www.enmotionphoto.com/img/s1/v54/p1156821972-3.jpg',
+             job_title: 'Ballroom dancer and teacher', school: 'various studios',
+             current_city: 'Los Angeles, California', hometown: 'Belgorod City, Russia',
+             bio: 'Yulia was born in Belgorod City, Russia and first started dancing at the age of four. She then began ballroom dancing at age seven, and began teaching at the early age of 11.  A rising star in Russia, Yulia captured her first major title at the age of 12, becoming Russian Junior National Champion. Yulia’s wunderkind status only grew as she went on to dominate youth division. After moving to the United States, to dance with her former partner, Yulia won many titles including the World South American Showdance Championship and the US National Professional Latin Championship. Yulia also placed as a grand finalist in all major World Professional Latin competitions. On July 4, 2011, Carnegie Corporation honored Yulia and 44 other exceptional US immigrants as “Americans by Choice”.')
 User.create!(email: 'ricky@sytycd11.com', password: 'rickyricky',
              fname: 'Ricky', lname: 'Ubeda', dance_style: 'Contemporary',
              gender: 'Male', company: 'So You Think You Can Dance',

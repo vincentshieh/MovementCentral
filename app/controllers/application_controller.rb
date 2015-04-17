@@ -45,7 +45,12 @@ class ApplicationController < ActionController::Base
                    company: friend.company,
                    profile_picture: friend.profile_picture,
                    cover_photo: friend.cover_photo,
-                   nickname: friend.nickname }
+                   nickname: friend.nickname,
+                   job_title: friend.job_title,
+                   school: friend.school,
+                   current_city: friend.current_city,
+                   hometown: friend.hometown,
+                   bio: friend.bio }
     end
 
     current_user.friendships_as_requestee.each do |friendship|
@@ -67,7 +72,7 @@ class ApplicationController < ActionController::Base
                    school: friend.school,
                    current_city: friend.current_city,
                    hometown: friend.hometown,
-                   bio: friend.bio}
+                   bio: friend.bio }
     end
 
     friend_ids = friendships.map { |friendship| friendship[:user_id] }
