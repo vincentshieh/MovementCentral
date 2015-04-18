@@ -4,6 +4,7 @@
 
 .login-form .help-block.with-errors {
   margin: 0;
+  color: indigo;
 }
 
 .login-form .form-group {
@@ -12,4 +13,31 @@
 
 .login-form ul.list-unstyled {
   margin-bottom: 0;
+}
+
+.login-body,
+.signup-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.login-body {
+  background-image: url("login-background.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.signup-body {
+  background-image: url("signup-background.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.login-form form {
+  overflow: auto;
+}
+
+.login-form .radio-inline {
+  color: white;
 }
