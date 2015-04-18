@@ -1,5 +1,59 @@
 <div class="login-body">
   <h1 class="title">Log In</h1>
 
-  <%= render 'shared/login', url: sessions_url, button_value: 'Log In' %>
+  <div class="login-form">
+    <form action="/sessions" method="post" data-toggle="validator" role="form">
+      <%= auth_input %>
+
+      <div class="form-group col-md-6">
+        <input type="email"
+               name="user[email]"
+               placeholder="Email"
+               class="email form-control"
+               data-error="Please enter valid email"
+               required>
+        <div class="help-block with-errors"></div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <input type="password"
+               name="user[password]"
+               placeholder="Password"
+               class="password form-control"
+               data-error="Please enter valid password (minimum 6 characters)"
+               required>
+        <div class="help-block with-errors"></div>
+      </div>
+
+      <div class="form-group col-md-12">
+        <input type="submit"
+               value="Log In"
+               class="login-button btn btn-success btn-lg btn-block">
+      </div>
+    </form>
+
+    <div class="form-group col-md-12">
+      <button onclick="demo()" class="btn btn-primary btn-lg btn-block">Guest Log In</button>
+    </div>
+  </div>
 </div>
+
+<script>
+  var demo = function () {
+    $(function () {
+      $(".email").typed({
+        strings: ["mistyc@abt.org"],
+        typeSpeed: 20,
+        callback: function () {
+          $(".password").typed({
+            strings: ["mistymisty"],
+            typeSpeed: 20,
+            callback: function () {
+              $('.login-button').click()
+            }
+          });
+        }
+      });
+    });
+  }
+</script>

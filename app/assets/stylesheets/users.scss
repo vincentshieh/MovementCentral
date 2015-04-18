@@ -2,16 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.login-form .help-block.with-errors {
+.login-form .help-block.with-errors,
+.signup-form .help-block.with-errors {
   margin: 0;
   color: indigo;
 }
 
-.login-form .form-group {
+.login-form .form-group,
+.signup-form .form-group {
   margin: 10px 0;
 }
 
-.login-form ul.list-unstyled {
+.login-form ul.list-unstyled,
+.signup-form ul.list-unstyled {
   margin-bottom: 0;
 }
 
@@ -34,10 +37,11 @@
   background-position: center center;
 }
 
-.login-form form {
+.login-form form,
+.signup-form form {
   overflow: auto;
 }
 
-.login-form .radio-inline {
+.signup-form .radio-inline {
   color: white;
 }

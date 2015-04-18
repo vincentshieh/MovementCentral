@@ -23,6 +23,14 @@
             </button>
           <% } %>
         </div>
+      <% } else { %>
+        <div class="profile-picture">
+          <% if (friendship.escape('self')) { %>
+            <button type="button" class="btn btn-default change-profile-pic" aria-label="Profile Picture">
+              <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+            </button>
+          <% } %>
+        </div>
       <% } %>
 
       <% if (friendship.escape('self')) { %>
