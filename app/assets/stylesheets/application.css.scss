@@ -22,7 +22,7 @@ body {
   font-size: 16px;
   font-weight: 400;
   color: black;
-  background: slateblue;
+  background: #D0D0D0;
 }
 
 .clearfix:after {
@@ -58,11 +58,6 @@ body {
 
 .minilogo, .logo {
   height: inherit;
-}
-
-.minilogo:hover,
-.logo:hover {
-  background: royalblue;
 }
 
 .nav > li > a:hover {
