@@ -9,9 +9,10 @@
 }
 
 .login-sub-body {
+  position: absolute;
+  top: 150px;
+  left: 230px;
   width: 1000px;
-  margin: 0 auto;
-  padding-top: 40px;
 }
 
 .login-form {
@@ -25,6 +26,7 @@
 .site-description {
   float: left;
   width: 530px;
+  color: cornflowerblue;
 }
 
 .site-description .title {
@@ -49,7 +51,6 @@
 .newsfeed-description div:last-of-type,
 .timeline-description div:last-of-type {
   display: inline-block;
-  color: gray;
 }
 
 .login-form .title {
