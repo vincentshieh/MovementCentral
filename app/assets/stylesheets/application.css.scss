@@ -25,6 +25,14 @@ body {
   background: slateblue;
 }
 
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
 .navbar {
   background: cornflowerblue;
   color: black;
@@ -65,6 +73,11 @@ body {
 #main {
   width: 900px;
   margin: 0 auto;
+  overflow: auto;
+}
+
+#main > div {
+  overflow: auto;
 }
 
 .title {
