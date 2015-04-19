@@ -5,7 +5,6 @@
 .login-form .help-block.with-errors,
 .signup-form .help-block.with-errors {
   margin: 0;
-  color: indigo;
 }
 
 .login-form .form-group,
@@ -34,6 +33,7 @@
 .signup-body .title {
   margin-top: 100px;
   margin-bottom: 20px;
+  margin-left: 290px;
 }
 
 .signup-form {
@@ -43,6 +43,7 @@
 
 .signup-form form {
   overflow: auto;
+  margin-left: 290px;
 }
 
 .signup-form .radio-inline {
