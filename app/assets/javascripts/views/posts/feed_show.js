@@ -30,7 +30,7 @@ MovementCentral.Views.FeedShow = Backbone.CompositeView.extend({
       user_id: MovementCentral.current_user.id,
       is_feed: true
     });
-    this.unshiftSubview('.new-post', formView);
+    this.unshiftSubview('.new-feed-post', formView);
   },
 
   renderPostsIndex: function () {

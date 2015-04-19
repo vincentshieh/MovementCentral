@@ -3,8 +3,13 @@
   float: right;
 }
 
-.feed-posts {
-  float: right;
+// .feed-posts {
+//   float: right;
+// }
+
+.new-feed-post .post-form,
+.feed-posts .posts {
+  margin: 0 auto;
 }
 
 .posts,
