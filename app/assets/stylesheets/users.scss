@@ -30,10 +30,15 @@
   background-position: center center;
 }
 
+.signup-sub-body {
+  height: 100%;
+  margin: 0 auto;
+}
+
 .signup-body .title {
-  margin-top: 100px;
-  margin-bottom: 20px;
   margin-left: 290px;
+  padding-top: 70px;
+  padding-bottom: 10px;
 }
 
 .signup-form {
