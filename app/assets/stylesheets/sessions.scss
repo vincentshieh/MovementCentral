@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .login-body {
-  background-image: url("login-background.jpg");
+  background-image: asset_url("login-background.jpg");
   background-size: cover;
   background-position: center center;
 }
