@@ -25,19 +25,21 @@
   height: 100%;
 }
 
-.login-body {
-  background-image: url("login-background.jpg");
-  background-size: cover;
-  background-position: center center;
-}
-
 .signup-body {
   background-image: url("signup-background.jpg");
   background-size: cover;
   background-position: center center;
 }
 
-.login-form form,
+.signup-body .title {
+  margin: 20px 0;
+}
+
+.signup-form {
+  margin: 0 auto;
+  width: 900px;
+}
+
 .signup-form form {
   overflow: auto;
 }

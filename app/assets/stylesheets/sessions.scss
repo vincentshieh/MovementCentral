@@ -2,8 +2,69 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.login-form,
-.signup-form {
+.login-body {
+  background-image: url("login-background.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.login-sub-body {
+  width: 1000px;
   margin: 0 auto;
-  width: 900px;
+  padding-top: 40px;
+}
+
+.login-form {
+  float: right;
+  width: 440px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+.site-description {
+  float: left;
+  width: 530px;
+}
+
+.site-description .title {
+  font-size: 24px;
+  text-align: left;
+  margin: 40px 0;
+}
+
+.newsfeed-description,
+.timeline-description {
+  margin: 40px 0;
+}
+
+.newsfeed-description div:first-of-type,
+.timeline-description div:first-of-type {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.newsfeed-description div:last-of-type,
+.timeline-description div:last-of-type {
+  display: inline-block;
+  color: gray;
+}
+
+.login-form .title {
+  margin: 10px 0;
+}
+
+.login-form-body {
+  overflow: auto;
+}
+
+.guest-login-button {
+  margin-bottom: 10px;
+}
+
+.signup-link {
+  margin-bottom: 10px;
+  text-align: center;
 }

@@ -1,39 +1,76 @@
 <div class="login-body">
-  <h1 class="title">Log In</h1>
+  <div class="login-sub-body">
+    <div class="site-description">
+      <h2 class="title">
+        Connect with dancers around the world on Movement Central.
+      </h2>
 
-  <div class="login-form">
-    <form action="/sessions" method="post" data-toggle="validator" role="form">
-      <%= auth_input %>
+      <div class="newsfeed-description">
+        <%= image_tag "feedlogo.png" %>
+        <div>
+          See photos and updates
+        </div>
 
-      <div class="form-group col-md-6">
-        <input type="email"
-               name="user[email]"
-               placeholder="Email"
-               class="email form-control"
-               data-error="Please enter valid email"
-               required>
-        <div class="help-block with-errors"></div>
+        <div>
+          from friends in News Feed.
+        </div>
       </div>
 
-      <div class="form-group col-md-6">
-        <input type="password"
-               name="user[password]"
-               placeholder="Password"
-               class="password form-control"
-               data-error="Please enter valid password (minimum 6 characters)"
-               required>
-        <div class="help-block with-errors"></div>
+      <div class="timeline-description">
+        <%= image_tag "timelinelogo.png" %>
+        <div>
+          Share what's new
+        </div>
+
+        <div>
+          in your dance life on your Timeline
+        </div>
+      </div>
+    </div>
+
+    <div class="login-form">
+      <div class="title">Log In</div>
+
+      <div class="login-form-body">
+        <form action="/sessions" method="post" data-toggle="validator" role="form">
+          <%= auth_input %>
+
+          <div class="form-group col-md-12">
+            <input type="email"
+                   name="user[email]"
+                   placeholder="Email"
+                   class="email form-control"
+                   data-error="Please enter valid email"
+                   required>
+            <div class="help-block with-errors"></div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <input type="password"
+                   name="user[password]"
+                   placeholder="Password"
+                   class="password form-control"
+                   data-error="Please enter valid password"
+                   required>
+            <div class="help-block with-errors"></div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <input type="submit"
+                   value="Log In"
+                   class="login-button btn btn-success btn-lg btn-block">
+          </div>
+        </form>
+
+        <div class="col-md-12 guest-login-button">
+          <button onclick="demo()" class="btn btn-primary btn-lg btn-block">Guest Log In</button>
+        </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <input type="submit"
-               value="Log In"
-               class="login-button btn btn-success btn-lg btn-block">
+      <div class="signup-link">
+        Don't have an account?
+        <a href="/users/new">Sign up!</a>
       </div>
-    </form>
-
-    <div class="form-group col-md-12">
-      <button onclick="demo()" class="btn btn-primary btn-lg btn-block">Guest Log In</button>
     </div>
   </div>
 </div>
