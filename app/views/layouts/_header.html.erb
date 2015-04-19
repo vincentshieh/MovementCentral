@@ -18,6 +18,11 @@
       <% if logged_in? %>
         <li>
           <a href="/#/users/<%= current_user.id %>">
+            <div class="mini-profile-pic"
+                 style="background-image: url('<%= current_user.profile_picture %>');
+                        background-size: cover;
+                        background-position: center center;">
+            </div>
             <%= current_user.fname %>
           </a>
         </li>
