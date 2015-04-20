@@ -1,9 +1,21 @@
-<div class="panel panel-info user<%= user.escape('id') %>-info">
-  <div class="panel-heading">
-    <%= user.escape('fname') %> <%= user.escape('lname') %>
+<div class="user<%= user.escape('id') %>-info">
+  <div class="search-item-profile-pic"
+       style="background-image: url('<%= user.escape('profile_picture') %>');
+              background-size: cover;
+              background-position: center center;">
   </div>
 
-  <div class="panel-body">
-    <%= user.escape('dance_style') %> | <%= user.escape('company') %>
+  <div class="search-item-info">
+    <div class="search-item-name">
+      <%= user.escape('fname') %> <%= user.escape('lname') %>
+    </div>
+
+    <div class="search-item-style">
+      <%= user.escape('dance_style') %>
+    </div>
+
+    <div class="search-item-company">
+      <%= user.escape('company') %>
+    </div>
   </div>
 </div>
