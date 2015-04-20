@@ -32,7 +32,7 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
 
     setTimeout(function () {
       view.$('.comment-error').remove();
-    }, 5000);
+    }, 3000);
   },
 
   submit: function (event) {

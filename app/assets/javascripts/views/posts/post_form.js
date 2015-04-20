@@ -24,7 +24,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
       },
       function (Blob) {
         view.model.set({ picture: Blob.url });
-        $photo_preview.html("<img src='" + Blob.url + "'>");
+        $photo_preview.html("<div class='photo-preview-text'>Photo Preview:</div><img src='" + Blob.url + "'>");
       }
     );
   },
@@ -46,9 +46,9 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
       this.$('form').prepend(error_alert);
     }
 
-    // setTimeout(function () {
-    //   view.$('.post-error').remove();
-    // }, 5000);
+    setTimeout(function () {
+      view.$('.post-error').remove();
+    }, 3000);
   },
 
   submit: function (event) {
