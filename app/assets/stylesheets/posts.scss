@@ -37,8 +37,9 @@
 }
 
 .post-form > form,
-.post-index-item {
-  padding: 20px 20px;
+.post-index-item,
+.feed-title {
+  padding: 20px;
   margin-bottom: 10px;
   border: 1px solid #bce8f1;
   border-radius: 3px;
