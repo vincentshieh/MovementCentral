@@ -8,9 +8,15 @@
       <%= friend_requests.models[i].escape('fname') %>
        <%= friend_requests.models[i].escape('lname') %>
     </div>
+
     <button class="accept-friend-request btn btn-primary btn-xs"
             data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
       Confirm
+    </button>
+    
+    <button class="delete-friend-request btn btn-default btn-xs"
+            data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
+      Delete Request
     </button>
   <% } %>
 </div>

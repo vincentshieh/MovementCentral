@@ -230,7 +230,8 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
 
   renderFriendRequestsShow: function (friend_requests) {
     var showView = new MovementCentral.Views.FriendRequestsShow({
-      collection: friend_requests
+      collection: friend_requests,
+      friendships: this.friendships
     });
     this.unshiftSubview('.friend-requests', showView);
   },
