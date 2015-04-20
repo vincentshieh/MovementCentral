@@ -9,6 +9,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   initialize: function (options) {
     this.user_id = options.user_id;
     this.is_feed = options.is_feed;
+    this.is_current_user_profile = this.user_id === MovementCentral.current_user.id;
     this.listenTo(this.model, 'error', this.renderErrors);
   },
 
@@ -30,7 +31,10 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   },
 
   render: function () {
-    var renderedContent = this.template();
+    var renderedContent = this.template({
+      is_feed: this.is_feed,
+      is_current_user_profile: this.is_current_user_profile
+    });
     this.$el.html(renderedContent);
     return this;
   },
