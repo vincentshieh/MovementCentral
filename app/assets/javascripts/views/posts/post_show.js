@@ -2,7 +2,7 @@ MovementCentral.Views.PostShow = Backbone.View.extend({
   template: JST['posts/show'],
 
   events: {
-    'click .like': 'handleLikeClick'
+    'click .post-like': 'handleLikeClick'
   },
 
   initialize: function (options) {

@@ -2,6 +2,11 @@
   <div class="post-author-recipient">
     <a href="/#/users/<%= author.escape('user_id') %>"
        class="post-author">
+      <div class="post-author-profile-pic"
+           style="background-image: url('<%= author.escape('profile_picture') %>');
+                  background-size: cover;
+                  background-position: center center;">
+      </div>
       <%= author.escape('fname') %> <%= author.escape('lname') %>
     </a>
     <% if (author.escape('user_id') !== recipient.escape('user_id')) { %>
@@ -23,7 +28,7 @@
   <img src="<%= post.escape('picture') %>">
 <% } %>
 
-<button class="like btn btn-primary btn-xs">
+<button class="post-like btn btn-primary btn-xs">
   <% if (liked) { %>
     Unlike
   <% } else { %>
@@ -32,7 +37,8 @@
 </button>
 
 <% if (likers) { %>
-  <div class="likers">
+  <div class="post-likers">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
     <%= likers %>
   </div>
 <% } %>

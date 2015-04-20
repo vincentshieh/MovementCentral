@@ -46,6 +46,7 @@
 }
 
 .post-author-recipient {
+  margin-bottom: 20px;
   color: lightsteelblue;
 }
 
@@ -53,16 +54,39 @@
 .post-recipient,
 .post-author:hover,
 .post-recipient:hover,
+.comment-author,
 .comment-author:hover {
   color: indigo;
 }
 
+.post-author,
+.post-recipient,
+.comment-author {
+  font-weight: 700;
+}
+
+.post-author-profile-pic {
+  width: 50px;
+  height: 50px;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid #d0d0d0;
+}
+
 .post-content {
-  width: 558px;
+  width: 100%;
+  margin: 10px 0;
   word-break: break-all;
 }
 
-.likers {
+.post .post-like {
+  margin: 10px 0;
+}
+
+.post-likers,
+.comment-likers {
   font-size: 14px;
 }
 

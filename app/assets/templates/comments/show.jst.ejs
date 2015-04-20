@@ -1,6 +1,11 @@
 <% if (author) { %>
   <a href="/#/users/<%= author.escape('user_id') %>"
      class="comment-author">
+     <div class="comment-author-profile-pic"
+          style="background-image: url('<%= author.escape('profile_picture') %>');
+                 background-size: cover;
+                 background-position: center center;">
+     </div>
     <%= author.escape('fname') %> <%= author.escape('lname') %>
   </a>
 <% } %>
@@ -8,7 +13,7 @@
  <%= comment.escape('content') %>
 <br>
 
-<button class="like btn btn-primary btn-xs">
+<button class="comment-like btn btn-primary btn-xs">
   <% if (liked) { %>
     Unlike
   <% } else { %>
@@ -17,7 +22,8 @@
 </button>
 
 <% if (likers) { %>
-  <div class="likers">
+  <div class="comment-likers">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
     <%= likers %>
   </div>
 <% } %>

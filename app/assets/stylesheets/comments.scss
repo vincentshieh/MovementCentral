@@ -1,8 +1,23 @@
 .comments {
-  padding: 10px;
+  padding: 10px 0;
   font-size: 14px;
 }
 
-.comment-author {
-  color: indigo;
+.comments > div {
+  margin: 5px 0;
+}
+
+.comment-author-profile-pic {
+  width: 45px;
+  height: 45px;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid #d0d0d0;
+}
+
+.comments .comment-likers {
+  display: inline-block;
+  margin-left: 10px;
 }

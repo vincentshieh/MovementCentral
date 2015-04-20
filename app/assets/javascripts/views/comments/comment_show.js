@@ -2,7 +2,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
   template: JST['comments/show'],
 
   events: {
-    'click .like': 'handleLikeClick'
+    'click .comment-like': 'handleLikeClick'
   },
 
   initialize: function (options) {
