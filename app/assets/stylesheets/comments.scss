@@ -1,13 +1,14 @@
 .comments {
-  padding: 10px 0;
   font-size: 14px;
+  padding: 0 20px;
 }
 
 .comments > div {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
-.comment-author-profile-pic {
+.comment-author-profile-pic,
+.current-user-profile-pic {
   width: 45px;
   height: 45px;
   float: left;
@@ -20,4 +21,23 @@
 .comments .comment-likers {
   display: inline-block;
   margin-left: 10px;
+}
+
+.comment-likers {
+  font-size: 12px;
+}
+
+.new-comment {
+  margin-top: 10px;
+  padding: 0 20px 20px 20px;
+}
+
+.comment-form .comment-content {
+  width: calc(100% - 53px);
+  float: right;
+  padding: 21px 12px;
+}
+
+.comment-form button {
+  float: right;
 }

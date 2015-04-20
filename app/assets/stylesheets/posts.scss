@@ -31,8 +31,19 @@
   margin-bottom: 10px;
 }
 
+.posts > div {
+  background: cornflowerblue;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 1px solid #bce8f1;
+}
+
+.post {
+  padding: 20px 20px 0 20px;
+  border-bottom: 1px solid #bce8f1;
+}
+
 .post-form > form,
-.post-index-item,
 .feed-title {
   padding: 20px;
   margin-bottom: 10px;
@@ -84,12 +95,15 @@
   margin: 10px 0;
 }
 
-.post-likers {
-  margin-top: 10px;
+.post .post-like {
+  margin-bottom: 10px;
 }
 
-.post-likers,
-.comment-likers {
+.post-likers {
+  margin-bottom: 10px;
+}
+
+.post-likers {
   font-size: 14px;
 }
 
@@ -103,4 +117,12 @@
 .post-error {
   position: relative;
   width: 100%;
+}
+
+.post-form button {
+  float: right;
+}
+
+.add-photo {
+  margin-right: 10px;
 }

@@ -1,10 +1,15 @@
 <div class="comment-form">
-  <form>
-  <div class="form-group">
-    <input type="text"
-           class="form-control comment-content"
-           name="content"
-           placeholder="Write a comment...">
+  <form class="clearfix">
+    <div class="form-group clearfix">
+      <div class="current-user-profile-pic"
+           style="background-image: url('<%= profile_picture %>');
+                  background-size: cover;
+                  background-position: center center;">
+      </div>
+      <input type="text"
+             class="form-control comment-content"
+             name="content"
+             placeholder="Write a comment...">
     </div>
     <button class="btn btn-primary btn-xs">
       Comment

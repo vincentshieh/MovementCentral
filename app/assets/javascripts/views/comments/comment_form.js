@@ -14,7 +14,9 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
   },
 
   render: function () {
-    var renderedContent = this.template();
+    var renderedContent = this.template({
+      profile_picture: MovementCentral.current_user.profile_picture
+    });
     this.$el.html(renderedContent);
     return this;
   },
