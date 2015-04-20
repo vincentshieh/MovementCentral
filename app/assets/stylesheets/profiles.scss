@@ -45,8 +45,8 @@
 
 .profile-navbar {
   background: cornflowerblue;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   border-left: 1px solid #bce8f1;
   border-right: 1px solid #bce8f1;
   border-bottom: 1px solid #bce8f1;
@@ -64,7 +64,7 @@
 .user-info {
   font-size: 12px;
   background: cornflowerblue;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .user-info.col-md-4,
@@ -92,7 +92,7 @@
   margin: 10px 0;
   padding-left: 0;
   padding-right: 0;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .friend-requests .panel-heading {
