@@ -84,8 +84,8 @@
   margin: 10px 0;
 }
 
-.post .post-like {
-  margin: 10px 0;
+.post-likers {
+  margin-top: 10px;
 }
 
 .post-likers,
@@ -97,6 +97,7 @@
   width: 100%;
   height: auto;
   border: 1px solid #bce8f1;
+  margin-bottom: 10px;
 }
 
 .post-error {
