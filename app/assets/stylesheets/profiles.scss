@@ -57,8 +57,33 @@
   z-index: 0;
 }
 
+.request-item {
+  margin-bottom: 10px;
+}
+
 .requester-fullname {
   padding-right: 10px;
+  color: indigo;
+  font-weight: 700;
+}
+
+.requester-fullname:hover {
+  color: indigo;
+}
+
+.requester-profile-pic {
+  width: 50px;
+  height: 50px;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid #d0d0d0;
+}
+
+.accept-friend-request,
+.delete-friend-request {
+  margin-top: 10px;
 }
 
 .user-info {

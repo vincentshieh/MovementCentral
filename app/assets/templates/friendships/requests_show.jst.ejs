@@ -4,19 +4,27 @@
 
 <div class="panel-body">
   <% for(var i = 0; i < friend_requests.length; i++) { %>
-    <div class="requester-fullname">
-      <%= friend_requests.models[i].escape('fname') %>
-       <%= friend_requests.models[i].escape('lname') %>
-    </div>
+    <div class="request-item">
+      <a href="/#/users/<%= friend_requests.models[i].escape('user_id') %>"
+         class="requester-fullname">
+        <div class="requester-profile-pic"
+             style="background-image: url('<%= friend_requests.models[i].escape('profile_picture') %>');
+                    background-size: cover;
+                    background-position: center center;">
+        </div>
+        <%= friend_requests.models[i].escape('fname') %>
+         <%= friend_requests.models[i].escape('lname') %>
+      </a><br>
 
-    <button class="accept-friend-request btn btn-primary btn-xs"
-            data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
-      Confirm
-    </button>
-    
-    <button class="delete-friend-request btn btn-default btn-xs"
-            data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
-      Delete Request
-    </button>
+      <button class="accept-friend-request btn btn-primary btn-xs"
+              data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
+        Confirm
+      </button>
+
+      <button class="delete-friend-request btn btn-default btn-xs"
+              data-friend-id="<%= friend_requests.models[i].escape('user_id') %>">
+        Delete Request
+      </button>
+    </div>
   <% } %>
 </div>
