@@ -1,0 +1,49 @@
+.friends {
+  margin-top: 10px;
+}
+
+.friend-item {
+  width: 47%;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #d0d0d0;
+}
+
+.friend-item-profile-pic {
+  width: 100px;
+  height: 100px;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  border-radius: 3px;
+}
+
+.friend-item-info {
+  transform: translateY(20%);
+}
+
+.friend-item-style,
+.friend-item-company {
+  font-size: 14px;
+}
+
+.friends h3 {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.panel.friend-item {
+  width: 430px;
+  margin: 15px 8px 0;
+  display: inline-block;
+}
+
+.friends {
+  margin-bottom: 20px;
+}
+
+.friend-item:hover {
+  cursor: pointer;
+  background: #d0d0d0;
+}

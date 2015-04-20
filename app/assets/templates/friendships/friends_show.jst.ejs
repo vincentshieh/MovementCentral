@@ -1,12 +1,32 @@
-<% friends.each(function (friend) { %>
-  <div class="panel panel-info friend-item"
-       data-user-id="<%= friend.escape('user_id') %>">
-    <div class="panel-heading">
-      <%= friend.escape('fname') %> <%= friend.escape('lname') %>
-    </div>
-
-    <div class="panel-body">
-      <%= friend.escape('dance_style') %> | <%= friend.escape('company') %>
-    </div>
+<div class="panel panel-info friends-panel">
+  <div class="panel-heading">
+    <h3>Friends</h3>
   </div>
-<% }) %>
+
+  <div class="panel-body">
+    <% friends.each(function (friend) { %>
+      <div class="friend-item"
+           data-user-id="<%= friend.escape('user_id') %>">
+        <div class="friend-item-profile-pic"
+             style="background-image: url('<%= friend.escape('profile_picture') %>');
+                    background-size: cover;
+                    background-position: center center;">
+
+        </div>
+        <div class="friend-item-info">
+          <div class="friend-item-name">
+            <%= friend.escape('fname') %> <%= friend.escape('lname') %>
+          </div>
+
+          <div class="friend-item-style">
+            <%= friend.escape('dance_style') %>
+          </div>
+
+          <div class="friend-item-company">
+            <%= friend.escape('company') %>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>

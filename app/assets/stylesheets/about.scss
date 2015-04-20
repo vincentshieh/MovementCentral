@@ -1,0 +1,26 @@
+.about {
+  margin-top: 10px;
+}
+
+.about .table {
+  border-radius: 3px;
+}
+
+.about .panel .panel-heading,
+.friends .panel .panel-heading {
+  background: cornflowerblue;
+  color: black;
+}
+
+.about h3,
+.about .table caption {
+  font-weight: 700;
+}
+
+.about h3 {
+  margin-top: 10px;
+}
+
+.about .table caption {
+  padding-left: 8px;
+}
