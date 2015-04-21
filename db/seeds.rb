@@ -60,7 +60,8 @@ User.create!(email: 'ianeastwood@mwc.com', password: 'ianian',
              profile_picture: 'https://www.filepicker.io/api/file/6YgI5BPpT7auDiqUL95y',
              cover_photo: 'https://www.filepicker.io/api/file/Jj6WD09VSJunFQd1zq4W',
              job_title: 'Choreographer and dancer', school: 'various studios',
-             current_city: 'Los Angeles, California', hometown: 'Chicago, Illinois')
+             current_city: 'Los Angeles, California', hometown: 'Chicago, Illinois',
+             bio: 'Member of the well known dance group Mos Wanted Crew who has also worked with Young Lions, Millennium Dance Center, Coastal Dance Rage, and Movement Lifestyle. He appeared on Dance Showdown and Return of the Superstars.')
 User.create!(email: 'kyle@mm.com', password: 'kylekyle',
              fname: 'Kyle', lname: 'Hanagami', dance_style: 'Hip-hop',
              gender: 'Male', company: 'Making Moves',
@@ -97,6 +98,30 @@ User.create!(email: 'jerb@aa.com', password: 'jeroboam',
              job_title: 'Dancer', school: 'Joffrey Ballet School',
              current_city: 'New York, New York', hometown: 'Brooklyn, New York',
              bio: 'Jeroboam Bozeman (Brooklyn, NY) began his dance training under Ruth Sistaire at the Ronald Edmonds Learning Center. He later joined Creative Outlet, under Jamel Gaines, and was granted full scholarships at the Joffrey Ballet School and Dance Theatre of Harlem School. Mr. Bozeman is a gold medal recipient from the NAACP ACT-SO Competition in Dance. He performed in Elton John and Tim Rice’s Broadway musical Aida (International tour in China) and was a part of Philadanco, Donald Byrd\'s Spectrum Dance Theater, and Ailey II. This is Mr. Bozeman’s first year with the Company.')
+User.create!(email: 'twitch@stepup.2thestreets', password: 'stephen',
+             fname: 'Stephen', lname: 'Boss', dance_style: 'Hip-hop',
+             gender: 'Male', company: 'Step Up Cast', nickname: 'tWitch',
+             profile_picture: 'https://www.filepicker.io/api/file/wvqNxClRTxkRzVSKsNun',
+             cover_photo: 'https://www.filepicker.io/api/file/28IHa8CxQmieZ0vJbJ6n',
+             job_title: 'Krumper', school: 'The Streets',
+             current_city: 'Los Angeles, California', hometown: 'Atlanta, Georgia',
+             bio: 'As a child, tWitch was always seen moving and dancing hip-hop, which is how he earned his nickname. He graduated from Lee High School in Montgomery, Alabama in 2000 and continued to study dance at Southern Union State Community College in Wadley, Alabama. tWitch first appeared on television when he placed second on Star Search behind America\'s Best Dance Crew group Super Crew. Then in 2003, Boss went to Los Angeles and auditioned to become a contestant on MTV\'s The Wade Robson Project where he eventually placed third in the competition. At the same time, he attended Chapman University in Southern California where he studied dance. tWitch continues to teach dance classes and workshops around the world and has even created an online video sketch-comedy in December of 2009 called TheKommune.com. He landed the movie roles of Jason in Step Up 3D and Taz, in Stomp the Yard 2: Homecoming. tWitch is part of dance groups Breed OCLA and Chill Factor Crew and is participating in the non-profit, Dizzy Feet Foundation, which supports underprivileged youth in dance education and opportunities.')
+User.create!(email: 'bluprint@dragonhouse.io', password: 'dorian',
+             fname: 'Dorian', lname: 'Hector', dance_style: 'Hip-hop',
+             gender: 'Male', company: 'Dragon House', nickname: 'Bluprint',
+             profile_picture: 'https://www.filepicker.io/api/file/KV47rEcRVyB0TgzNbX88',
+             cover_photo: 'https://www.filepicker.io/api/file/FYxpswNUQPWZqd1VC0O9',
+             job_title: 'Animator', school: 'Dragon House',
+             current_city: 'Los Angeles, California', hometown: 'Atlanta, Georgia',
+             bio: 'Dragon House!')
+User.create!(email: 'megan@batoon.com', password: 'meganmegan',
+             fname: 'Megan', lname: 'Batoon', dance_style: 'Hip-hop',
+             gender: 'Female', company: 'World of Dance',
+             profile_picture: 'https://www.filepicker.io/api/file/6Lr0NPLqRPilBx7uGLi1',
+             cover_photo: 'https://www.filepicker.io/api/file/EsE6mKRTSpeqaSSsfBj5',
+             job_title: 'Dancer', school: 'Millennium Dance Complex',
+             current_city: 'Los Angeles, California', hometown: 'Jacksonville, Florida',
+             bio: 'Dancer, cheoreographer, and social media phenomenon across multiple platforms, including Instagram, Vine, and most notably, YouTube. She creates video blogs, comedy sketches, and choreography videos for her hundreds of thousands of subscribers on her self-titled YouTube channel.')
 
 Friendship.create!(requester_id: 1, requestee_id: 2, accepted: true)
 Friendship.create!(requester_id: 1, requestee_id: 3, accepted: true)
@@ -125,6 +150,23 @@ Friendship.create!(requester_id: 8, requestee_id: 9, accepted: false)
 Friendship.create!(requester_id: 9, requestee_id: 10, accepted: true)
 Friendship.create!(requester_id: 9, requestee_id: 11, accepted: true)
 Friendship.create!(requester_id: 10, requestee_id: 11, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 1, accepted: true)
+Friendship.create!(requester_id: 12, requestee_id: 1, accepted: false)
+Friendship.create!(requester_id: 12, requestee_id: 13, accepted: true)
+Friendship.create!(requester_id: 12, requestee_id: 8, accepted: true)
+Friendship.create!(requester_id: 12, requestee_id: 7, accepted: true)
+Friendship.create!(requester_id: 12, requestee_id: 6, accepted: true)
+Friendship.create!(requester_id: 12, requestee_id: 5, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 13, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 12, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 8, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 7, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 6, accepted: true)
+Friendship.create!(requester_id: 14, requestee_id: 5, accepted: true)
+Friendship.create!(requester_id: 13, requestee_id: 8, accepted: true)
+Friendship.create!(requester_id: 13, requestee_id: 7, accepted: true)
+Friendship.create!(requester_id: 13, requestee_id: 6, accepted: true)
+Friendship.create!(requester_id: 13, requestee_id: 5, accepted: true)
 
 Post.create!(author_id: 1, recipient_id: 1,
              content: 'Always a blast performing at Queensland Performing Arts Center. Thanks for the support, Australia!',
@@ -146,6 +188,9 @@ Post.create!(author_id: 7, recipient_id: 7,
              picture: 'https://www.filepicker.io/api/file/mDcmy63RquR4wHBMgV6g')
 Post.create!(author_id: 10, recipient_id: 11,
              content: 'carpool to rehearsal tmrw?')
+Post.create!(author_id: 14, recipient_id: 7,
+             content: 'Awesome collabin\' with you! #dreamteam',
+             picture: 'https://www.filepicker.io/api/file/QvF53aLTi0BoxYW44jyw')
 
 Comment.create!(author_id: 1, post_id: 2,
                 content: 'just means you gotta train harder ;)')
@@ -179,3 +224,7 @@ Like.create!(user_id: 9, likable_type: 'Post', likable_id: 1)
 Like.create!(user_id: 10, likable_type: 'Post', likable_id: 1)
 Like.create!(user_id: 3, likable_type: 'Comment', likable_id: 1)
 Like.create!(user_id: 4, likable_type: 'Comment', likable_id: 1)
+Like.create!(user_id: 6, likable_type: 'Post', likable_id: 9)
+Like.create!(user_id: 7, likable_type: 'Post', likable_id: 9)
+Like.create!(user_id: 8, likable_type: 'Post', likable_id: 9)
+Like.create!(user_id: 9, likable_type: 'Post', likable_id: 9)

@@ -2853,3 +2853,156 @@
 [04/20/15 22:38:52 -0700 Vincents-Air (4198)] INFO : Doing deferred dependency-detection before Rack startup
 [04/20/15 22:39:04 -0700 Vincents-Air (4198)] ERROR : Invalid license key, please contact support@newrelic.com
 [04/20/15 22:39:04 -0700 Vincents-Air (4198)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[04/21/15 01:27:40 -0700 Vincents-Air (4198)] INFO : Starting Agent shutdown
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Environment: development
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : No known dispatcher detected.
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Application: development
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing ActiveJob instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing Net instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing deferred Rack instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 01:28:15 -0700 Vincents-Air (5221)] INFO : Finished instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Environment: development
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Dispatcher: webrick
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Application: development
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing ActiveJob instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing Net instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing deferred Rack instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Finished instrumentation
+[04/21/15 01:28:25 -0700 Vincents-Air (5257)] INFO : Doing deferred dependency-detection before Rack startup
+[04/21/15 01:28:35 -0700 Vincents-Air (5257)] ERROR : Invalid license key, please contact support@newrelic.com
+[04/21/15 01:28:35 -0700 Vincents-Air (5257)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Environment: development
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : No known dispatcher detected.
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Application: development
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing ActiveJob instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing Net instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing deferred Rack instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 01:36:33 -0700 Vincents-Air (5330)] INFO : Finished instrumentation
+[04/21/15 01:36:54 -0700 Vincents-Air (5257)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: undefined method `user_id' for nil:NilClass
+[04/21/15 01:37:10 -0700 Vincents-Air (5257)] INFO : Starting Agent shutdown
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Environment: development
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Dispatcher: webrick
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Application: development
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing ActiveJob instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing Net instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing deferred Rack instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Finished instrumentation
+[04/21/15 01:37:15 -0700 Vincents-Air (5366)] INFO : Doing deferred dependency-detection before Rack startup
+[04/21/15 01:37:24 -0700 Vincents-Air (5366)] ERROR : Invalid license key, please contact support@newrelic.com
+[04/21/15 01:37:24 -0700 Vincents-Air (5366)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Environment: development
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : No known dispatcher detected.
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Application: development
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing ActiveJob instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing Net instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing deferred Rack instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 01:50:49 -0700 Vincents-Air (5459)] INFO : Finished instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Environment: development
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : No known dispatcher detected.
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Application: development
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing ActiveJob instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing Net instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing deferred Rack instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 02:02:25 -0700 Vincents-Air (5549)] INFO : Finished instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Environment: development
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : No known dispatcher detected.
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Application: development
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing ActiveJob instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing Net instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing deferred Rack instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 02:26:26 -0700 Vincents-Air (5674)] INFO : Finished instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Starting the New Relic agent in "development" environment.
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] WARN : No configuration file found. Working directory = /Users/vincentshieh/app-academy/MovementCentral
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] WARN : Looked in these locations (based on defaults): /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/config/newrelic.yml, /Users/vincentshieh/app-academy/MovementCentral/newrelic.yml, /Users/vincentshieh/.newrelic/newrelic.yml, /Users/vincentshieh/newrelic.yml
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Environment: development
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : No known dispatcher detected.
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Application: development
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing ActiveJob instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing ActiveRecord 4 instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing Net instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing deferred Rack instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing Rack::Builder middleware instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing Rails 3+ middleware instrumentation
+[04/21/15 02:31:45 -0700 Vincents-Air (5742)] INFO : Installing Rails 4 Controller instrumentation
+[04/21/15 02:31:46 -0700 Vincents-Air (5742)] INFO : Installing Rails 4 view instrumentation
+[04/21/15 02:31:46 -0700 Vincents-Air (5742)] INFO : Installing Rails 4 Error instrumentation
+[04/21/15 02:31:46 -0700 Vincents-Air (5742)] INFO : Finished instrumentation
