@@ -124,7 +124,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   render: function () {
     var friendships = this.friendships;
     var friendship = friendships.findWhere({ user_id: this.user_id });
-    var show_info, show_friend_requests;
+    var show_info, show_info_box, show_friend_requests;
     var friend_requests = new MovementCentral.Collections.Friendships();
 
 
@@ -132,6 +132,10 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       show_info = friendship.get('self') || friendship.get('accepted') ||
                   (!friendship.get('stranger') &&
                    !friendship.get('requester'));
+
+      show_info_box = (friendship.get('job_title') && friendship.get('company')) ||
+                      (friendship.get('dance_style') && friendship.get('school')) ||
+                      friendship.get('current_city') || friendship.get('hometown');
 
       if (friendship.get('self')) {
         for(var i = 0; i < friendships.length; i++) {
@@ -149,6 +153,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       friendship: friendship,
       friend_button_val: this.friendButtonVal(),
       show_info: show_info,
+      show_info_box: show_info_box,
       show_friend_requests: show_friend_requests,
       subviewType: this.subviewType
     });
@@ -157,7 +162,9 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     this.renderSearchForm();
     if (this.subviewType === 'timeline') {
       if (show_info) {
-        this.renderInfoShow();
+        if (show_info_box) {
+          this.renderInfoShow();
+        }
         this.renderPostForm();
         this.renderPostsIndex();
       }
