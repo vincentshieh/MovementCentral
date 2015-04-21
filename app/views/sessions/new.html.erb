@@ -1,4 +1,13 @@
 <div class="login-body">
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      <div class="alert alert-danger login-error" role="alert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true">
+        </span><span class="sr-only">Error:</span>
+        <%= error %>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class="login-sub-body clearfix">
     <div class="site-description">
       <h2 class="title">
