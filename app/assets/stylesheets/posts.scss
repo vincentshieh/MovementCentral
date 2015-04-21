@@ -38,22 +38,31 @@
   border: 1px solid #bce8f1;
 }
 
+.posts > div:first-child {
+  margin-top: 10px;
+}
+
 .post {
   padding: 20px 20px 0 20px;
   border-bottom: 1px solid #bce8f1;
+  background: #92b5f2;
 }
 
 .post-form > form,
 .feed-title {
   padding: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border: 1px solid #bce8f1;
   border-radius: 5px;
-  background: cornflowerblue;
+  background: #92b5f2;
 }
 
 .post-form > form {
   margin-top: 10px;
+}
+
+.new-post .post-form > form {
+  margin: 10px 0;
 }
 
 .post-form-text {
@@ -62,7 +71,7 @@
 
 .post-author-recipient {
   margin-bottom: 20px;
-  color: lightsteelblue;
+  color: gray;
 }
 
 .post-author,
