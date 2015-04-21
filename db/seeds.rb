@@ -45,7 +45,7 @@ User.create!(email: 'ricky@sytycd11.com', password: 'rickyricky',
              cover_photo: 'https://www.filepicker.io/api/file/gEiQQGTpKHKRjG0OvvOA',
              job_title: 'Contemporary dancer', school: 'Stars Dance Company',
              current_city: 'Los Angeles, California', hometown: 'Miami, Florida',
-             bio: 'Ricky Ubeda is the winner on season 11 of So You Think You Can Dance')
+             bio: 'Ricky Ubeda is the winner on season 11 of So You Think You Can Dance.')
 User.create!(email: 'travis@sytycd.com', password: 'travis',
              fname: 'Travis', lname: 'Wall', dance_style: 'Contemporary',
              gender: 'Male', company: 'So You Think You Can Dance',

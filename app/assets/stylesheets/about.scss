@@ -24,3 +24,10 @@
 .about .table caption {
   padding-left: 8px;
 }
+
+.table.contact-basic-info tr td:first-child,
+.table.dance-info tr td:first-child,
+.table.location-info tr td:first-child {
+  color: #777777;
+  width: 300px;
+}

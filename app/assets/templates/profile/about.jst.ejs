@@ -5,9 +5,9 @@
     </div>
 
     <div class="panel-body">
-      <table class="table">
+      <table class="table contact-basic-info">
         <caption>
-          Basic Information
+          Contact and Basic Information
         </caption>
 
         <% if (show_info) { %>
@@ -23,17 +23,80 @@
         </tr>
       </table>
 
-      <table class="table">
+      <table class="table dance-info">
         <caption>
-          Bio
+          Dance Background and Information
         </caption>
-        
+
         <tr>
-          <td>
-            <%= friendship.escape('bio') %>
-          </td>
+          <td>Dance Style</td>
+          <td><%= friendship.escape('dance_style') %></td>
         </tr>
+
+        <tr>
+          <td>Company</td>
+          <td><%= friendship.escape('company') %></td>
+        </tr>
+
+        <% if (friendship.escape('nickname') || friendship.escape('self')) { %>
+          <tr>
+            <td>Nickname</td>
+            <td><%= friendship.escape('nickname') %></td>
+          </tr>
+        <% } %>
+
+        <% if (show_info) { %>
+          <% if (friendship.escape('job_title') || friendship.escape('self')) { %>
+            <tr>
+              <td>Job Title</td>
+              <td><%= friendship.escape('job_title') %></td>
+            </tr>
+          <% } %>
+
+          <% if (friendship.escape('school') || friendship.escape('self')) { %>
+            <tr>
+              <td>School</td>
+              <td><%= friendship.escape('school') %></td>
+            </tr>
+          <% } %>
+        <% } %>
       </table>
+
+      <% if (show_info) { %>
+        <table class="table location-info">
+          <caption>
+            Current City and Hometown
+          </caption>
+
+            <% if (friendship.escape('current_city') || friendship.escape('self')) { %>
+              <tr>
+                <td>Current City</td>
+                <td><%= friendship.escape('current_city') %></td>
+              </tr>
+            <% } %>
+
+            <% if (friendship.escape('hometown') || friendship.escape('self')) { %>
+              <tr>
+                <td>Hometown</td>
+                <td><%= friendship.escape('hometown') %></td>
+              </tr>
+            <% } %>
+        </table>
+      <% } %>
+
+      <% if (show_info) { %>
+        <table class="table">
+          <caption>
+            Bio
+          </caption>
+
+          <tr>
+            <td>
+              <%= friendship.escape('bio') %>
+            </td>
+          </tr>
+        </table>
+      <% } %>
     </div>
   </div>
 <% } %>
