@@ -25,7 +25,6 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   changeCoverPhoto: function (event) {
-    event.preventDefault();
     var current_user = new MovementCentral.Models.Friendship();
     var view = this;
 
@@ -36,7 +35,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       },
       function (Blob) {
         current_user.save({ cover_photo: Blob.url }, {
-          url: 'api/users_photo',
+          url: 'api/users/update_attribute',
           success: function () {
             view.friendships.fetch();
           }
@@ -46,7 +45,6 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   changeProfilePic: function (event) {
-    event.preventDefault();
     var current_user = new MovementCentral.Models.Friendship();
     var view = this;
 
@@ -57,7 +55,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
       },
       function (Blob) {
         current_user.save({ profile_picture: Blob.url }, {
-          url: 'api/users_photo',
+          url: 'api/users/update_attribute',
           success: function () {
             view.friendships.fetch();
           }
@@ -160,15 +158,15 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     if (this.subviewType === 'timeline') {
       if (show_info) {
         this.renderInfoShow();
+        this.renderPostForm();
+        this.renderPostsIndex();
       }
-      this.renderPostForm();
-      this.renderPostsIndex();
       if (show_friend_requests) {
         this.renderFriendRequestsShow(friend_requests);
       }
     } else if (this.subviewType === 'about') {
       this.renderAboutShow();
-    } else if (this.subviewType === 'friends') {
+    } else if (this.subviewType === 'friends' && show_info) {
       this.renderFriendsShow();
     }
 
@@ -182,6 +180,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     }
     var showView = new MovementCentral.Views.AboutShow({
       friendship: friendship,
+      friendships: this.friendships
     });
     this.unshiftSubview('.about', showView);
   },

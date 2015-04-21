@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     get 'likes/post_index', to: 'likes#post_index'
     get 'users/search', to: 'users#search'
     get 'friendships/friends', to: 'friendships#friends'
-    post 'users_photo', to: 'users#photo_update'
+    post 'users/update_attribute', to: 'users#update_attribute'
   end
 end

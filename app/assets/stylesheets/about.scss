@@ -21,6 +21,10 @@
   margin-top: 10px;
 }
 
+.about .panel-body {
+  padding: 30px;
+}
+
 .about .table caption {
   padding-left: 8px;
 }
@@ -30,4 +34,26 @@
 .table.location-info tr td:first-child {
   color: #777777;
   width: 300px;
+}
+
+.edit-nickname,
+.edit-job-title,
+.edit-school,
+.edit-current-city,
+.edit-hometown,
+.edit-bio {
+  float: right;
+}
+
+.save-nickname,
+.save-job-title,
+.save-school,
+.save-current-city,
+.save-hometown,
+.save-bio {
+  margin-top: 10px;
+}
+
+.cancel {
+  margin: 10px 0 0 10px;
 }
