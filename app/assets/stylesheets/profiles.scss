@@ -57,6 +57,33 @@
   z-index: 0;
 }
 
+.profile-nav-buttons .btn {
+  border-radius: 0;
+  background: #92b5f2;
+  border-top: 0;
+  border-bottom: 0;
+  color: black;
+}
+
+.profile-nav-buttons .btn:hover {
+  background: cornflowerblue;
+  color: black;
+  border-right: 1px solid #bce8f1;
+}
+
+.profile-nav-buttons .btn:first-child {
+  border-left: 1px solid #bce8f1;
+}
+
+.profile-nav-buttons .btn:nth-child(2) {
+  border-left: 1px solid #bce8f1;
+}
+
+.profile-nav-buttons .btn:last-child {
+  border-left: 1px solid #bce8f1;
+  border-right: 1px solid #bce8f1;
+}
+
 .request-item {
   margin-bottom: 10px;
 }

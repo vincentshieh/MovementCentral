@@ -50,9 +50,28 @@
 
 <div class="profile-navbar">
   <div class="btn-group profile-nav-buttons" role="group">
-    <button class="btn btn-primary btn-lg subview-btn">Timeline</button>
-    <button class="btn btn-primary btn-lg subview-btn">About</button>
-    <button class="btn btn-primary btn-lg subview-btn">Friends</button>
+    <% if (subviewType === 'timeline') { %>
+      <button class="btn btn-primary btn-lg subview-btn"
+              style="background: cornflowerblue">
+        Timeline
+      </button>
+      <button class="btn btn-primary btn-lg subview-btn">About</button>
+      <button class="btn btn-primary btn-lg subview-btn">Friends</button>
+    <% } else if (subviewType === 'about') { %>
+      <button class="btn btn-primary btn-lg subview-btn">Timeline</button>
+      <button class="btn btn-primary btn-lg subview-btn"
+              style="background: cornflowerblue;">
+        About
+      </button>
+      <button class="btn btn-primary btn-lg subview-btn">Friends</button>
+    <% } else if (subviewType === 'friends') { %>
+      <button class="btn btn-primary btn-lg subview-btn">Timeline</button>
+      <button class="btn btn-primary btn-lg subview-btn">About</button>
+      <button class="btn btn-primary btn-lg subview-btn"
+              style="background: cornflowerblue;">
+        Friends
+      </button>
+    <% } %>
   </div>
 </div>
 
