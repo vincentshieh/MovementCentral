@@ -26,7 +26,17 @@ A user can:
 * Search for dancers by name, dance style, or dance company
 
 ## Code Highlights
-
+* Search feature sends query to Rails as attribute of params hash and updates results as the user types.
+```javascript
+this.$('.search-query').on('input focus', function() {
+  view.collection.fetch({
+    url: 'api/users/search',
+    data: {
+      query: view.$('.search-query').val()
+    }
+  });
+});
+```
 
 ## Design Docs
 
