@@ -2,7 +2,7 @@
 
 Movement Central is a social network for dancers built using Ruby on Rails, PostgreSQL, Backbone.js, jQuery, Twitter Bootstrap, and Filepicker. It is modeled on Facebook's feel and functionality.
 
-Visit live at: [http://www.movementcentral.co][url]
+Visit the site live at: [http://www.movementcentral.co][url]
 
 [url]: http://www.movementcentral.co
 

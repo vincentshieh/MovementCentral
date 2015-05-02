@@ -3028,3 +3028,4 @@
 [05/01/15 11:37:01 -0700 Vincents-MacBook-Air.local (2102)] INFO : Doing deferred dependency-detection before Rack startup
 [05/01/15 11:37:08 -0700 Vincents-MacBook-Air.local (2102)] ERROR : Invalid license key, please contact support@newrelic.com
 [05/01/15 11:37:08 -0700 Vincents-MacBook-Air.local (2102)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[05/01/15 15:00:21 -0700 Vincents-MacBook-Air.local (2102)] INFO : Starting Agent shutdown
