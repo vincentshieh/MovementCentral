@@ -11,6 +11,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   aboutShow: function (id) {
+    ga('send', 'pageview', 'users/' + id + '/about');
     var friendships = MovementCentral.Collections.friendships;
 
     friendships.fetch();
@@ -25,6 +26,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   feedShow: function () {
+    ga('send', 'pageview', 'feed');
     var posts = MovementCentral.Collections.posts;
     var friendships = MovementCentral.Collections.friendships;
     var comment_likes = MovementCentral.Collections.comment_likes;
@@ -52,6 +54,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   friendsShow: function (id) {
+    ga('send', 'pageview', 'users/' + id + '/friends');
     var friendships = MovementCentral.Collections.friendships;
 
     friendships.fetch();
@@ -66,6 +69,7 @@ MovementCentral.Routers.Router = Backbone.Router.extend({
   },
 
   timelineShow: function (id) {
+    ga('send', 'pageview', 'users/' + id);
     var posts = MovementCentral.Collections.posts;
     var friendships = MovementCentral.Collections.friendships;
     var comment_likes = MovementCentral.Collections.comment_likes;

@@ -31,6 +31,7 @@ MovementCentral.Views.SearchForm = Backbone.CompositeView.extend({
     setTimeout(function () {
       this.$('.search-query').off('input focus');
       this.$('.search-query').on('input focus', function() {
+        ga('send', 'event', 'users', 'search');
         view.collection.fetch({
           url: 'api/users/search',
           data: {
