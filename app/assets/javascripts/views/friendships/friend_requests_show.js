@@ -11,6 +11,7 @@ MovementCentral.Views.FriendRequestsShow = Backbone.View.extend({
   },
 
   acceptFriendRequest: function (event) {
+    ga('send', 'event', 'friendships', 'accept');
     var $target = $(event.currentTarget);
     var friend_id = $target.data('friend-id');
     var friendship = this.collection.findWhere({ user_id: friend_id });
@@ -18,6 +19,7 @@ MovementCentral.Views.FriendRequestsShow = Backbone.View.extend({
   },
 
   deleteFriendRequest: function (event) {
+    ga('send', 'event', 'friendships', 'reject');
     var $target = $(event.currentTarget);
     var friend_id = $target.data('friend-id');
     var friendship = this.collection.findWhere({ user_id: friend_id });

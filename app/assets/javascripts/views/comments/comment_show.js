@@ -12,6 +12,7 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
   },
 
   handleLikeClick: function (event) {
+    ga('send', 'event', 'comments', 'like');
     var comment_id = this.model.get('id');
     var current_user_id = MovementCentral.current_user.id;
     var like;

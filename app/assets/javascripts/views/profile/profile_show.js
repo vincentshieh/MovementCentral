@@ -25,6 +25,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   changeCoverPhoto: function (event) {
+    ga('send', 'event', 'users', 'update_cover_photo');
     var current_user = new MovementCentral.Models.Friendship();
     var view = this;
 
@@ -45,6 +46,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   changeProfilePic: function (event) {
+    ga('send', 'event', 'users', 'update_profile_picture');
     var current_user = new MovementCentral.Models.Friendship();
     var view = this;
 
@@ -88,6 +90,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
     var friendship;
 
     if (friendButtonVal === "Add Friend") {
+      ga('send', 'event', 'friendships', 'create');
       friendship = new MovementCentral.Models.Friendship({
         requester_id: MovementCentral.current_user.id,
         requestee_id: this.user_id
@@ -100,6 +103,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
         }
       });
     } else if (friendButtonVal === "Unfriend") {
+      ga('send', 'event', 'friendships', 'destroy');
       friendship = this.friendships.findWhere({ user_id: this.user_id });
       friendship.destroy({
         success: function () {

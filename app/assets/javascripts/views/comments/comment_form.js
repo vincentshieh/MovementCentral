@@ -38,6 +38,7 @@ MovementCentral.Views.CommentForm = Backbone.View.extend({
   },
 
   submit: function (event) {
+    ga('send', 'event', 'comments', 'create');
     event.preventDefault();
     var attrs = this.$('form').serializeJSON();
     var view = this;

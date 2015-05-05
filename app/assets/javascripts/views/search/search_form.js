@@ -14,6 +14,7 @@ MovementCentral.Views.SearchForm = Backbone.CompositeView.extend({
 
     setTimeout(function () {
       this.$(selector).on('click', function() {
+        ga('send', 'event', 'users', 'search_item_click');
         view.collection.reset();
         view.$('.search-items').empty();
         Backbone.history.navigate("#/users/" + user.get('id'), { trigger: true });

@@ -14,6 +14,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   },
 
   addPhoto: function (event) {
+    ga('send', 'event', 'posts', 'add_photo');
     event.preventDefault();
     var view = this;
     var $photo_preview = this.$('.photo-preview');
@@ -56,6 +57,7 @@ MovementCentral.Views.PostForm = Backbone.View.extend({
   },
 
   submit: function (event) {
+    ga('send', 'event', 'posts', 'create');
     event.preventDefault();
     var attrs = this.$('form').serializeJSON();
     var view = this;
