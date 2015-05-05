@@ -12,19 +12,20 @@ MovementCentral.Views.CommentShow = Backbone.View.extend({
   },
 
   handleLikeClick: function (event) {
-    ga('send', 'event', 'comments', 'like');
     var comment_id = this.model.get('id');
     var current_user_id = MovementCentral.current_user.id;
     var like;
     var view = this;
 
     if (this.liked()) {
+      ga('send', 'event', 'comments', 'unlike');
       like = this.comment_likes.findWhere({
         user_id: current_user_id,
         likable_id: comment_id
       });
       like.destroy();
     } else {
+      ga('send', 'event', 'comments', 'like');
       like = new MovementCentral.Models.Like({
         user_id: current_user_id,
         likable_type: 'Comment',

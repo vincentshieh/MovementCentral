@@ -13,19 +13,20 @@ MovementCentral.Views.PostShow = Backbone.View.extend({
   },
 
   handleLikeClick: function (event) {
-    ga('send', 'event', 'posts', 'like');
     var post_id = this.model.get('id');
     var current_user_id = MovementCentral.current_user.id;
     var like;
     var view = this;
 
     if (this.liked()) {
+      ga('send', 'event', 'posts', 'unlike');
       like = this.post_likes.findWhere({
         user_id: current_user_id,
         likable_id: post_id
       });
       like.destroy();
     } else {
+      ga('send', 'event', 'posts', 'like');
       like = new MovementCentral.Models.Like({
         user_id: current_user_id,
         likable_type: 'Post',
