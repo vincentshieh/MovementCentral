@@ -59,7 +59,7 @@ MovementCentral.Views.ProfileShow = Backbone.CompositeView.extend({
         current_user.save({ profile_picture: Blob.url }, {
           url: 'api/users/update_attribute',
           success: function () {
-            view.friendships.fetch();
+            location.reload();
           }
         });
       }
